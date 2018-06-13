@@ -5,6 +5,7 @@ package com.vergilyn.examples.generic;
  * @author VergiLyn
  * @bolg http://www.cnblogs.com/VergiLyn/
  * @date 2017/4/16
+ * @see com.vergilyn.examples.jvm.SubclassInvoke
  */
 public class GenericLimit {
     public static void main(String[] args) {
