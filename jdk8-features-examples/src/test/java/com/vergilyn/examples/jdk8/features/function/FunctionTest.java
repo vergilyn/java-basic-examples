@@ -41,7 +41,7 @@ public class FunctionTest {
 
         // method-reference
         String refer = operation(x, FunctionTest::increment);
-        Assert.assertEquals(refer, "2");
+        Assert.assertEquals(refer , "2");
 
         // lambda自定义函数接口
         String lambda = operation(x, a -> String.valueOf(a * 3));
