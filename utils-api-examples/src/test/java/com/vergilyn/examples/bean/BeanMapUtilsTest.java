@@ -5,21 +5,18 @@ import java.util.Map;
 
 import com.google.common.collect.Maps;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.BlockJUnit4ClassRunner;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 /**
  * @author VergiLyn
  * @blog http://www.cnblogs.com/VergiLyn/
  * @date 2018/6/11
  */
-@RunWith(BlockJUnit4ClassRunner.class)
 public class BeanMapUtilsTest {
     private Map<String, Object> source;
 
-    @Before
+    @BeforeClass
     public void before() {
         source = Maps.newHashMap();
         source.put("id", 1L);

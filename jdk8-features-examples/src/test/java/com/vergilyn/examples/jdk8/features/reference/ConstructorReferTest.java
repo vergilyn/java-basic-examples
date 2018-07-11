@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 import org.testng.annotations.Test;
 
 /**
- * method-reference之构造器引用：`Class::new`，或者`Class<T>::new`
+ * method-reference，构造器引用：`Class::new`，或者`Class<T>::new`
  * @author VergiLyn
  * @blog http://www.cnblogs.com/VergiLyn/
  * @date 2018/7/11

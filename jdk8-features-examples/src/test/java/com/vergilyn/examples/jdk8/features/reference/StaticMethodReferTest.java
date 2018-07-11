@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import org.testng.collections.Lists;
 
 /**
- * method-reference之静态方法引用：`Class::static_method`
+ * method-reference，静态方法引用：`Class::static_method`
  * @author VergiLyn
  * @blog http://www.cnblogs.com/VergiLyn/
  * @date 2018/7/11

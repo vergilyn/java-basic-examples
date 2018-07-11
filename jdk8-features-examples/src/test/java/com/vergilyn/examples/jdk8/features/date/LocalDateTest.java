@@ -49,21 +49,22 @@ public class LocalDateTest {
     @Test
     public void extend(){
         LocalDate localDate = LocalDate.parse("2018-06-30");
-        System.out.println(localDate.withMonth(1)); // 2018-01-30
-        System.out.println(localDate.withMonth(2)); // 2018-02-28
+        System.out.println("withMonth(1)            : " + localDate.withMonth(1)); // 2018-01-30
+        System.out.println("withMonth(2)            : " + localDate.withMonth(2)); // 2018-02-28
 
-        System.out.println(localDate.withDayOfMonth(10));  // 2018-06-10
+        System.out.println("withDayOfMonth(10)      : " + localDate.withDayOfMonth(10));  // 2018-06-10
         try {
             // exception: java.time.DateTimeException: Invalid date 'JUNE 31'
             System.out.println(localDate.withDayOfMonth(31));
         }catch (DateTimeException e){
-            System.out.println("exception: " + e.getMessage());
+            System.out.println("withDayOfMonth(31)      : " + e.getMessage());
         }
 
-        System.out.println(localDate.plusDays(1));      // 2018-07-01
-        System.out.println(localDate.plusMonths(4));    // 2018-10-30
-        System.out.println(localDate.plusMonths(7));    // 2019-01-30
-        System.out.println(localDate.plusYears(2));     // 2020-06-30
+        System.out.println("plusDays(1)             : " + localDate.plusDays(1));      // 2018-07-01
+        System.out.println("plusDays(-10)           : " + localDate.plusDays(-10));    // 2018-06-20
+        System.out.println("plusMonths(4)           : " + localDate.plusMonths(4));    // 2018-10-30
+        System.out.println("plusMonths(7)           : " + localDate.plusMonths(7));    // 2019-01-30
+        System.out.println("plusYears(2)            : " + localDate.plusYears(2));     // 2020-06-30
 
     }
 
