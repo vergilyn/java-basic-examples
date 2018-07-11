@@ -10,7 +10,7 @@
 
 ### JDBC映射Java8
 |      SQL      |       java              |
-|:-------------:|:-----------------------:|
+|:--------------|:------------------------|
 | date          | java.time.LocalDate     |
 | time          | java.time.LocalTime     |
 | timestamp     | java.time.LocalDateTime |
