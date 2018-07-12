@@ -41,7 +41,7 @@ cars.forEach( Car::collide );
 
 ```
 
-- 对象的方法引用：`instance::method`，或`this::method`
+- 对象的方法引用：`instance::method`，或`this::method`，或`super::method`
 ```
 final Car police = Car.create( Car::new );
 cars.forEach( police::follow );
@@ -55,8 +55,7 @@ cars.forEach( Car::repair );
 ### 疑问
 1. 未能理解`引用类的实例方法 Class::instance_method`的使用方式，及使用场景？
 
-释疑1：  
-任意对象（属于同一个类）的实例方法引用，如下示例，引用的是String中任意一个对象的`equals`方法。
+释疑1：任意对象（属于同一个类）的实例方法引用，如下示例，引用的是String中任意一个对象的`equals`方法。
 ```java
 public class ClassInstanceMethodReferTest {
 
