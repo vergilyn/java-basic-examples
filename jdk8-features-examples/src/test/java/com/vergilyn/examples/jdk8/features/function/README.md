@@ -20,6 +20,7 @@ JDK 1.8之前已有的函数式接口:
 - java.beans.PropertyChangeListener
 - java.awt.event.ActionListener
 - javax.swing.event.ChangeListener
+
 JDK 1.8 新增加的函数接口：
 - package java.util.function
 
