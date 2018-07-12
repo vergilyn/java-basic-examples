@@ -5,11 +5,12 @@ import java.util.function.Consumer;
 import org.testng.annotations.Test;
 
 /**
- * java.util.function.Consumer：只有一个参数（类型T），没有返回值。例如for-each。
+ * java.util.function.Consumer(消费者)：接收一个泛型T的参数，没有返回值。例如for-each。
  * @author VergiLyn
  * @blog http://www.cnblogs.com/VergiLyn/
  * @date 2018/7/11
  * @see java.util.function.Consumer
+ * @see java.util.function.Supplier
  */
 public class ConsumerTest {
 

@@ -2,6 +2,7 @@ package com.vergilyn.examples.jdk8.features.reference;
 
 import java.time.LocalDate;
 import java.util.function.Function;
+import java.util.function.IntFunction;
 import java.util.function.Supplier;
 
 import org.testng.annotations.Test;
@@ -32,6 +33,11 @@ public class ConstructorReferTest {
         PersonFunctionalInterface<Person> custom = Person::new;
         Person cp = custom.instance("custom", LocalDate.now());
         System.out.printf("refer constructor: Person(String name, LocalDate date) >>>> %s", cp).println("\r\n");
+
+        // 数组构造方法引用，还是array = new Person[10];更直观
+        IntFunction<Person[]> af = Person[]::new;
+        Person[] array = af.apply(10);
+        System.out.println(array.length);
     }
 
     // functional-interface只允许有一个抽象方法

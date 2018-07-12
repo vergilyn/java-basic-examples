@@ -4,7 +4,13 @@ see:
 - https://www.cnblogs.com/xiaoxi/p/7099667.html
 - https://www.cnblogs.com/chenpi/p/5885706.html
 
-适用场景：当一个Lambda表达式调用了一个已存在的方法。  
+> 什么是method-interface？  
+> 方法引用是用来直接访问类或者实例的已经存在的方法或者构造方法。
+> 方法引用提供了一种引用而不执行方法的方式。
+> 它需要由兼容的函数式接口(functional-interface)构成的目标类型上下文。
+
+适用场景：当Lambda表达式中只是执行一个已存在方法调用时，不用Lambda表达式，直接通过方法引用的形式可读性更高一些。**方法引用是一种更简洁易懂的Lambda表达式**。
+
 不适用场景：当我们需要往引用的方法传其它参数的时候，不适合用method-reference，如下示例：`IsReferable demo = () -> ReferenceDemo.commonMethod("Argument in method.")`
 
 ### 示例
@@ -55,7 +61,8 @@ cars.forEach( Car::repair );
 ### 疑问
 1. 未能理解`引用类的实例方法 Class::instance_method`的使用方式，及使用场景？
 
-释疑1：任意对象（属于同一个类）的实例方法引用，如下示例，引用的是String中任意一个对象的`equals`方法。
+大致解答：任意对象的实例方法引用，如下示例，引用的是String中任意一个对象的`equals`方法。  
+因为是instance-method，所以还是必须由某个对象实例去调用，一般都是由第一个参数的实例去调用。所以，若arg1 = null，则会抛出NullPointerException。
 ```java
 public class ClassInstanceMethodReferTest {
 
@@ -65,6 +72,13 @@ public class ClassInstanceMethodReferTest {
         // biPre = (str1,str2) -> str1.equals(str2);  // lambda
         System.out.println(biPre.test("vergilyn", "zard"));  // false
     }
+    
+        @Test
+        public void npe(){
+            BiPredicate<String, String> biPre = String::equals;
+            System.out.println(biPre.test("zard", null));   // false
+            System.out.println(biPre.test(null, "zard"));   // NullPointerException
+        }
 }
 ```
 

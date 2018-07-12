@@ -6,7 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
- * java.util.function.Function：只有一个参数（类型T），有返回值（类型R）
+ * java.util.function.Function：接收一个泛型T的参数，返回一个泛型R的结果。
  * @author VergiLyn
  * @blog http://www.cnblogs.com/VergiLyn/
  * @date 2018/7/11
