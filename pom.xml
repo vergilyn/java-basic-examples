@@ -25,10 +25,18 @@
         <commons.lang3.version>3.5</commons.lang3.version>
         <commons.io.version>2.6</commons.io.version>
         <apache.poi.version>3.17</apache.poi.version>
+        <lombok.version>1.18.0</lombok.version>
     </properties>
 
     <dependencies>
         <!-- utils -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>

@@ -11,7 +11,7 @@ lambda允许把函数作为一个方法的参数（函数作为参数传递进�
 ### 2. Functional Interface（函数接口）
 java8之前要将方法作为参数传递只能通过匿名内部类来实现，而且代码很难看，也很长，functional-interface就是对匿名内部类的优化。
 
-jdk8自带的function-interface在package：{@linkplain java.util.function}。  
+jdk8自带的function-interface在package：java.util.function。
 @FunctionalInterface：主要用于编译级错误检查，加上该注解，当你写的接口不符合函数式接口定义的时候，编译器会报错。
 
 ### 3. Method Reference（方法引用）

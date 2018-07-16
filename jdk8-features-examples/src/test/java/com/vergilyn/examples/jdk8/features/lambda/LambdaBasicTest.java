@@ -3,7 +3,6 @@ package com.vergilyn.examples.jdk8.features.lambda;
 import java.util.Comparator;
 import java.util.List;
 
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.collections.Lists;
 
@@ -14,12 +13,7 @@ import org.testng.collections.Lists;
  */
 public class LambdaBasicTest {
 
-    private List<Integer> initList;
-
-    @BeforeClass
-    public void init(){
-        initList = Lists.newArrayList(2, 1, 3, 4);
-    }
+    private List<Integer> initList = Lists.newArrayList(2, 1, 3, 4);;
 
     @Test
     public void test(){
