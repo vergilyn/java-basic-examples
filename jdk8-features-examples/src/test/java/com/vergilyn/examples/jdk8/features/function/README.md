@@ -58,7 +58,7 @@ default-method可以被实现类重写，若实现的接口中包含相同签名
 static-method是属于类的方法，（接口中）只能通过`Class.methodName()`调用。如果是普通的类，可以通过`instance.staticMethod()`调用。
 但interface中的static-method无法通过`instance`调用，因为interface无法实例化，且其实现类无法“继承”静态方法。
 
-> 摘自：https://blog.csdn.net/u012817635/article/details/79646160
-> java8接口中增加了`default-method`。也就是接口可以实现自己的方法了。这样，抽象类（abstract-class）除了可以单继承和定义参数外，基本和接口没有区别了。
-> jdk8 brings arguably the abstract class's greatest advantage over the interface to the interface.
+> 摘自：https://blog.csdn.net/u012817635/article/details/79646160  
+> java8接口中增加了`default-method`。也就是接口可以实现自己的方法了。这样，抽象类（abstract-class）除了可以单继承和定义参数外，基本和接口没有区别了。  
+> jdk8 brings arguably the abstract class's greatest advantage over the interface to the interface.  
 > The implication of this is that a large number of abstract classes used today can likely be replaced and a large number of future work that would have been abstract classes will now instead be interfaces with default methods.
