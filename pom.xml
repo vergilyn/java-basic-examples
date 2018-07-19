@@ -10,7 +10,6 @@
     <modules>
         <module>utils-api-examples</module>
         <module>jdk-api-examples</module>
-        <module>jdk-api-examples</module>
         <module>jdk8-features-examples</module>
     </modules>
 

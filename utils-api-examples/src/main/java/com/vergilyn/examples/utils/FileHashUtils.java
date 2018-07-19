@@ -24,7 +24,7 @@ import java.security.NoSuchAlgorithmException;
  * @author VergiLyn
  * 2016年10月12日
  */
-public class FileHashUtil {
+public class FileHashUtils {
     //Algorithms枚举
     public static enum MessageDigestAlgorithms {
         MD2("MD2"), MD5("MD5"), SHA1("SHA-1"), SHA256("SHA-256"), SHA384("SHA-384"), SHA512("SHA-512");
