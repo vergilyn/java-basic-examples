@@ -6,6 +6,14 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jdk-api-examples</artifactId>
     <name>jdk-api-examples</name>
+    <dependencies>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.14.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <parent>
         <artifactId>java-basic-examples</artifactId>
