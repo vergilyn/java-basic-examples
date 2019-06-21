@@ -72,7 +72,7 @@ public class LambdaBasicTest {
 
         // lambda
         List<Integer> lambda = Lists.newArrayList(initList);
-        lambda.sort((o1, o2) -> o1.compareTo(o2));
+        lambda.sort((o1, o2) -> o1.compareTo(o2)); // lambda.sort(Integer::compareTo);
         System.out.println("lambda: " + lambda);
 
         // function, 引用静态方法, Class::staticMethodName
@@ -81,6 +81,8 @@ public class LambdaBasicTest {
         System.out.println("reference: " + lambda);
 
     }
+
+
 
     public static int compareTo(Integer o1, Integer o2) {
         return o1.compareTo(o2);
