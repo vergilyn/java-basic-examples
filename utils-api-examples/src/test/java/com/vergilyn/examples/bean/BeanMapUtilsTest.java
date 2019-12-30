@@ -5,6 +5,9 @@ import java.util.Map;
 
 import com.google.common.collect.Maps;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.ToString;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -43,39 +46,13 @@ public class BeanMapUtilsTest {
     public void mapToBean() {
         System.out.println("beanMap: " + BeanMapUtils.mapToBean(source, TestBean.class));
     }
-}
 
-class TestBean{
-    private Long id;
-    private Date date;
-    private String str;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getStr() {
-        return str;
-    }
-
-    public void setStr(String str) {
-        this.str = str;
-    }
-
-    @Override
-    public String toString() {
-        return "TestBean{" + "id=" + id + ", date=" + date + ", str='" + str + '\'' + '}';
+    @Data
+    @AllArgsConstructor
+    @ToString
+    class TestBean{
+        private Long id;
+        private Date date;
+        private String str;
     }
 }

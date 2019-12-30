@@ -1,7 +1,11 @@
 package com.vergilyn.examples.jdk8.features.stream;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.function.Supplier;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import com.alibaba.fastjson.JSON;
@@ -33,10 +37,8 @@ public class GroupTest {
         list.add(new Person(7L, "7", "B"));
     }
 
-    @Test
+    @Test(description = "根据`person.type`分组 -> Map<String, Lists<Person>>")
     public void group(){
-        // 期望根据 person#type 分组 -> Map<String, Lists<Person>>
-
         Map<String, List<Person>> map = list.stream().collect(Collectors.groupingBy(Person::getType));
 
         System.out.println(map.getClass().getSimpleName() + ": " + JSON.toJSONString(map));
@@ -47,5 +49,17 @@ public class GroupTest {
         map = list.stream().collect(Collectors.groupingBy(Person::getType, Maps::newLinkedHashMap, Collectors.toList()));
 
         System.out.println(map.getClass().getSimpleName() + ": " + JSON.toJSONString(map));
+    }
+
+    /**
+     * @see Collectors#groupingBy(Function, Supplier, Collector)
+     * @see Collectors#mapping(Function, Collector)
+     */
+    @Test(description = "根据`person.type`分组，收集所有`person.id` -> Map<String, Lists<String>>")
+    public void groupCollectField(){
+        Map<String, List<Long>> map = list.stream().collect(Collectors
+                .groupingBy(Person::getType, HashMap::new, Collectors.mapping(Person::getId, Collectors.toList())));
+
+        System.out.println(JSON.toJSONString(map));
     }
 }
