@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
  * 操作运算符
  * @author VergiLyn
  * @date 2020-01-02
+ * @see <a href="https://www.runoob.com/java/java-operators.html">Java 运算符</a>
  */
 public class OperatorTest {
 
@@ -44,8 +45,19 @@ public class OperatorTest {
         // n >> 1，等价于 n/2
         System.out.println(1 >> 1);
 
+        // n << 1，等价于 n * 2
+        System.out.println("1 << 1 = " + (1 << 1));
+        System.out.println("3 << 1 = " + (3 << 1));
+
         // 1 << n，等价于 2^n
         System.out.println("1 << 4 = " + (1 << 4));  // 16
         System.out.println("1 << 30 = " + (1 << 30)); // 1_073_741_824
+
+
+        // `>>` 带符号右移。正数右移高位补0，负数右移高位补1。
+        // `>>>` 无符号右移。无论是正数还是负数，高位通通补0。
+        System.out.println("1 >>> 16 = " + (1 >>> 16));
+        System.out.println("16 >>> 16 = " + (16 >>> 16));
+        System.out.println("32 >>> 16 = " + (32 >>> 16));
     }
 }

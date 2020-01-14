@@ -1,9 +1,5 @@
 package com.vergilyn.examples;
 
-import java.util.Map;
-
-import com.google.common.collect.Maps;
-
 import org.testng.annotations.Test;
 
 /**
@@ -14,6 +10,14 @@ public class HashMapTest {
 
     @Test
     public void hashmap1(){
-        Map<String, Integer> map = Maps.newHashMap();
+        //-1996137828
+        //10001001000001010101101010011100
+        String key = "vergilyn";
+        int keyHashCode = key.hashCode();
+        System.out.println(keyHashCode);
+        System.out.println(keyHashCode >>> 16);
+
+        System.out.println(keyHashCode ^ (keyHashCode >>> 16));
+        System.out.println(Integer.toBinaryString(-1996106855));
     }
 }
