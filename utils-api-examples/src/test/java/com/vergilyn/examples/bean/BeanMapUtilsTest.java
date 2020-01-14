@@ -8,6 +8,7 @@ import com.google.common.collect.Maps;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -16,6 +17,7 @@ import org.testng.annotations.Test;
  * @blog http://www.cnblogs.com/VergiLyn/
  * @date 2018/6/11
  */
+@Slf4j
 public class BeanMapUtilsTest {
     private Map<String, Object> source;
 

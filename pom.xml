@@ -44,6 +44,8 @@
         <apache-common-fileupload.version>1.4</apache-common-fileupload.version>
         <apache-common-httpclient.version>4.5.10</apache-common-httpclient.version>
 
+        <slf4j-api.version>1.7.30</slf4j-api.version>
+
         <testng.version>7.1.0</testng.version>
         <junit.version>4.13</junit.version>
     </properties>
@@ -84,7 +86,6 @@
                 <version>${apache-common-httpclient.version}</version>
             </dependency>
 
-
         </dependencies>
     </dependencyManagement>
 
@@ -94,6 +95,12 @@
             <artifactId>lombok</artifactId>
             <version>${projectlombok.version}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-api.version}</version>
         </dependency>
 
         <!-- utils -->
