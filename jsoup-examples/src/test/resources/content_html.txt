@@ -1,0 +1,16 @@
+<p class="detail_audio">
+    <audio controls="controls" class="audioControl">
+        <source src="http://127.0.0.1:8080/audio/202001/291123d905b3b9d0eba7d5704465ba74098d7555.mp3" type="audio/mpeg"/>
+    </audio><span class="detail_audio_img"><br/></span><span class="detail_audio_img"> <img src="http://127.0.0.1:8080/default_audio.jpg"/> </span>
+</p>
+<p class="detail_video">
+    <video width="340" height="191" controls="" preload="auto" webkit-playsinline="" playsinline="" poster="http://127.0.0.1:8080/default_video.jpg">
+        <source src="http://127.0.0.1:8080/video/202001/4dda58f7abe06fa4f593973b7039617df0162487.MP4" type="video/mp4"/>
+    </video>
+</p>
+<p>
+    <img src="http://127.0.0.1:8080/images/202001/1545aaef33cc468facb4a8a032cecae6.jpg" title="" alt="src_image.jpg"/>
+</p>
+<p>
+    这是一段正文
+</p>
