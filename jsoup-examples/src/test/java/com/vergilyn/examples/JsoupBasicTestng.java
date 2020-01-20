@@ -1,15 +1,10 @@
 package com.vergilyn.examples;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.Charset;
-
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 /**
@@ -17,7 +12,7 @@ import org.testng.annotations.Test;
  * @date 2020-01-15
  */
 @Slf4j
-public class JsoupBasicTest {
+public class JsoupBasicTestng {
 
     /**
      * 移除指定的html标签 <br>
@@ -98,16 +93,10 @@ public class JsoupBasicTest {
         System.out.println(document.html());
     }
 
-    @DataProvider(name = "testdp", parallel = true)
-    public Object[][] testdp() {
-        String content = "";
-        try {
-            InputStream in = this.getClass().getResourceAsStream("/content_html.txt");
-            content = IOUtils.toString(in, Charset.defaultCharset());
-        } catch (IOException e) {
-            log.error(e.getMessage(), e);
-        }
+    @Test
+    public void test(){
+        String md5 = "77a0293c012befcae5d65895a20167d7";
 
-        return new Object[][]{{content}};
+        System.out.println(StringUtils.mid(md5, md5.length() - 2, 2));
     }
 }

@@ -14,6 +14,7 @@
         <module>google-guava-examples</module>
         <module>jdk-concurrent-examples</module>
         <module>jsoup-examples</module>
+        <module>jvm-examples</module>
     </modules>
 
     <repositories>
@@ -44,7 +45,8 @@
         <apache-common-fileupload.version>1.4</apache-common-fileupload.version>
         <apache-common-httpclient.version>4.5.10</apache-common-httpclient.version>
 
-        <slf4j-api.version>1.7.30</slf4j-api.version>
+        <slf4j.version>1.7.30</slf4j.version>
+        <log4j.version>1.2.17</log4j.version>
 
         <testng.version>7.1.0</testng.version>
         <junit.version>4.13</junit.version>
@@ -97,11 +99,22 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- logger -->
+        <!--<dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>${slf4j-api.version}</version>
-        </dependency>
+            <version>${slf4j.version}</version>
+        </dependency>-->
 
         <!-- utils -->
         <dependency>
@@ -121,6 +134,11 @@
         </dependency>
 
         <!-- test -->
+        <!-- spring-boot-starter-test 包含logger的依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
