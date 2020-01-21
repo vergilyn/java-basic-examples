@@ -123,7 +123,14 @@ HashMap<Integer, String> putAllMap = new HashMap<>(size);
 for (Map.Entry<Integer, String> e : map.entrySet()) {
     putAllMap.put(new Integer(e.getKey()), e.getValue());
 }
+
+System.gc();
+sleep(1, "iterator HashMap.put(...) success, and manual invoke `System.gc()`, putAllMap.size: " + putAllMap.size());
+ 
 ```
 
 CIAO!!!，没有成倍开辟 100,000 的Integer！！！
-VTODO 2020-01-20，待继续研究！！！
+2020-01-21:  
+  测试代码可知，在for-each后执行了GC，并且后续并未使用`map`。所以，GC会回收map所占用的对象，所以剩余的 100,000 `java.lang.Integer`不是`map`时创建的。  
+而是`new Integer(e.getKey())`产生的。
+  测试代码参考`com.vergilyn.examples.GCTestng`。

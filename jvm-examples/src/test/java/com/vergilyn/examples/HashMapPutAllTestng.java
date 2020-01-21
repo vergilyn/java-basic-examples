@@ -45,7 +45,7 @@ public class HashMapPutAllTestng extends AbstractTestng {
         int size = 10_0000;
         log.info("begin init `map` >>>> size: {}", size);
         HashMap<Integer, String> map = new HashMap<>(size);
-        for(int i = 0; i < size; i++){
+        for(int i = 0; i < size; i++){  // code-01
             map.put(i, UUID.randomUUID().toString());
         }
 
@@ -59,6 +59,7 @@ public class HashMapPutAllTestng extends AbstractTestng {
         }
 
         System.gc();
+        // 因为 后面并未使用`map`，所以GC会清除`map`对象所引用的实例对象。所以观察到的100,000 java.lang.Integer 是` putAllMap.put(new Integer(e.getKey()), e.getValue());`
         sleep(1, "iterator HashMap.put(...) success, and manual invoke `System.gc()`, putAllMap.size: " + putAllMap.size());
     }
 }
