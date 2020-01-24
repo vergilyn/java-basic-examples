@@ -1,13 +1,13 @@
 package com.vergilyn.examples.thread;
 
-import org.junit.Test;
+
+import org.testng.annotations.Test;
 
 /**
- * @author VergiLyn
- * @blog http://www.cnblogs.com/VergiLyn/
- * @date 2018/2/12
+ * @author vergilyn
+ * @date 2020-01-24
  */
-public class ThreadTest {
+public class ThreadTestng {
 
     /**
      * 标记为中断, 之后的代码一样会执行, 除非调用await()、join()、sleep()等方法会检测中断状态,抛出异常.
