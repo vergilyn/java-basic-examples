@@ -1,15 +1,25 @@
 package com.vergilyn.examples.bean;
 
+import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
 import com.google.common.collect.Maps;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.springframework.util.ResourceUtils;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.collections.Lists;
@@ -41,6 +51,17 @@ public class FastjsonTest {
     }
 
     @Test
+    public void typeReference() throws Exception {
+        File file = ResourceUtils.getFile("classpath:data.json");
+        String json = IOUtils.toString(FileUtils.openInputStream(file), StandardCharsets.UTF_8);
+
+        List<List<Map<String, String>>> data = JSON
+                .parseObject(json, new TypeReference<List<List<Map<String, String>>>>() {});
+
+        System.out.println(data);
+    }
+
+    @Test
     public void json(){
         // properties指 需要序列化的属性；（可以看源码，有excludes属性，且apply中也使用了。只是不存在set）
         /* fastjson: 过滤属性的方式
@@ -68,6 +89,8 @@ public class FastjsonTest {
         System.out.println(JSON.toJSONString(s, SerializerFeature.PrettyFormat, SerializerFeature.BeanToArray));
     }
 
+    @Data
+    @ToString
     private class Survey{
         private Long id;
         private String name;
@@ -87,82 +110,13 @@ public class FastjsonTest {
             this.id = id;
             this.name = name;
         }
-
-        public Long getId() {
-            return id;
-        }
-
-        public void setId(Long id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public Map<Long, Subject> getMaps() {
-            return maps;
-        }
-
-        public void setMaps(Map<Long, Subject> maps) {
-            this.maps = maps;
-        }
-
-        public List<Subject> getLists() {
-            return lists;
-        }
-
-        public void setLists(List<Subject> lists) {
-            this.lists = lists;
-        }
-
-        public LocalDateTime getDate() {
-            return date;
-        }
-
-        public void setDate(LocalDateTime date) {
-            this.date = date;
-        }
-
-        public String getExclude() {
-            return exclude;
-        }
-
-        public void setExclude(String exclude) {
-            this.exclude = exclude;
-        }
     }
 
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
     private class Subject{
         private Long id;
         private String title;
-
-        public Subject() {
-        }
-
-        public Subject(Long id, String title) {
-            this.id = id;
-            this.title = title;
-        }
-
-        public Long getId() {
-            return id;
-        }
-
-        public void setId(Long id) {
-            this.id = id;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
     }
 }

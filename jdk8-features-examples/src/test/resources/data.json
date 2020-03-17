@@ -1,0 +1,215 @@
+[
+  [
+    {
+      "actual": 12000,
+      "plant_code": "CNT1",
+      "kpiname": "line_balancing_c_assembly",
+      "total_line_color": "#E8465B",
+      "product_type_group_code": "ISG",
+      "customer_code": "Dell",
+      "target": 11500
+    },
+    {
+      "actual": 12000,
+      "plant_code": "CNT1",
+      "kpiname": "line_balancing_c_assembly",
+      "total_line_color": "#E8465B",
+      "product_type_group_code": "Client",
+      "customer_code": "Dell",
+      "target": 11500
+    }
+  ],
+  [
+    {
+      "actual": 12000,
+      "plant_code": "CNT1",
+      "kpiname": "line_balancing_c_testing",
+      "total_line_color": "#E8465B",
+      "product_type_group_code": "ISG",
+      "customer_code": "Dell",
+      "target": 11500
+    },
+    {
+      "actual": 12000,
+      "plant_code": "CNT1",
+      "kpiname": "line_balancing_c_testing",
+      "total_line_color": "#E8465B",
+      "product_type_group_code": "Client",
+      "customer_code": "Dell",
+      "target": 11500
+    }
+  ],
+  [
+    {
+      "actual": 12000,
+      "plant_code": "CNT1",
+      "kpiname": "line_balancing_c_pack",
+      "total_line_color": "#E8465B",
+      "product_type_group_code": "Client",
+      "customer_code": "Dell",
+      "target": 11500
+    },
+    {
+      "actual": 12000,
+      "plant_code": "CNT1",
+      "kpiname": "line_balancing_c_pack",
+      "total_line_color": "#E8465B",
+      "product_type_group_code": "ISG",
+      "customer_code": "Dell",
+      "target": 11500
+    },
+    {
+      "actual": 12000,
+      "plant_code": "CNT1",
+      "kpiname": "line_balancing_c_pack",
+      "total_line_color": "#E8465B",
+      "product_type_group_code": "Client",
+      "customer_code": "Dell",
+      "target": 11500
+    },
+    {
+      "actual": 12000,
+      "plant_code": "CNT1",
+      "kpiname": "line_balancing_c_pack",
+      "total_line_color": "#E8465B",
+      "product_type_group_code": "ISG",
+      "customer_code": "Dell",
+      "target": 11500
+    },
+    {
+      "actual": 12000,
+      "plant_code": "CNT1",
+      "kpiname": "line_balancing_c_pack",
+      "total_line_color": "#E8465B",
+      "product_type_group_code": "Client",
+      "customer_code": "Dell",
+      "target": 11500
+    },
+    {
+      "actual": 12000,
+      "plant_code": "CNT1",
+      "kpiname": "line_balancing_c_pack",
+      "total_line_color": "#E8465B",
+      "product_type_group_code": "ISG",
+      "customer_code": "Dell",
+      "target": 11500
+    }
+  ],
+  [
+    {
+      "actual": 12000,
+      "plant_code": "CNT1",
+      "kpiname": "line_balancing_c_od",
+      "total_line_color": "#E8465B",
+      "product_type_group_code": "Client",
+      "customer_code": "DELL",
+      "target": 11500
+    },
+    {
+      "actual": 12000,
+      "plant_code": "CNT1",
+      "kpiname": "line_balancing_c_od",
+      "total_line_color": "#E8465B",
+      "product_type_group_code": "ISG",
+      "customer_code": "DELL",
+      "target": 11500
+    }
+  ],
+  [
+    {
+      "actual": 0.972,
+      "plant_code": "CNT1",
+      "kpiname": "line_balancing_c_fpy",
+      "total_line_color": "#E8465B",
+      "product_type_group_code": "ISG",
+      "customer_code": "Dell",
+      "target": 0.974
+    },
+    {
+      "actual": 0.972,
+      "plant_code": "CNT1",
+      "kpiname": "line_balancing_c_fpy",
+      "total_line_color": "#E8465B",
+      "product_type_group_code": "ISG",
+      "customer_code": "Dell",
+      "target": 0.974
+    }
+  ],
+  [
+    {
+      "actual": 16,
+      "plant_code": "CNT1",
+      "kpiname": "line_balancing_c_lines",
+      "total_line_color": "#E8465B",
+      "product_type_group_code": "Client",
+      "customer_code": "Dell",
+      "target": 17
+    },
+    {
+      "actual": 16,
+      "plant_code": "CNT1",
+      "kpiname": "line_balancing_c_lines",
+      "total_line_color": "#E8465B",
+      "product_type_group_code": "ISG",
+      "customer_code": "Dell",
+      "target": 17
+    }
+  ],
+  [
+    {
+      "workshift_code": "shift3",
+      "work_date": "20200301",
+      "plant_code_desc": "Dell",
+      "plant_code": "CNT1",
+      "etl_time": ""
+    },
+    {
+      "workshift_code": "shift3",
+      "work_date": "20200301",
+      "plant_code_desc": "Dell",
+      "plant_code": "CNT1",
+      "etl_time": ""
+    },
+    {
+      "workshift_code": "shift3",
+      "work_date": "20200301",
+      "plant_code_desc": "Dell",
+      "plant_code": "CNT1",
+      "etl_time": ""
+    },
+    {
+      "workshift_code": "shift3",
+      "work_date": "20200301",
+      "plant_code_desc": "Dell",
+      "plant_code": "CNT1",
+      "etl_time": ""
+    },
+    {
+      "workshift_code": "shift2",
+      "work_date": "20200301",
+      "plant_code_desc": "Dell",
+      "plant_code": "CNT1",
+      "etl_time": ""
+    },
+    {
+      "workshift_code": "shift2",
+      "work_date": "20200301",
+      "plant_code_desc": "Dell",
+      "plant_code": "CNT1",
+      "etl_time": ""
+    },
+    {
+      "workshift_code": "shift1",
+      "work_date": "20200301",
+      "plant_code_desc": "Dell",
+      "plant_code": "CNT1",
+      "etl_time": ""
+    },
+    {
+      "workshift_code": "shift1",
+      "work_date": "20200301",
+      "plant_code_desc": "Dell",
+      "plant_code": "CNT1"
+    }
+  ]
+]

@@ -12,4 +12,10 @@
 
     <artifactId>jdk8-features-examples</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+    </dependencies>
 </project>
