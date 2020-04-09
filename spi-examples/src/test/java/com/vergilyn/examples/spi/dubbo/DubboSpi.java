@@ -1,5 +1,8 @@
 package com.vergilyn.examples.spi.dubbo;
 
+import org.apache.dubbo.common.URL;
+import org.apache.dubbo.common.extension.Adaptive;
+
 /**
  * @author vergilyn
  * @date 2020-04-08
@@ -9,7 +12,14 @@ public interface DubboSpi {
 
     void print();
 
+    @Adaptive({"k1", "k2"})
+    void print(URL url);
+
     default void print(String msg){
         System.out.println("dubbo-spi >>>> " + msg);
+    }
+
+    default void print(String name, URL url){
+        System.out.printf("dubbo-spi >>>> %s, %s \r\n", name, url);
     }
 }
