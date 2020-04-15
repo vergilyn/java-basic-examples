@@ -17,6 +17,7 @@
         <module>jvm-examples</module>
         <module>spi-examples</module>
         <module>reflect-examples</module>
+        <module>javassist-examples</module>
     </modules>
 
     <repositories>
