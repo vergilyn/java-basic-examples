@@ -3,9 +3,9 @@
 + [javassist.org](http://www.javassist.org/)
 + [Github, javassist](https://github.com/jboss-javassist/javassist)
 + [javassist, tutorial.html](http://www.javassist.org/tutorial/tutorial.html)
++ [javassist, tutorial2.html](http://www.javassist.org/tutorial/tutorial2.html)
 
 - [javassist使用全解析](https://www.cnblogs.com/rickiyang/p/11336268.html)
-+ [javassist tutorial2](http://www.javassist.org/tutorial/tutorial2.html)
 
 <table border="0">
 	<tbody>
