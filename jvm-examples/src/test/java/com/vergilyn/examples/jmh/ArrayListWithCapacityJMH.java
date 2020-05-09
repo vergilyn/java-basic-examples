@@ -1,4 +1,4 @@
-package com.vergilyn.examples.performance;
+package com.vergilyn.examples.jmh;
 
 import java.util.ArrayList;
 import java.util.List;
