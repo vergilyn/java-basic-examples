@@ -18,6 +18,7 @@
         <module>spi-examples</module>
         <module>reflect-examples</module>
         <module>javassist-examples</module>
+        <module>cglib-examples</module>
     </modules>
 
     <repositories>
