@@ -22,13 +22,14 @@ import org.testng.annotations.Test;
  * @author vergilyn
  * @date 2020-07-13
  *
+ * @see <a href="https://www.jianshu.com/p/1993c72c079d">Java AtomicReferenceFieldUpdater对象属性原子更新器</a>
  */
 public class AtomicReferenceFieldUpdaterTestng {
 
     private static final AtomicReferenceFieldUpdater<AtomicReferenceFieldUpdaterTestng, String> RESULT_UPDATER =
             AtomicReferenceFieldUpdater.newUpdater(AtomicReferenceFieldUpdaterTestng.class, String.class, "result");
 
-    // Caused by: java.lang.IllegalArgumentException: Must be volatile type
+    // 1. Caused by: java.lang.IllegalArgumentException: Must be volatile type
     private volatile String result;
 
     @Test(invocationCount = 4, threadPoolSize = 2)
