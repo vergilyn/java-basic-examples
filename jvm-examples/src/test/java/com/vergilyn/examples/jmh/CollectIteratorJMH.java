@@ -36,7 +36,7 @@ public class CollectIteratorJMH {
                                                 .limit(100_0000)
                                                 .collect(Collectors.toList());
 
-    private static final AtomicInteger FOR_COUNT = new AtomicInteger(0);
+    private static final AtomicInteger FORI_COUNT = new AtomicInteger(0);
     private static final AtomicInteger FOREACH_COUNT = new AtomicInteger(0);
     private static final AtomicInteger ITERATOR_COUNT = new AtomicInteger(0);
     private static final AtomicInteger STREAM_COUNT = new AtomicInteger(0);
@@ -63,8 +63,8 @@ public class CollectIteratorJMH {
                 + OPTIONS.getMeasurementIterations().get() * OPTIONS.getMeasurementBatchSize().get())
                 * OPTIONS.getThreads().get() * LIST.size();
 
-        if (FOR_COUNT.get() > 0){
-            Assert.assertEquals(expected, FOR_COUNT.get());
+        if (FORI_COUNT.get() > 0){
+            Assert.assertEquals(expected, FORI_COUNT.get());
         }
 
         if (FOREACH_COUNT.get() > 0){
@@ -83,7 +83,7 @@ public class CollectIteratorJMH {
     @Benchmark
     public void fori(){
         for (int i = 0, len = LIST.size(); i < len; i++){
-            FOREACH_COUNT.incrementAndGet();
+            FORI_COUNT.incrementAndGet();
         }
     }
 
