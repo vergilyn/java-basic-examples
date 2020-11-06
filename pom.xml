@@ -19,6 +19,7 @@
         <module>reflect-examples</module>
         <module>javassist-examples</module>
         <module>cglib-examples</module>
+        <module>regex-examples</module>
     </modules>
 
     <repositories>
