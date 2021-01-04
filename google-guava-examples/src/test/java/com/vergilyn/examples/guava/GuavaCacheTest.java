@@ -1,4 +1,4 @@
-package com.vergilyn.examples;
+package com.vergilyn.examples.guava;
 
 import java.time.Duration;
 import java.time.LocalTime;

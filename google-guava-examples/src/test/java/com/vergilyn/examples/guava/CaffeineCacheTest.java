@@ -1,4 +1,4 @@
-package com.vergilyn.examples;
+package com.vergilyn.examples.guava;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.hash.BloomFilter;

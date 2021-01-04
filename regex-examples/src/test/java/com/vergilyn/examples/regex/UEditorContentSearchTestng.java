@@ -51,8 +51,9 @@ public class UEditorContentSearchTestng {
 		 *
 		 * FIXME 2020-11-06
 		 *   由于`2.`导致类似"其它内容 >>在线咨询<<  这一段的百度关键字不会添加廉价 >>在线咨询<<" 也无法处理。
+		 * ((<a[\s\S]*?>[\s\S]*?</a>)|<[\s\S]+?>)
 		 */
-		String regex = "((<a[\\s\\S]*?>[\\s\\S]*?</a>)|<[\\s\\S]+?>)";
+		String regex = "((<a.*?>[\\s\\S]*?</a>)|<[/|A-Za-z][\\s\\S]+?>)";
 		Pattern pattern = Pattern.compile(regex);
 
 		Matcher m = pattern.matcher(source);
