@@ -1,4 +1,4 @@
-package com.vergilyn.examples.bean;
+package com.vergilyn.examples.excel;
 
 import java.io.InputStream;
 import java.io.StringWriter;
@@ -16,12 +16,16 @@ public class CSVParserTest {
 
 	@Test
 	public void parser() {
-		try (InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("vergilyn-test.csv")){
+		try (InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("vergilyn.csv")){
 			CSVParser parser = CSVParser.parse(inputStream, StandardCharsets.UTF_8, CSVFormat.DEFAULT);
 			List<CSVRecord> list = parser.getRecords();
 
 			list.forEach(csvRecord -> {
-				System.out.println(csvRecord.get(0));
+				csvRecord.forEach(s -> {
+					System.out.print(s + ", ");
+
+				});
+				System.out.println();
 			});
 		}catch (Exception e){
 			e.printStackTrace();
@@ -36,7 +40,7 @@ public class CSVParserTest {
 
 			for (int i = 0; i < 10000; i++) {
 //				printer.printRecord(RandomUtils.nextLong(10_0000_0000L, 99_9999_9999L));
-				printer.printRecord(UUID.randomUUID().toString());
+				printer.printRecord(i, UUID.randomUUID().toString());
 			}
 
 			printer.flush();
