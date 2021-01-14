@@ -2,6 +2,8 @@ package com.vergilyn.examples.spi.jdk;
 
 import java.util.ServiceLoader;
 
+import com.vergilyn.examples.spi.jdk.extension.JdkSpi;
+
 import org.testng.annotations.Test;
 
 /**

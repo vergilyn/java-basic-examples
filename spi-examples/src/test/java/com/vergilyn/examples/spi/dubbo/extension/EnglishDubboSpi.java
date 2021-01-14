@@ -1,4 +1,4 @@
-package com.vergilyn.examples.spi.dubbo;
+package com.vergilyn.examples.spi.dubbo.extension;
 
 import org.apache.dubbo.common.URL;
 

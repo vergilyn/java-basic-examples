@@ -1,5 +1,7 @@
 package com.vergilyn.examples.spi.dubbo;
 
+import com.vergilyn.examples.spi.dubbo.extension.DubboSpi;
+
 import org.apache.dubbo.common.URL;
 import org.apache.dubbo.common.URLBuilder;
 import org.apache.dubbo.common.extension.Adaptive;
@@ -12,29 +14,32 @@ import org.testng.annotations.Test;
  * @date 2020-04-08
  */
 public class DubboSpiTestng {
-    private ExtensionLoader<DubboSpi> extensionLoader = ExtensionLoader.getExtensionLoader(DubboSpi.class);;
+    private final ExtensionLoader<DubboSpi> extensionLoader = ExtensionLoader.getExtensionLoader(DubboSpi.class);;
 
+    /**
+     * 获取默认的扩展类的实现。{@linkplain SPI#value()} 中指定的值，
+     */
     @Test
-    public void getExtension(){
-        // 获取扩展类实现，**按需获取**
-        DubboSpi dubboSpi = extensionLoader.getExtension("english");
+    public void defaultExtension(){
+        DubboSpi dubboSpi = extensionLoader.getDefaultExtension();
         dubboSpi.print();
     }
 
     /**
-     * {@linkplain SPI#value()} 中指定的值，获取默认的扩展类的实现
+     * 获取<b>指定的实例对象</b>
      */
     @Test
-    public void defaultExtension(){
-        // 获取扩展类实现，**按需获取**
-        DubboSpi dubboSpi = extensionLoader.getDefaultExtension();
+    public void getExtension(){
+        DubboSpi dubboSpi = extensionLoader.getExtension("english");
         dubboSpi.print();
     }
 
     /**
      * 根据 {@linkplain Adaptive#value()} 指定的 参数名，从{@linkplain URL}中获取value并加载扩展实现类。<br/>
      * 获取规则详见：{@linkplain Adaptive#value()}
-     * @see {@linkplain Adaptive}
+     *
+     * @see DubboSpi#print(URL)
+     * @see org.apache.dubbo.common.extension.Adaptive
      */
     @Test
     public void getAdaptiveExtension(){

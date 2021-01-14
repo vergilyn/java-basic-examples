@@ -1,4 +1,4 @@
-package com.vergilyn.examples.spi.jdk;
+package com.vergilyn.examples.spi.jdk.extension;
 
 /**
  * @author vergilyn

@@ -2,6 +2,10 @@ package com.vergilyn.examples.spi.seata;
 
 import java.util.List;
 
+import com.vergilyn.examples.spi.seata.extension.EnglishSeataSpi;
+import com.vergilyn.examples.spi.seata.extension.SeataSpi;
+
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
@@ -12,16 +16,6 @@ import org.testng.annotations.Test;
 public class SeataSpiTestng {
 
     /**
-     * Test load by class and class loader.
-     */
-    @Test
-    public void testLoadByClassAndClassLoader() {
-        SeataSpi load = EnhancedServiceLoader.load(SeataSpi.class, SeataSpi.class.getClassLoader());
-        System.out.println(load.say());
-        // Assertions.assertEquals(load.say(), "Bonjour");
-    }
-
-    /**
      * Test load exception.
      */
     @Test(expectedExceptions = EnhancedServiceNotFoundException.class)
@@ -30,12 +24,25 @@ public class SeataSpiTestng {
     }
 
     /**
+     * Test load by class and class loader.
+     */
+    @Test
+    public void testLoadByClassAndClassLoader() {
+        SeataSpi spi = EnhancedServiceLoader.load(SeataSpi.class, SeataSpi.class.getClassLoader());
+        System.out.println(spi.say());
+
+        Assert.assertTrue(spi.say().contains(Integer.MAX_VALUE + ""));
+    }
+
+    /**
      * Test load by class.
      */
     @Test
     public void testLoadByClass() {
-        SeataSpi load = EnhancedServiceLoader.load(SeataSpi.class);
-        System.out.println(load.say());
+        SeataSpi spi = EnhancedServiceLoader.load(SeataSpi.class);
+        System.out.println(spi.say());
+
+        Assert.assertTrue(spi.say().contains(Integer.MAX_VALUE + ""));
     }
 
     /**
@@ -43,9 +50,10 @@ public class SeataSpiTestng {
      */
     @Test
     public void testLoadByClassAndActivateName() {
-        SeataSpi englishHello = EnhancedServiceLoader.load(SeataSpi.class, "EnglishHello");
+        SeataSpi englishHello = EnhancedServiceLoader.load(SeataSpi.class, EnglishSeataSpi.NAME);
+
         System.out.println(englishHello.say());
-        // assertThat(englishHello.say()).isEqualTo("hello!");
+        Assert.assertTrue(englishHello.say().contains("english"));
     }
 
     /**
@@ -54,9 +62,11 @@ public class SeataSpiTestng {
     @Test
     public void testLoadByClassAndClassLoaderAndActivateName() {
         SeataSpi englishHello = EnhancedServiceLoader
-                .load(SeataSpi.class, "EnglishHello", SeataSpiTestng.class.getClassLoader());
+                .load(SeataSpi.class, EnglishSeataSpi.NAME, SeataSpiTestng.class.getClassLoader());
 
         System.out.println(englishHello.say());
+
+        Assert.assertTrue(englishHello.say().contains("english"));
     }
 
     /**
@@ -69,6 +79,8 @@ public class SeataSpiTestng {
         for(Class clazz : allExtensionClass){
             System.out.println(clazz.getSimpleName());
         }
+
+        Assert.assertEquals(allExtensionClass.size(), 3);
     }
 
     /**
@@ -79,7 +91,11 @@ public class SeataSpiTestng {
         List<Class> allExtensionClass = EnhancedServiceLoader
                 .getAllExtensionClass(SeataSpi.class, ClassLoader.getSystemClassLoader());
 
-        System.out.println(allExtensionClass.size());
+        for(Class clazz : allExtensionClass){
+            System.out.println(clazz.getSimpleName());
+        }
+
+        Assert.assertEquals(allExtensionClass.size(), 3);
     }
 
 }

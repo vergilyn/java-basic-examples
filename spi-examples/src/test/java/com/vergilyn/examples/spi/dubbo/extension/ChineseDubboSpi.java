@@ -1,4 +1,4 @@
-package com.vergilyn.examples.spi.dubbo;
+package com.vergilyn.examples.spi.dubbo.extension;
 
 import org.apache.dubbo.common.URL;
 
@@ -6,8 +6,8 @@ import org.apache.dubbo.common.URL;
  * @author vergilyn
  * @date 2020-04-08
  */
-public class FrenchDubboSpi implements DubboSpi {
-    private static final String NAME = "french";
+public class ChineseDubboSpi implements DubboSpi {
+    private static final String NAME = "chinese";
 
     @Override
     public void print() {
@@ -18,5 +18,4 @@ public class FrenchDubboSpi implements DubboSpi {
     public void print(URL url) {
         print(NAME, url);
     }
-
 }

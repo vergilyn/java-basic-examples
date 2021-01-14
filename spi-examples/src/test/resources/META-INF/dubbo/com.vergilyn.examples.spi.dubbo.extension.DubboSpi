@@ -1,0 +1,3 @@
+chinese = com.vergilyn.examples.spi.dubbo.extension.ChineseDubboSpi
+english = com.vergilyn.examples.spi.dubbo.extension.EnglishDubboSpi
+french = com.vergilyn.examples.spi.dubbo.extension.FrenchDubboSpi
