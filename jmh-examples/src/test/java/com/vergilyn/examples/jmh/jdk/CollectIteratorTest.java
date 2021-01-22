@@ -1,4 +1,4 @@
-package com.vergilyn.examples.jmh;
+package com.vergilyn.examples.jmh.jdk;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;

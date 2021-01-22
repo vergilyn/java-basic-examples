@@ -1,4 +1,4 @@
-package com.vergilyn.examples.jmh;
+package com.vergilyn.examples.jmh.jdk;
 
 import java.util.ArrayList;
 import java.util.List;

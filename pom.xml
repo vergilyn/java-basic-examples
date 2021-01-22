@@ -20,6 +20,7 @@
         <module>javassist-examples</module>
         <module>cglib-examples</module>
         <module>regex-examples</module>
+        <module>jmh-examples</module>
     </modules>
 
     <repositories>
@@ -56,8 +57,6 @@
         <log4j.version>1.2.17</log4j.version>
 
         <testng.version>7.1.0</testng.version>
-        <junit.version>4.13</junit.version>
-        <jmh.version>1.27</jmh.version>
     </properties>
 
     <dependencyManagement>
@@ -156,20 +155,6 @@
             <artifactId>spring-boot-starter-logging</artifactId>
         </dependency>
 
-        <!-- JMH -->
-        <dependency>
-            <groupId>org.openjdk.jmh</groupId>
-            <artifactId>jmh-core</artifactId>
-            <version>${jmh.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.openjdk.jmh</groupId>
-            <artifactId>jmh-generator-annprocess</artifactId>
-            <version>${jmh.version}</version>
-            <scope>test</scope>
-        </dependency>
-
         <!-- test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -179,12 +164,6 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

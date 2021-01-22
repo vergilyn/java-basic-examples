@@ -17,8 +17,11 @@ import static com.vergilyn.examples.poi.ExcelParser.cellToString;
 
 public class ExcelParserTest {
 
+	/**
+	 * 解析100w行（类似的）数据大约需要 10s。
+	 */
 	@Test
-	public void parseDeviceExcel() {
+	public void parseExcel() {
 
 		List<String[]> contents = Lists.newArrayList();
 
