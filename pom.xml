@@ -57,6 +57,7 @@
 
         <testng.version>7.1.0</testng.version>
         <junit.version>4.13</junit.version>
+        <jmh.version>1.27</jmh.version>
     </properties>
 
     <dependencyManagement>
@@ -153,6 +154,20 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
+
+        <!-- JMH -->
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-core</artifactId>
+            <version>${jmh.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-generator-annprocess</artifactId>
+            <version>${jmh.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <!-- test -->

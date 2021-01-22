@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 import org.testng.collections.Lists;
 
 /**
- * @author VergiLyn
+ * @author vergilyn
  * @date 2019-10-31
  */
 public class DistinctTest {
@@ -41,7 +41,7 @@ public class DistinctTest {
     @Test
     public void property(){
         Person p1 = new Person(1L, "p1", "A");
-        Person p2 = new Person(2L, "p1", "B");
+        Person p2 = new Person(1L, "p1", "B");
         Person p3 = new Person(3L, "p1", "C");
 
         List<Person> list = Lists.newArrayList(p1, p2, p3, p2, p3);
