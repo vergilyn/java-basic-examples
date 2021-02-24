@@ -1,5 +1,7 @@
 package com.vergilyn.examples.spi.dubbo.extension;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.dubbo.common.URL;
 
 /**
@@ -7,7 +9,11 @@ import org.apache.dubbo.common.URL;
  * @date 2020-04-08
  */
 public class ChineseDubboSpi implements DubboSpi {
-    private static final String NAME = "chinese";
+    public static final String NAME = "chinese";
+
+    @Setter
+    @Getter
+    private DubboSpi dubboSpi;
 
     @Override
     public void print() {
@@ -18,4 +24,5 @@ public class ChineseDubboSpi implements DubboSpi {
     public void print(URL url) {
         print(NAME, url);
     }
+
 }

@@ -7,7 +7,7 @@ import org.apache.dubbo.common.URL;
  * @date 2020-04-08
  */
 public class EnglishDubboSpi implements DubboSpi {
-    private static final String NAME = "english";
+    public static final String NAME = "english";
 
     @Override
     public void print() {

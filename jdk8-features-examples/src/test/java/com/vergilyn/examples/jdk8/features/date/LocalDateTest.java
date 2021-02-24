@@ -2,11 +2,15 @@ package com.vergilyn.examples.jdk8.features.date;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.UnsupportedTemporalTypeException;
+import java.util.Date;
 
-import org.testng.annotations.Test;
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.junit.jupiter.api.Test;
 
 /**
  * java.time.LocalDate，只对年月日做出处理
@@ -33,6 +37,19 @@ public class LocalDateTest {
         System.out.println(now);
     }
 
+    @org.junit.jupiter.api.Test
+    public void convert(){
+        Date date = new Date();
+
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+
+        LocalDate localDate = localDateTime.toLocalDate();
+
+        System.out.println(DateFormatUtils.format(date, "yyyy-MM-dd HH:mm:ss.SSS"));
+        System.out.println(localDateTime);
+        System.out.println(localDate);
+    }
+
     @Test
     public void format(){
         LocalDate now = LocalDate.now();
@@ -40,9 +57,10 @@ public class LocalDateTest {
     }
 
     /* LocalDate只存在年月日，不存在时分秒等 */
-    @Test(expectedExceptions = UnsupportedTemporalTypeException.class, expectedExceptionsMessageRegExp = "Unsupported field: HourOfDay")
+    @org.testng.annotations.Test(expectedExceptions = UnsupportedTemporalTypeException.class, expectedExceptionsMessageRegExp = "Unsupported field: HourOfDay")
     public void exception(){
         LocalDate now = LocalDate.now();
+
         System.out.println("localDate format: " + now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
     }
 
@@ -76,5 +94,14 @@ public class LocalDateTest {
 
         LocalDate no = LocalDate.parse("2018-07-11");
         System.out.printf("%s 是不是月末：%b", no, no.with(TemporalAdjusters.lastDayOfMonth()).isEqual(no)).println();
+    }
+
+    @Test
+    public void epochDay(){
+        LocalDate now = LocalDate.now();
+
+        // 可以方便用于计算时间差
+        long epochDay = now.toEpochDay();
+        System.out.println(epochDay);
     }
 }

@@ -13,7 +13,7 @@
     <artifactId>spi-examples</artifactId>
 
     <properties>
-        <dubbo-common.version>2.7.6</dubbo-common.version>
+        <dubbo-common.version>2.7.8</dubbo-common.version>
     </properties>
 
     <dependencies>

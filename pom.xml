@@ -5,7 +5,7 @@
     <groupId>com.vergilyn.examples</groupId>
     <artifactId>java-basic-examples</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>${revision}</version>
 
     <modules>
         <module>utils-api-examples</module>
@@ -39,6 +39,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
 
+        <revision>1.0.0-SNAPSHOT</revision>
+
         <spring-boot-dependencies.version>2.2.2.RELEASE</spring-boot-dependencies.version>
         <projectlombok.version>1.18.10</projectlombok.version>
         <google-guava.version>30.0-jre</google-guava.version>
@@ -52,9 +54,6 @@
         <apache-common-fileupload.version>1.4</apache-common-fileupload.version>
         <apache-common-httpclient.version>4.5.10</apache-common-httpclient.version>
         <apache-common-collections4.version>4.4</apache-common-collections4.version>
-
-        <slf4j.version>1.7.30</slf4j.version>
-        <log4j.version>1.2.17</log4j.version>
 
         <testng.version>7.1.0</testng.version>
     </properties>
@@ -111,23 +110,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- logger -->
-        <!--<dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>${log4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>-->
-
         <!-- utils -->
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -150,6 +132,7 @@
             <version>${alibaba-fastjson.version}</version>
         </dependency>
 
+        <!-- logger -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>

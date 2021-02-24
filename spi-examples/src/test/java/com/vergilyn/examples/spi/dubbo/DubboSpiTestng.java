@@ -1,5 +1,6 @@
 package com.vergilyn.examples.spi.dubbo;
 
+import com.vergilyn.examples.spi.dubbo.extension.ChineseDubboSpi;
 import com.vergilyn.examples.spi.dubbo.extension.DubboSpi;
 
 import org.apache.dubbo.common.URL;
@@ -14,7 +15,7 @@ import org.testng.annotations.Test;
  * @date 2020-04-08
  */
 public class DubboSpiTestng {
-    private final ExtensionLoader<DubboSpi> extensionLoader = ExtensionLoader.getExtensionLoader(DubboSpi.class);;
+    private final ExtensionLoader<DubboSpi> extensionLoader = ExtensionLoader.getExtensionLoader(DubboSpi.class);
 
     /**
      * 获取默认的扩展类的实现。{@linkplain SPI#value()} 中指定的值，
@@ -51,5 +52,29 @@ public class DubboSpiTestng {
                 .build();
 
         dubboSpi.print(url);
+    }
+
+    /**
+     * 1. 需要`/META-INF/dubbo.internal/org.apache.dubbo.common.extension.ExtensionFactory` <br/>
+     * 2. 通过 Adaptive 适配
+     *
+     * @see DubboSpi$Adaptive
+     */
+    @Test
+    public void injectExtension(){
+        ChineseDubboSpi chinese = (ChineseDubboSpi) extensionLoader.getExtension(ChineseDubboSpi.NAME);
+        chinese.print();
+
+        DubboSpi chineseDubboSpi = chinese.getDubboSpi();
+        System.out.println("chinese.dubboSpi = " + chineseDubboSpi);
+
+        URL url = new URLBuilder().addParameter("k1", "english").build();
+        chineseDubboSpi.print(url);
+
+        url = new URLBuilder().addParameter("k1", "french").build();
+        chineseDubboSpi.print(url);
+
+        // UnsupportedOperationException, SEE DubboSpi$Adaptive#print()
+        // chineseDubboSpi.print();
     }
 }
