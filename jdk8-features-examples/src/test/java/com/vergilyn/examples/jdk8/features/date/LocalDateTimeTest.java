@@ -2,6 +2,7 @@ package com.vergilyn.examples.jdk8.features.date;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.Date;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -24,5 +25,12 @@ public class LocalDateTimeTest {
 		LocalDateTime now = LocalDateTime.now();
 
 		System.out.println(now.toLocalDate().toEpochDay());
+	}
+
+	@Test
+	public void toEpochSecond(){
+		LocalDateTime now = LocalDateTime.now();
+
+		System.out.println(now.toEpochSecond(ZoneOffset.UTC));
 	}
 }
