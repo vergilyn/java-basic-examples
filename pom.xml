@@ -21,6 +21,8 @@
         <module>cglib-examples</module>
         <module>regex-examples</module>
         <module>jmh-examples</module>
+        <module>common-io-examples</module>
+        <module>jdk-syntactic-sugar-examples</module>
     </modules>
 
     <repositories>
@@ -56,6 +58,8 @@
         <apache-common-collections4.version>4.4</apache-common-collections4.version>
 
         <testng.version>7.1.0</testng.version>
+        <mockito-core.version>3.7.7</mockito-core.version>
+        <hamcrest.version>2.2</hamcrest.version>
     </properties>
 
     <dependencyManagement>
@@ -147,6 +151,25 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- mockito -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito-core.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>${mockito-core.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest</artifactId>
+            <version>${hamcrest.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

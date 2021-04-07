@@ -72,6 +72,7 @@ abstract class Parent{
 
 class ExtendParent extends Parent{
 
+    @Override
     void parentMethod(String param) {
         System.out.println("ExtendParent printout: " + param);
     }
@@ -79,6 +80,7 @@ class ExtendParent extends Parent{
 
 class ComInterfaceImpl implements ComInterface{
 
+    @Override
     public void interfaceMethod(String param) {
         System.out.println("ComInterfaceImpl printout: " + param);
     }
@@ -86,10 +88,12 @@ class ComInterfaceImpl implements ComInterface{
 
 class Child extends Parent implements ComInterface{
 
+    @Override
     public void interfaceMethod(String param) {
         System.out.println("Child interfaceMethod printout: " + param);
     }
 
+    @Override
     void parentMethod(String param) {
         System.out.println("Child parentMethod printout: " + param);
     }
