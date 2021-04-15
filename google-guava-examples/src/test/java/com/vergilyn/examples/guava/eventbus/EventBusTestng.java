@@ -1,4 +1,4 @@
-package com.vergilyn.examples.guava;
+package com.vergilyn.examples.guava.eventbus;
 
 import java.time.LocalTime;
 import java.util.concurrent.Executors;

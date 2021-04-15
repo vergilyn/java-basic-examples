@@ -1,4 +1,4 @@
-package com.vergilyn.examples.guava;
+package com.vergilyn.examples.guava.collect;
 
 import java.util.Iterator;
 import java.util.List;

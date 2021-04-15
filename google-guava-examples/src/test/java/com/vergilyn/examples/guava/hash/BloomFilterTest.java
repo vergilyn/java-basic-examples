@@ -1,4 +1,4 @@
-package com.vergilyn.examples.guava;
+package com.vergilyn.examples.guava.hash;
 
 import java.util.List;
 

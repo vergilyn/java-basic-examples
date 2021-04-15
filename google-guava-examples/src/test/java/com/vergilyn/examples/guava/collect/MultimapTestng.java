@@ -1,4 +1,4 @@
-package com.vergilyn.examples.guava;
+package com.vergilyn.examples.guava.collect;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
