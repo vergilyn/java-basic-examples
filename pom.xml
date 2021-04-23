@@ -23,6 +23,8 @@
         <module>jmh-examples</module>
         <module>common-io-examples</module>
         <module>jdk-syntactic-sugar-examples</module>
+        <module>jdk-thread-safe-examples</module>
+        <module>usage-code-examples</module>
     </modules>
 
     <repositories>

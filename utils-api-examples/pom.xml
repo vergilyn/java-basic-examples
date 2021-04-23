@@ -16,6 +16,7 @@
         <cglib.version>3.3.0</cglib.version>
         <apache-poi.version>4.1.1</apache-poi.version>
         <javax-servlet-api.version>4.0.1</javax-servlet-api.version>
+        <pinyin4j.version>2.5.1</pinyin4j.version>
     </properties>
 
     <dependencies>
@@ -75,6 +76,11 @@
             <version>${jackson.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.belerweb</groupId>
+            <artifactId>pinyin4j</artifactId>
+            <version>${pinyin4j.version}</version>
+        </dependency>
 
     </dependencies>
 </project>
