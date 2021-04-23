@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
+import org.openjdk.jmh.annotations.Level;
 import org.openjdk.jmh.annotations.Measurement;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
@@ -28,12 +29,12 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
  * <p>
  * `SIZE = 100_000`:
  * <pre>
- *   Benchmark                               Mode  Cnt      Score       Error  Units
- *   CollectionAddJMH.arrayList                ss    5      1.202 ±     3.798  ms/op
- *   CollectionAddJMH.copyOnWriteArrayList     ss    5  24365.204 ± 35612.028  ms/op
- *   CollectionAddJMH.linkedList               ss    5      1.614 ±     0.778  ms/op
- *   CollectionAddJMH.synchronizedArrayList    ss    5      2.614 ±     2.683  ms/op
- *   CollectionAddJMH.vector                   ss    5      1.625 ±     2.834  ms/op
+ *   Benchmark                               Mode  Cnt     Score     Error  Units
+ *   CollectionAddJMH.arrayList                ss    5     0.612 ±   1.338  ms/op
+ *   CollectionAddJMH.copyOnWriteArrayList     ss    5  2644.711 ± 152.747  ms/op
+ *   CollectionAddJMH.linkedList               ss    5     1.237 ±   0.313  ms/op
+ *   CollectionAddJMH.synchronizedArrayList    ss    5     2.002 ±   0.480  ms/op
+ *   CollectionAddJMH.vector                   ss    5     1.270 ±   0.882  ms/op
  * </pre>
  *
  * @author vergilyn
@@ -42,13 +43,11 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
  */
 @State(Scope.Thread)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
-// Warmup: 2 iterations, 1000 ms each
-@Warmup(iterations = 2, time = 1000, timeUnit = TimeUnit.MILLISECONDS)
-// Measurement: 5 iterations, 1000 ms each
-@Measurement(iterations = 5, time = 1000, timeUnit = TimeUnit.MILLISECONDS)
+@Warmup(iterations = 2, batchSize = CollectionAddJMH.SIZE)
+@Measurement(iterations = 5, batchSize = CollectionAddJMH.SIZE)
 @BenchmarkMode(Mode.SingleShotTime)
 public class CollectionAddJMH {
-	private static final int SIZE = 100_000;
+	public static final int SIZE = 100_000;
 	private static final String ELEMENT = "element";
 
 	private static final List<String> arrayList = new ArrayList<>(SIZE);
@@ -66,7 +65,7 @@ public class CollectionAddJMH {
 		new Runner(opt).run();
 	}
 
-	@Setup
+	@Setup(Level.Iteration)
 	public void setup(){
 		arrayList.clear();
 		linkedList.clear();
@@ -75,40 +74,28 @@ public class CollectionAddJMH {
 		synchronizedArrayList.clear();
 	}
 
-
-
 	@Benchmark
 	public void arrayList() {
-		for (int i = 0; i < SIZE; i++){
-			arrayList.add(ELEMENT);
-		}
+		arrayList.add(ELEMENT);
 	}
 
 	@Benchmark
 	public void linkedList() {
-		for (int i = 0; i < SIZE; i++){
-			linkedList.add(ELEMENT);
-		}
+		linkedList.add(ELEMENT);
 	}
 
 	@Benchmark
 	public void vector() {
-		for (int i = 0; i < SIZE; i++){
-			vector.add(ELEMENT);
-		}
+		vector.add(ELEMENT);
 	}
 
 	@Benchmark
 	public void copyOnWriteArrayList() {
-		for (int i = 0; i < SIZE; i++){
-			copyOnWriteArrayList.add(ELEMENT);
-		}
+		copyOnWriteArrayList.add(ELEMENT);
 	}
 
 	@Benchmark
 	public void synchronizedArrayList() {
-		for (int i = 0; i < SIZE; i++){
-			synchronizedArrayList.add(ELEMENT);
-		}
+		synchronizedArrayList.add(ELEMENT);
 	}
 }

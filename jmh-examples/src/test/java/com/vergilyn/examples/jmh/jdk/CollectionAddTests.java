@@ -66,10 +66,6 @@ public class CollectionAddTests {
 
 	@AfterAll
 	public static void afterClass() {
-		/**
-		 * 格式化对齐输出 例如JMH-report
-		 *   {@linkplain org.openjdk.jmh.results.format.TextResultFormat#writeOut(java.util.Collection)}
-		 */
 		String[] head = {"METHOD", "SIZE", "COST"};
 		String format = formatter(head, _LOG);
 
