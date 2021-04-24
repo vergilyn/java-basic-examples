@@ -53,6 +53,9 @@ public class CacheExpireAfterAccessTests {
 
 		assertThat(cache.getIfPresent("a")).isNull();
 		assertThat(cache.getIfPresent("b")).isSameAs(vb);
+
+		TimeUnit.SECONDS.sleep(10);
+
 	}
 
 }
