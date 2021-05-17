@@ -30,16 +30,4 @@
             <version>${spring-beans.version}</version>
         </dependency>
     </dependencies>
-
-    <build>
-        <resources>
-            <resource>
-                <directory>src/test/java</directory>
-                <includes>
-                    <include>**/*.yml</include>
-                    <include>**/*.yaml</include>
-                </includes>
-            </resource>
-        </resources>
-    </build>
 </project>
