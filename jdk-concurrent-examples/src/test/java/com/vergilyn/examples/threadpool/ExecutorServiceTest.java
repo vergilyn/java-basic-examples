@@ -1,4 +1,4 @@
-package com.vergilyn.examples;
+package com.vergilyn.examples.threadpool;
 
 import java.util.Comparator;
 import java.util.List;

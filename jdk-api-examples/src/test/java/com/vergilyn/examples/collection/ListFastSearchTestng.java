@@ -1,4 +1,4 @@
-package com.vergilyn.examples;
+package com.vergilyn.examples.collection;
 
 import java.util.List;
 import java.util.ListIterator;
@@ -51,12 +51,7 @@ public class ListFastSearchTestng {
     @Test
     public void doubleIterator(){
         for (Integer id : ids){
-            int index = iteratorBinarySearch(beans, id, new Comparator<JavaBean, Integer>() {
-                @Override
-                public int compare(JavaBean o1, Integer o2) {
-                    return o1.getId().compareTo(o2);
-                }
-            });
+            int index = iteratorBinarySearch(beans, id, (o1, o2) -> o1.getId().compareTo(o2));
 
             if (index < 0){
                 System.out.printf("[id: %d] is not exists. \r\n", id);

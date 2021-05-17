@@ -6,5 +6,6 @@ package com.vergilyn.examples.usage.u0003;
  * @author vergilyn
  * @since 2021-04-24
  */
-public class ClassTypeInformation {
+public class ClassTypeInformation<T> {
+
 }

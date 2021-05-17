@@ -1,4 +1,4 @@
-package com.vergilyn.examples.jmh.jdk;
+package com.vergilyn.examples.jmh.collection;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;

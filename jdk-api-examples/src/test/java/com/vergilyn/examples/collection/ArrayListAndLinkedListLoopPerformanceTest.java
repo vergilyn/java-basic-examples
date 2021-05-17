@@ -1,4 +1,4 @@
-package com.vergilyn.examples;
+package com.vergilyn.examples.collection;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
