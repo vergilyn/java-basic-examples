@@ -29,5 +29,10 @@
             <artifactId>spring-beans</artifactId>
             <version>${spring-beans.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
     </dependencies>
 </project>

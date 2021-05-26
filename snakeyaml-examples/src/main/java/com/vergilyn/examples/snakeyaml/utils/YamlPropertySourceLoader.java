@@ -1,72 +1,39 @@
-package com.vergilyn.examples.snakeyaml.convert;
+package com.vergilyn.examples.snakeyaml.utils;
 
-import java.io.Reader;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.vergilyn.examples.snakeyaml.AbstractSnakeyamlTests;
-
-import lombok.SneakyThrows;
-import org.junit.jupiter.api.Test;
 import org.springframework.core.io.Resource;
 import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
-import org.yaml.snakeyaml.Yaml;
 
 /**
- * spring-boot load yaml/properties: <br/>
- *   `ConfigFileApplicationListener.Loader
- *      #load(String location, String name, Profile profile, DocumentFilterFactory filterFactory, DocumentConsumer consumer)`
- *  找到yaml/properties resource，并确定对应的 Yaml/Properties SourceLoader <br/>
- *  --> {@linkplain org.springframework.boot.env.YamlPropertySourceLoader#load(String, Resource)}<br/>
- *  --> {@linkplain org.springframework.boot.env.PropertiesPropertySourceLoader#load(String, Resource)}<br/>
- *
  *
  * @author vergilyn
  * @since 2021-04-29
+ *
+ * @see org.springframework.boot.env.YamlPropertySourceLoader#load(String, Resource)
+ * @see org.springframework.boot.env.PropertiesPropertySourceLoader#load(String, Resource)
  */
-public class YamlToProperties extends AbstractSnakeyamlTests {
+public class YamlPropertySourceLoader {
 
-	@Test
-	@SneakyThrows
-	public void multiLevelNestedProperties(){
-		Yaml yaml = createYaml();
+	public static Properties flattenedProperties(Map object){
+		Map<String, Object> asMap = asMap(object);
+		Map<String, Object> flattenedMap = getFlattenedMap(asMap);
 
-		try (final Reader reader = defaultYml()){
-			Properties properties = yaml.loadAs(reader, Properties.class);
+		Properties properties = new Properties();
+		properties.putAll(flattenedMap);
 
-			System.out.println(JSON.toJSONString(properties, SerializerFeature.PrettyFormat));
-		}
-	}
-
-	@Test
-	@SneakyThrows
-	public void flattenedProperties(){
-		Yaml yaml = createYaml();
-
-		try (final Reader reader = defaultYml()){
-			Object object = yaml.loadAs(reader, LinkedHashMap.class);
-
-			Map<String, Object> asMap = asMap(object);
-			Map<String, Object> flattenedMap = getFlattenedMap(asMap);
-
-			Properties properties = new Properties();
-			properties.putAll(flattenedMap);
-
-			System.out.println(JSON.toJSONString(properties, SerializerFeature.PrettyFormat));
-		}
-	}
-
+		return properties;
+	};
 
 	/**
 	 * SEE: spring-beans `YamlProcessor#asMap(java.lang.Object)`
 	 */
-	private Map<String, Object> asMap(Object object) {
+	private static Map<String, Object> asMap(Object object) {
 		// YAML can have numbers as keys
 		Map<String, Object> result = new LinkedHashMap<>();
 		if (!(object instanceof Map)) {
@@ -94,13 +61,13 @@ public class YamlToProperties extends AbstractSnakeyamlTests {
 	/**
 	 * SEE: spring-beans `YamlProcessor#asMap(java.lang.Object)`
 	 */
-	protected final Map<String, Object> getFlattenedMap(Map<String, Object> source) {
+	private static Map<String, Object> getFlattenedMap(Map<String, Object> source) {
 		Map<String, Object> result = new LinkedHashMap<>();
 		buildFlattenedMap(result, source, null);
 		return result;
 	}
 
-	private void buildFlattenedMap(Map<String, Object> result, Map<String, Object> source, @Nullable String path) {
+	private static void buildFlattenedMap(Map<String, Object> result, Map<String, Object> source, @Nullable String path) {
 		source.forEach((key, value) -> {
 			if (StringUtils.hasText(path)) {
 				if (key.startsWith("[")) {
@@ -139,5 +106,4 @@ public class YamlToProperties extends AbstractSnakeyamlTests {
 			}
 		});
 	}
-
 }
