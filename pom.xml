@@ -50,16 +50,23 @@
         <projectlombok.version>1.18.10</projectlombok.version>
         <google-guava.version>30.1.1-jre</google-guava.version>
         <alibaba-fastjson.version>1.2.62</alibaba-fastjson.version>
+
+        <!-- apache-commons -->
         <apache-common-lang3.version>3.9</apache-common-lang3.version>
+        <apache-common-io.version>2.8.0</apache-common-io.version>
+        <apache-common-beanutils.version>1.9.4</apache-common-beanutils.version>
 
         <apache-common-csv.version>1.8</apache-common-csv.version>
         <apache-common-text.version>1.9</apache-common-text.version>
-        <apache-common-io.version>2.8.0</apache-common-io.version>
-        <apache-common-beanutils.version>1.9.4</apache-common-beanutils.version>
+
+        <apache-common-codec.version>1.15</apache-common-codec.version>
+        <apache-common-pool2.version>2.6.1</apache-common-pool2.version>
+
         <apache-common-fileupload.version>1.4</apache-common-fileupload.version>
-        <apache-common-httpclient.version>4.5.10</apache-common-httpclient.version>
+        <apache-common-httpclient.version>4.5.13</apache-common-httpclient.version>
         <apache-common-collections4.version>4.4</apache-common-collections4.version>
 
+        <!-- unit-test -->
         <testng.version>7.1.0</testng.version>
         <mockito-core.version>3.7.7</mockito-core.version>
         <hamcrest.version>2.2</hamcrest.version>
@@ -156,6 +163,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
