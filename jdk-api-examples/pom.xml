@@ -12,4 +12,10 @@
 
     <artifactId>jdk-api-examples</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+        </dependency>
+    </dependencies>
 </project>

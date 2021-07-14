@@ -1,11 +1,11 @@
-package com.vergilyn.examples.bean;
+package com.vergilyn.examples.format;
 
 import java.text.MessageFormat;
 
 import org.testng.annotations.Test;
 
 /**
- * @see java.text.MessageFormat
+ * @see MessageFormat
  */
 public class MessageFormatTestng {
 
@@ -17,6 +17,9 @@ public class MessageFormatTestng {
 		System.out.println(result);
 	}
 
+	/**
+	 * 字符串不能被`{}`包围
+	 */
 	@Test(expectedExceptions = IllegalArgumentException.class
 			, expectedExceptionsMessageRegExp = "can't parse argument number: 'name': \\{0}")
 	public void exception(){
@@ -35,7 +38,7 @@ public class MessageFormatTestng {
 
 		String i0 = "http://www.baidu.com";
 		String i1 = "http://wap.baidu.com";
-		String i2 =  "关键字";
+		String i2 = "关键字";
 
 		String result = MessageFormat.format(pattern, i0, i1, null);
 		System.out.println(result);

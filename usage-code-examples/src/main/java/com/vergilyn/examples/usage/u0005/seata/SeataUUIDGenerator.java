@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.vergilyn.examples.usage.u0005;
+package com.vergilyn.examples.usage.u0005.seata;
 
 
 /**
