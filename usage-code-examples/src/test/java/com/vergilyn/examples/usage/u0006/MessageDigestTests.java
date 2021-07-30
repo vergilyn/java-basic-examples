@@ -61,7 +61,7 @@ public class MessageDigestTests {
 
 		for (int i = 0; i < result.length; i++) {
 			if (result[i] < 0){
-				result[i] &= 127;  // 为了节约内存，利用全部字符类型（ASCII码在0~127之间）来填充
+				result[i] &= 127;
 			}
 		}
 
