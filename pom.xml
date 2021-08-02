@@ -198,16 +198,19 @@
     </dependencies>
 
     <build>
-        <resources>
-            <resource>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+            </testResource>
+            <testResource>
                 <directory>src/test/java</directory>
                 <includes>
                     <include>**/*.yml</include>
                     <include>**/*.yaml</include>
                     <include>**/*.json</include>
                 </includes>
-            </resource>
-        </resources>
+            </testResource>
+        </testResources>
 
         <plugins>
             <plugin>
