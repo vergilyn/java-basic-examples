@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.Scope;
@@ -64,19 +64,19 @@ public class CollectIteratorJMH {
                 * OPTIONS.getThreads().get() * LIST.size();
 
         if (FORI_COUNT.get() > 0){
-            Assert.assertEquals(expected, FORI_COUNT.get());
+            Assertions.assertEquals(expected, FORI_COUNT.get());
         }
 
         if (FOREACH_COUNT.get() > 0){
-            Assert.assertEquals(expected, FOREACH_COUNT.get());
+            Assertions.assertEquals(expected, FOREACH_COUNT.get());
         }
 
         if (ITERATOR_COUNT.get() > 0){
-            Assert.assertEquals(expected, ITERATOR_COUNT.get());
+            Assertions.assertEquals(expected, ITERATOR_COUNT.get());
         }
 
         if (STREAM_COUNT.get() > 0){
-            Assert.assertEquals(expected, STREAM_COUNT.get());
+            Assertions.assertEquals(expected, STREAM_COUNT.get());
         }
     }
 

@@ -104,4 +104,11 @@ public class LocalDateTest {
         long epochDay = now.toEpochDay();
         System.out.println(epochDay);
     }
+
+    public static void main(String[] args) {
+        LocalDate before = LocalDate.parse("2021-08-09");
+        LocalDate after = LocalDate.parse("2021-08-18");
+
+        System.out.println(after.toEpochDay() - before.toEpochDay());
+    }
 }

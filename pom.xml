@@ -70,6 +70,7 @@
         <testng.version>7.1.0</testng.version>
         <mockito-core.version>3.7.7</mockito-core.version>
         <hamcrest.version>2.2</hamcrest.version>
+        <jmh.version>1.29</jmh.version>
 
         <!-- maven-plugins http://maven.apache.org/plugins/index.html -->
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
@@ -118,6 +119,20 @@
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpclient</artifactId>
                 <version>${apache-common-httpclient.version}</version>
+            </dependency>
+
+            <!-- JMH -->
+            <dependency>
+                <groupId>org.openjdk.jmh</groupId>
+                <artifactId>jmh-core</artifactId>
+                <version>${jmh.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.openjdk.jmh</groupId>
+                <artifactId>jmh-generator-annprocess</artifactId>
+                <version>${jmh.version}</version>
+                <scope>test</scope>
             </dependency>
 
         </dependencies>
