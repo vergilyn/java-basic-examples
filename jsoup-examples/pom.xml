@@ -13,7 +13,7 @@
     <artifactId>jsoup-examples</artifactId>
 
     <properties>
-        <jsoup.version>1.12.1</jsoup.version>
+        <jsoup.version>1.14.2</jsoup.version>
     </properties>
 
     <dependencies>
