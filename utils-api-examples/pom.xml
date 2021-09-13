@@ -82,5 +82,9 @@
             <version>${pinyin4j.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.vdurmont</groupId>
+            <artifactId>emoji-java</artifactId>
+        </dependency>
     </dependencies>
 </project>

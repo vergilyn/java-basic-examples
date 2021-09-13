@@ -11,7 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * 需求：ueditor编辑的富文本内容，为匹配到的<strong>第一个关键字</strong>添加相应的链接。
@@ -25,7 +25,7 @@ import org.testng.annotations.Test;
  *
  * @see <a href="https://my.oschina.net/kaishui/blog/1532092">富文本替换关键字做SEO内链</a>
  */
-public class UEditorContentSearchTestng {
+public class UEditorContentSearchTests {
 
 	private static final String CONTENT_HTML = "<p>\n" + "    这是一段ueditor菜鸟<br/>\n" + "</p>\n" + "<p>\n"
 			+ "    <strong>加粗菜鸟</strong>\n" + "</p>\n" + "<p>\n"

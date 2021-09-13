@@ -6,12 +6,11 @@ import com.google.common.hash.Funnels;
 
 import org.testng.annotations.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.lessThan;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.testng.AssertJUnit.assertFalse;
 
 /**
  * @author VergiLyn
@@ -33,7 +32,7 @@ public class CaffeineCacheTest {
 
         // Assert that the BF "might" have all of the even numbers.
         for (int i = 0; i < numInsertions * 2; i += 2) {
-            assertTrue(bf.mightContain(Integer.toString(i)));
+            assertThat(bf.mightContain(Integer.toString(i))).isTrue();
         }
 
         // Now we check for known false positives using a set of known false positives.

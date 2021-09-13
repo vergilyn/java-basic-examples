@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 /**
  * 经测试HTML语法中，<a
  */
-public class HtmlRegexTestng {
+public class HtmlRegexTests {
 
 	/**
 	 * 成对匹配，捕获组匹配。例如：`\1`, `\2`

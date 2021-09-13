@@ -7,9 +7,9 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import lombok.Data;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class HtmlReplaceTestng {
+public class HtmlReplaceTests {
 
 	/**
 	 * 整个富文本indexof，不考虑keyword为html标签内容，例如 <a title="百度"...
