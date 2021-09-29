@@ -68,6 +68,10 @@
         <apache-common-collections4.version>4.4</apache-common-collections4.version>
 
         <vdurmont-emoji-java.version>5.1.1</vdurmont-emoji-java.version>
+        <!-- 2021-09-27 latest: 2.1.13 并且 `groupId: org.dom4j`
+            因为实际项目中有依赖`1.6.1` (`groupId: dom4j`)
+        -->
+        <dom4j.version>1.6.1</dom4j.version>
 
         <!-- unit-test -->
         <testng.version>7.1.0</testng.version>
@@ -93,6 +97,7 @@
                 <scope>import</scope>
             </dependency>
 
+            <!-- apache-commons -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-csv</artifactId>
@@ -128,6 +133,12 @@
                 <groupId>com.vdurmont</groupId>
                 <artifactId>emoji-java</artifactId>
                 <version>${vdurmont-emoji-java.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>dom4j</groupId>
+                <artifactId>dom4j</artifactId>
+                <version>${dom4j.version}</version>
             </dependency>
 
             <!-- JMH -->
@@ -243,6 +254,7 @@
                     <include>**/*.yml</include>
                     <include>**/*.yaml</include>
                     <include>**/*.json</include>
+                    <include>**/*.xml</include>
                 </includes>
             </testResource>
         </testResources>

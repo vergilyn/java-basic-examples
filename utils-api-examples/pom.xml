@@ -86,5 +86,10 @@
             <groupId>com.vdurmont</groupId>
             <artifactId>emoji-java</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+        </dependency>
     </dependencies>
 </project>
