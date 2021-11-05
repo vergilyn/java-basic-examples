@@ -6,6 +6,7 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
@@ -48,10 +49,27 @@ public class LocalDateTimeTest {
 		System.out.println(now.toLocalDate().toEpochDay());
 	}
 
+	/**
+	 * `(ZoneOffset.ofHours(8)`写法不友好，且还需要区分 unix 是不是 UTC+8之类的。
+	 */
 	@Test
-	public void toEpochSecond(){
-		LocalDateTime now = LocalDateTime.now();
+	public void unix(){
+		// 2021-10-19 12:34:56.123 >>>> 1634618096123L
+		long unixTime = 1634618096123L;
+		LocalDateTime time = LocalDateTime.of(2021, 10, 19, 12, 34, 56, (int) TimeUnit.MILLISECONDS.toNanos(123L));
+		System.out.println("time >>>> " + time);
 
-		System.out.println(now.toEpochSecond(ZoneOffset.UTC));
+		// long mills = time.toEpochSecond(ZoneOffset.UTC);  // 1634646896L
+		long mills = time.toEpochSecond(ZoneOffset.ofHours(8)) * 1000
+						+ TimeUnit.NANOSECONDS.toMillis(time.getNano());
+		System.out.println("LocalDateTime to Milliseconds >>>> " + mills);
+		assertThat(mills).isEqualTo(unixTime);
+
+		LocalDateTime localDateTime = LocalDateTime.ofEpochSecond(mills / 1000,
+		                                                          (int) TimeUnit.MILLISECONDS.toNanos(mills % 1000),
+		                                                          ZoneOffset.ofHours(8));
+		System.out.println("Milliseconds to LocalDateTime >>>> " + localDateTime);
+
+
 	}
 }

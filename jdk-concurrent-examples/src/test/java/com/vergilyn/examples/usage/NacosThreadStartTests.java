@@ -33,7 +33,7 @@ public class NacosThreadStartTests {
 			TimeUnit.SECONDS.sleep(1);
 		}
 
-		// prvent jvm exit
+		// prevent jvm exit
 		new Semaphore(0).acquire();
 	}
 

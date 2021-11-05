@@ -47,12 +47,12 @@
         <revision>1.0.0-SNAPSHOT</revision>
 
         <spring-boot-dependencies.version>2.2.2.RELEASE</spring-boot-dependencies.version>
-        <projectlombok.version>1.18.10</projectlombok.version>
-        <google-guava.version>30.1.1-jre</google-guava.version>
-        <alibaba-fastjson.version>1.2.62</alibaba-fastjson.version>
+        <projectlombok.version>1.18.22</projectlombok.version>
+        <google-guava.version>31.0.1-jre</google-guava.version>
+        <alibaba-fastjson.version>1.2.78</alibaba-fastjson.version>
 
         <!-- apache-commons -->
-        <apache-common-lang3.version>3.9</apache-common-lang3.version>
+        <apache-common-lang3.version>3.12.0</apache-common-lang3.version>
         <apache-common-math3.version>3.6.1</apache-common-math3.version>
         <apache-common-io.version>2.8.0</apache-common-io.version>
         <apache-common-beanutils.version>1.9.4</apache-common-beanutils.version>
@@ -74,10 +74,11 @@
         <dom4j.version>1.6.1</dom4j.version>
 
         <!-- unit-test -->
-        <testng.version>7.1.0</testng.version>
-        <mockito-core.version>3.7.7</mockito-core.version>
+        <testng.version>7.4.0</testng.version>
+        <mockito-core.version>4.0.0</mockito-core.version>
         <hamcrest.version>2.2</hamcrest.version>
         <jmh.version>1.29</jmh.version>
+        <awaitility.version>4.1.0</awaitility.version>
 
         <!-- maven-plugins http://maven.apache.org/plugins/index.html -->
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
@@ -236,10 +237,10 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>20030203.000550</version>
-            <scope>compile</scope>
+            <groupId>org.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+            <version>${awaitility.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -255,6 +256,7 @@
                     <include>**/*.yaml</include>
                     <include>**/*.json</include>
                     <include>**/*.xml</include>
+                    <include>**/*.txt</include>
                 </includes>
             </testResource>
         </testResources>

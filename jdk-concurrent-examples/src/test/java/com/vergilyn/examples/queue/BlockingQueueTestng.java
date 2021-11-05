@@ -16,6 +16,7 @@ import org.testng.collections.Lists;
 
 /**
  * 在阅读seata源码看到，"io.seata.core.rpc.DefaultServerMessageListenerImpl.BatchLogRunnable"
+ *
  * @author vergilyn
  * @date 2020-02-18
  */
