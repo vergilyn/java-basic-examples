@@ -50,6 +50,7 @@
         <projectlombok.version>1.18.22</projectlombok.version>
         <google-guava.version>31.0.1-jre</google-guava.version>
         <alibaba-fastjson.version>1.2.78</alibaba-fastjson.version>
+        <hutool-all.version>5.7.16</hutool-all.version>
 
         <!-- apache-commons -->
         <apache-common-lang3.version>3.12.0</apache-common-lang3.version>
@@ -108,6 +109,12 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-text</artifactId>
                 <version>${apache-common-text.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.apache.commons</groupId>
+                        <artifactId>commons-lang3</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>commons-beanutils</groupId>
@@ -192,6 +199,11 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>${alibaba-fastjson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool-all.version}</version>
         </dependency>
 
         <!-- logger -->

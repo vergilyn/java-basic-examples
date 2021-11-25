@@ -2,17 +2,29 @@ package com.vergilyn.examples.emoji;
 
 import com.vdurmont.emoji.EmojiParser;
 
+import cn.hutool.core.util.StrUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
 public class EmojiTests {
+	private final String emojiStr = "中文123\uD83D\uDE04456";
+
+	/**
+	 * @see cn.hutool.core.util.StrUtil#subByCodePoint(CharSequence, int, int)
+	 */
+	@Test
+	public void substring(){
+		// 直接substring 会导致emoji不完整。
+		System.out.println(StringUtils.substring(emojiStr, 0, 6));
+
+		System.out.println(StrUtil.subByCodePoint(emojiStr, 0, 6));
+
+	}
 
 	@Test
 	public void test() {
-		String str = "中文123\uD83D\uDE04456";
-
-		System.out.println(EmojiParser.parseToAliases(str));
-		System.out.println(EmojiParser.replaceAllEmojis(str, "*"));
+		System.out.println(EmojiParser.parseToAliases(emojiStr));
+		System.out.println(EmojiParser.replaceAllEmojis(emojiStr, "*"));
 	}
 
 	/**

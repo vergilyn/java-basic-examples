@@ -14,6 +14,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * <a href="https://zhuanlan.zhihu.com/p/104848429">时间戳和LocalDateTime和Date互转和格式化</a>
+ *
+ * @author vergilyn
+ * @since 2021-11-19
+ */
 public class LocalDateTimeTest {
 
 	@Test
@@ -43,7 +49,7 @@ public class LocalDateTimeTest {
 	}
 
 	@Test
-	public void epochDay(){
+	public void epochDay() {
 		LocalDateTime now = LocalDateTime.now();
 
 		System.out.println(now.toLocalDate().toEpochDay());
@@ -53,15 +59,14 @@ public class LocalDateTimeTest {
 	 * `(ZoneOffset.ofHours(8)`写法不友好，且还需要区分 unix 是不是 UTC+8之类的。
 	 */
 	@Test
-	public void unix(){
+	public void unix() {
 		// 2021-10-19 12:34:56.123 >>>> 1634618096123L
 		long unixTime = 1634618096123L;
 		LocalDateTime time = LocalDateTime.of(2021, 10, 19, 12, 34, 56, (int) TimeUnit.MILLISECONDS.toNanos(123L));
 		System.out.println("time >>>> " + time);
 
 		// long mills = time.toEpochSecond(ZoneOffset.UTC);  // 1634646896L
-		long mills = time.toEpochSecond(ZoneOffset.ofHours(8)) * 1000
-						+ TimeUnit.NANOSECONDS.toMillis(time.getNano());
+		long mills = time.toEpochSecond(ZoneOffset.ofHours(8)) * 1000 + TimeUnit.NANOSECONDS.toMillis(time.getNano());
 		System.out.println("LocalDateTime to Milliseconds >>>> " + mills);
 		assertThat(mills).isEqualTo(unixTime);
 
@@ -70,6 +75,10 @@ public class LocalDateTimeTest {
 		                                                          ZoneOffset.ofHours(8));
 		System.out.println("Milliseconds to LocalDateTime >>>> " + localDateTime);
 
+		// 推荐。但`ZoneOffset.ofHours(8)`写法还是不友好。 建议自己定义系统 默认常量。
+		long milliseconds = localDateTime.toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
+
+		System.out.println("Milliseconds to LocalDateTime >>>> " + milliseconds);
 
 	}
 }

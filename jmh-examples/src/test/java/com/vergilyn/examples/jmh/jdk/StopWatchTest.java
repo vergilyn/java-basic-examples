@@ -16,6 +16,13 @@ import org.junit.jupiter.api.Test;
  */
 public class StopWatchTest {
 
+	@Test
+	public void test(){
+	}
+
+	/**
+	 * 个人推荐。例如 `00:00:02.007`
+	 */
 	@SneakyThrows
 	@Test
 	public void apache(){
@@ -29,21 +36,9 @@ public class StopWatchTest {
 		System.out.println(stopWatch.toString());
 	}
 
-	@SneakyThrows
-	@Test
-	public void spring(){
-		org.springframework.util.StopWatch stopWatch = new org.springframework.util.StopWatch();
-		stopWatch.start();
-
-		TimeUnit.SECONDS.sleep(2);
-
-		stopWatch.stop();
-
-		System.out.println(stopWatch.prettyPrint());
-
-		System.out.println(stopWatch.shortSummary());
-	}
-
+	/**
+	 * 例如`2.015 s`
+	 */
 	@SneakyThrows
 	@Test
 	public void guava(){
@@ -55,5 +50,35 @@ public class StopWatchTest {
 		stopWatch.stop();
 
 		System.out.println(stopWatch.toString());
+	}
+
+	/**
+	 * 过于详细
+	 */
+	@SneakyThrows
+	@Test
+	public void spring(){
+		org.springframework.util.StopWatch stopWatch = new org.springframework.util.StopWatch();
+
+		stopWatch.start("stage-1");
+		TimeUnit.SECONDS.sleep(2);
+		stopWatch.stop();
+
+		stopWatch.start("stage-2");
+		TimeUnit.SECONDS.sleep(1);
+		stopWatch.stop();
+
+		print("toString()", stopWatch.toString());
+
+		print("prettyPrint()", stopWatch.prettyPrint());
+
+		print("shortSummary()", stopWatch.shortSummary());
+
+	}
+
+	private void print(String flag, Object content){
+		System.out.println(flag + " >>>> ");
+		System.out.println(content);
+		System.out.println();
 	}
 }

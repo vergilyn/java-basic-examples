@@ -54,4 +54,12 @@ public class ListCalcTests {
 
 		assertThat(subtract).containsExactlyInAnyOrder(1, 2);
 	}
+
+	@Test
+	public void sum(){
+		List<Integer> first = Lists.newArrayList(1, 2, 3, 4, 5);
+
+		System.out.println(first.stream().mapToInt(Integer::intValue).sum());
+
+	}
 }

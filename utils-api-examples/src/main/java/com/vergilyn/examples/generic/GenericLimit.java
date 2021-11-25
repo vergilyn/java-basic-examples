@@ -3,7 +3,6 @@ package com.vergilyn.examples.generic;
 /**
  * 泛型限定
  * @author VergiLyn
- * @bolg http://www.cnblogs.com/VergiLyn/
  * @date 2017/4/16
  * @see com.vergilyn.examples.jvm.SubclassInvoke
  */
