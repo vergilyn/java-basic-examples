@@ -44,11 +44,13 @@ public class StringReplaceTestng {
 	}
 
 	/**
-	 * apache-common-text
+	 * apache-common-text。最满意的！
+	 *
+	 * @see StringSubstitutorTests
 	 */
 	@Test
 	public void stringSubstitutor(){
-		String pattern = "{name: ${name}, number: ${number}, desc: ${name}-${number}-${unknown}}";
+		String pattern = "{name: ${name}, number: ${number}, desc: ${name}-${number}-${unknown:un-default}}";
 
 		Map<String, Object> params = Maps.newHashMap();
 		params.put("name", "vergilyn");

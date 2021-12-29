@@ -27,7 +27,6 @@ public class ListFlatMapTests {
 
 	@Data
 	@NoArgsConstructor
-
 	private static class User{
 		private Integer userId;
 

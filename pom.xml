@@ -46,7 +46,7 @@
 
         <revision>1.0.0-SNAPSHOT</revision>
 
-        <spring-boot-dependencies.version>2.2.2.RELEASE</spring-boot-dependencies.version>
+        <spring-boot-dependencies.version>2.2.13.RELEASE</spring-boot-dependencies.version>
         <projectlombok.version>1.18.22</projectlombok.version>
         <google-guava.version>31.0.1-jre</google-guava.version>
         <alibaba-fastjson.version>1.2.78</alibaba-fastjson.version>
@@ -189,6 +189,10 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-math3</artifactId>
             <version>${apache-common-math3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>

@@ -11,9 +11,11 @@ public class MessageFormatTestng {
 
 	@Test
 	public void test(){
-		String pattern = "'name': {0}, 'email': {1}";
+		String pattern = "'name': {0}, 'email': {1}, 'Long': {2}, 'Long.toString():' {3}";
 
-		String result = MessageFormat.format(pattern, "vergilyn", "vergilyn@vip.qq.com");
+		// 2021-11-30，如果是 number，会变成`123,456，789`。但如果是 number-string 则不会。
+		String result = MessageFormat.format(pattern,
+		                                     "vergilyn", "vergilyn@vip.qq.com", 123456789L, Long.toString(123456789L));
 		System.out.println(result);
 	}
 
