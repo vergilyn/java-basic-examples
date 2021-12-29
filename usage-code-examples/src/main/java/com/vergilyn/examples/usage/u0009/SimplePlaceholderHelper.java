@@ -27,6 +27,15 @@ public class SimplePlaceholderHelper {
 
 	private static final Log logger = LogFactory.getLog(SimplePlaceholderHelper.class);
 
+	/** Prefix for system property placeholders: "${". */
+	public static final String PLACEHOLDER_PREFIX = "${";
+
+	/** Suffix for system property placeholders: "}". */
+	public static final String PLACEHOLDER_SUFFIX = "}";
+
+	/** Value separator for system property placeholders: ":". */
+	public static final String VALUE_SEPARATOR = ":";
+
 	private static final Map<String, String> wellKnownSimplePrefixes = new HashMap<>(4);
 
 	static {
@@ -46,6 +55,8 @@ public class SimplePlaceholderHelper {
 
 	private final boolean ignoreUnresolvablePlaceholders;
 
+	private final String unresolvableValue;
+
 
 	/**
 	 * Creates a new {@code SimplePlaceholderHelper} that uses the supplied prefix and suffix.
@@ -54,7 +65,7 @@ public class SimplePlaceholderHelper {
 	 * @param placeholderSuffix the suffix that denotes the end of a placeholder
 	 */
 	public SimplePlaceholderHelper(String placeholderPrefix, String placeholderSuffix) {
-		this(placeholderPrefix, placeholderSuffix, null, true);
+		this(placeholderPrefix, placeholderSuffix, null, true, null);
 	}
 
 	/**
@@ -67,7 +78,7 @@ public class SimplePlaceholderHelper {
 	 * be ignored ({@code true}) or cause an exception ({@code false})
 	 */
 	public SimplePlaceholderHelper(String placeholderPrefix, String placeholderSuffix,
-			 String valueSeparator, boolean ignoreUnresolvablePlaceholders) {
+			 String valueSeparator, boolean ignoreUnresolvablePlaceholders, String unresolvableValue) {
 
 		Assert.notNull(placeholderPrefix, "'placeholderPrefix' must not be null");
 		Assert.notNull(placeholderSuffix, "'placeholderSuffix' must not be null");
@@ -82,8 +93,16 @@ public class SimplePlaceholderHelper {
 		}
 		this.valueSeparator = valueSeparator;
 		this.ignoreUnresolvablePlaceholders = ignoreUnresolvablePlaceholders;
+		this.unresolvableValue = unresolvableValue;
 	}
 
+	public static SimplePlaceholderHelper buildDefaultStrictHelper(){
+		return new SimplePlaceholderHelper(PLACEHOLDER_PREFIX, PLACEHOLDER_SUFFIX, VALUE_SEPARATOR, false, null);
+	}
+
+	public static SimplePlaceholderHelper buildDefaultNonStrictHelper(String unresolvableValue){
+		return new SimplePlaceholderHelper(PLACEHOLDER_PREFIX, PLACEHOLDER_SUFFIX, VALUE_SEPARATOR, true, unresolvableValue);
+	}
 
 	/**
 	 * Replaces all placeholders of format {@code ${name}} with the corresponding
@@ -158,6 +177,11 @@ public class SimplePlaceholderHelper {
 					startIndex = result.indexOf(this.placeholderPrefix, startIndex + propVal.length());
 				}
 				else if (this.ignoreUnresolvablePlaceholders) {
+					// 无法解析的占位符替换成指定的默认值。否则保留placeholder。
+					if (this.unresolvableValue != null){
+						result.replace(startIndex, endIndex + this.placeholderSuffix.length(), this.unresolvableValue);
+					}
+
 					// Proceed with unprocessed value.
 					startIndex = result.indexOf(this.placeholderPrefix, endIndex + this.placeholderSuffix.length());
 				}
