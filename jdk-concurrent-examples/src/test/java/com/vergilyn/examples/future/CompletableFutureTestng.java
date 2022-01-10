@@ -26,7 +26,7 @@ public class CompletableFutureTestng {
      *   执行完future.complete(...)会去触发get！
      */
     @Test(invocationTimeOut = 10_000)
-    public void test01() throws Exception {
+    public void seata() throws Exception {
         // future.complete(1024);
 
         Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
@@ -51,4 +51,5 @@ public class CompletableFutureTestng {
             System.exit(0);
         }
     }
+
 }

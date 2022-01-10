@@ -38,6 +38,8 @@ public class ThreadDaemonTests {
 	public void daemon(boolean daemon){
 		ExecutorService pool = Executors.newFixedThreadPool(3, r -> {
 			Thread thread = new Thread(r);
+			// true, daemon-thread
+			// false, user-thread
 			thread.setName("thread-daemon-" + daemon);
 			thread.setDaemon(daemon);
 			return thread;
@@ -58,6 +60,6 @@ public class ThreadDaemonTests {
 			});
 		}
 
-		//TimeUnit.SECONDS.sleep(10);
+		TimeUnit.SECONDS.sleep(10);
 	}
 }

@@ -132,6 +132,38 @@ public class SimplePlaceholderHelper {
 		return parseStringValue(value, placeholderResolver);
 	}
 
+	public List<String> extractPlaceholders(String value){
+		List<String> placeholders = Lists.newArrayList();
+
+		int startIndex = value.indexOf(this.placeholderPrefix);
+		if (startIndex == -1) {
+			return placeholders;
+		}
+
+		StringBuilder result = new StringBuilder(value);
+		while (startIndex != -1) {
+			int endIndex = findPlaceholderEndIndex(result, startIndex);
+			if (endIndex != -1) {
+				// 得到带`value_separator`的 placeholder
+				String placeholder = result.substring(startIndex + this.placeholderPrefix.length(), endIndex);
+				String actualPlaceholder = placeholder;
+				if (this.valueSeparator != null){
+					int separatorIndex = placeholder.indexOf(this.valueSeparator);
+					if (separatorIndex != -1){
+						actualPlaceholder = placeholder.substring(0, separatorIndex);
+					}
+				}
+
+				placeholders.add(actualPlaceholder);
+			}
+			else {
+				startIndex = -1;
+			}
+		}
+		return placeholders;
+
+	}
+
 	/**
 	 * @return
 	 *   - key, the supplied value with placeholders replaced inline  <br/>

@@ -15,7 +15,9 @@ public class ThreadDaemonMainTests extends AbstractThreadTests{
 		// 用户线程，会等待执行完毕
 		tests.testTemplate(false, 2);
 
-		// 都会 强制结束运行的线程
+		System.out.println("#testTemplate() >>>> After");
+
+		// 不同于`kill -15`，都会 强制结束 all-user-threads。
 		// System.exit(0);
 	}
 }
