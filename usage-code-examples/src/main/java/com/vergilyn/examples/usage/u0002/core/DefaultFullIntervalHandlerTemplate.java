@@ -25,9 +25,12 @@ public class DefaultFullIntervalHandlerTemplate<T> implements FullIntervalHandle
 	public DefaultFullIntervalHandlerTemplate(FullIntervalHandlerContext<T> context) {
 		this.context = context;
 
+		// 2022-01-14 >>>>
+		//   例如 RocketMQ 消费者push-mode拉取message，其实用的就是`Executors.newScheduledThreadPool(...)`
 		this.innerFlushThread = new InnerFlushThread(context.getStorageClass().getName());
 		this.innerFlushThread.start();
 
+		// TODO 2022-01-14 如果是spring，可以基于 `DisposableBean#destroy()` 实现
 		Runtime.getRuntime().addShutdownHook(new Thread(this::shutdown));
 	}
 
@@ -79,17 +82,19 @@ public class DefaultFullIntervalHandlerTemplate<T> implements FullIntervalHandle
 		}
 
 		boolean isSuccess;
+		Throwable throwable = null;
 		try {
 			isSuccess = context.handler().flush(data);
-		}catch (Exception e){
+		}catch (Throwable t){
 			isSuccess = false;
+			throwable = t;
 		}
 
 		checkThreshold();
 
 		FlushFailureHandler<T> flushFailureHandler = context.failureHandler();
 		if (!isSuccess && flushFailureHandler != null){
-			flushFailureHandler.flushFailure(data);
+			flushFailureHandler.flushFailure(data, throwable);
 		}
 	}
 

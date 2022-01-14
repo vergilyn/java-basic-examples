@@ -7,7 +7,7 @@ import com.vergilyn.examples.usage.u0002.FlushFailureHandler;
 public class DefaultFlushFailureHandler<T> implements FlushFailureHandler<T> {
 
 	@Override
-	public void flushFailure(List<T> data) {
+	public void flushFailure(List<T> data, Throwable throwable) {
 
 	}
 }

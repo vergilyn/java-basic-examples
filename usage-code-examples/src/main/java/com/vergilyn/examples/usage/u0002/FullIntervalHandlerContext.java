@@ -13,8 +13,7 @@ public interface FullIntervalHandlerContext<T> {
 
 	@NotNull Class<T> getStorageClass();
 
-	@NotNull
-	StoragePolicy<T> storage();
+	@NotNull StoragePolicy<T> storage();
 
 	@NotNull FlushHandler<T> handler();
 

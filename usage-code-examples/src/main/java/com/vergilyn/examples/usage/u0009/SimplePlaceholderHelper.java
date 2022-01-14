@@ -1,11 +1,10 @@
 package com.vergilyn.examples.usage.u0009;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.logging.Log;
@@ -113,7 +112,7 @@ public class SimplePlaceholderHelper {
 	 *   - key, the supplied value with placeholders replaced inline  <br/>
 	 *   - value, all placeholders
 	 */
-	public Pair<String, List<String>>  replacePlaceholders(String value, final Properties properties) {
+	public Pair<String, Map<String, String>>  replacePlaceholders(String value, final Properties properties) {
 		Assert.notNull(properties, "'properties' must not be null");
 		return replacePlaceholders(value, properties::getProperty);
 	}
@@ -127,41 +126,16 @@ public class SimplePlaceholderHelper {
 	 *   - key, the supplied value with placeholders replaced inline <br/>
 	 *   - value, all placeholders
 	 */
-	public Pair<String, List<String>> replacePlaceholders(String value, SimplePlaceholderHelper.PlaceholderResolver placeholderResolver) {
+	public Pair<String, Map<String, String>> replacePlaceholders(String value, SimplePlaceholderHelper.PlaceholderResolver placeholderResolver) {
 		Assert.notNull(value, "'value' must not be null");
 		return parseStringValue(value, placeholderResolver);
 	}
 
-	public List<String> extractPlaceholders(String value){
-		List<String> placeholders = Lists.newArrayList();
+	public Map<String, String> extractPlaceholders(String value){
+		Map<String, String> placeholders = Maps.newLinkedHashMap();
 
-		int startIndex = value.indexOf(this.placeholderPrefix);
-		if (startIndex == -1) {
-			return placeholders;
-		}
 
-		StringBuilder result = new StringBuilder(value);
-		while (startIndex != -1) {
-			int endIndex = findPlaceholderEndIndex(result, startIndex);
-			if (endIndex != -1) {
-				// 得到带`value_separator`的 placeholder
-				String placeholder = result.substring(startIndex + this.placeholderPrefix.length(), endIndex);
-				String actualPlaceholder = placeholder;
-				if (this.valueSeparator != null){
-					int separatorIndex = placeholder.indexOf(this.valueSeparator);
-					if (separatorIndex != -1){
-						actualPlaceholder = placeholder.substring(0, separatorIndex);
-					}
-				}
-
-				placeholders.add(actualPlaceholder);
-			}
-			else {
-				startIndex = -1;
-			}
-		}
-		return placeholders;
-
+		return parseStringValue(value, placeholderName -> null).getValue();
 	}
 
 	/**
@@ -169,8 +143,8 @@ public class SimplePlaceholderHelper {
 	 *   - key, the supplied value with placeholders replaced inline  <br/>
 	 *   - value, all placeholders
 	 */
-	protected Pair<String, List<String>> parseStringValue(String value, PlaceholderResolver placeholderResolver) {
-		List<String> placeholders = Lists.newArrayList();
+	protected Pair<String, Map<String, String>> parseStringValue(String value, PlaceholderResolver placeholderResolver) {
+		Map<String, String> placeholders = Maps.newLinkedHashMap();
 
 		int startIndex = value.indexOf(this.placeholderPrefix);
 		if (startIndex == -1) {
@@ -194,12 +168,13 @@ public class SimplePlaceholderHelper {
 					}
 				}
 
-				placeholders.add(actualPlaceholder);
 				// Now obtain the value for the fully resolved key...
 				String propVal = placeholderResolver.resolvePlaceholder(actualPlaceholder);
 				if (propVal == null){
 					propVal = defaultValue;
 				}
+
+				placeholders.put(actualPlaceholder, propVal);
 
 				if (propVal != null) {
 					result.replace(startIndex, endIndex + this.placeholderSuffix.length(), propVal);

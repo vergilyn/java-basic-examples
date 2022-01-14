@@ -1,8 +1,9 @@
 package com.vergilyn.examples.usage.u0009;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.Map;
 import java.util.Properties;
+
+import com.alibaba.fastjson.JSON;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
@@ -26,20 +27,20 @@ class SimplePlaceholderHelperTests {
 
 	@Test
 	public void nonStrictHelper(){
-		Pair<String, List<String>> pair = nonStrictHelper.parseStringValue(_text, _properties::getProperty);
+		Pair<String, Map<String, String>> pair = nonStrictHelper.parseStringValue(_text, _properties::getProperty);
 
 		print(_text, pair.getKey());
 
-		System.out.println("\nplaceholders >>>> " + Arrays.toString(pair.getValue().toArray(new String[0])));
+		System.out.println("\nplaceholders >>>> " + JSON.toJSONString(pair.getValue()));
 	}
 
 	@Test
 	public void nonStrictHelperKeepPlaceholder(){
-		Pair<String, List<String>> pair = nonStrictHelperKeepPlaceholder.parseStringValue(_text, _properties::getProperty);
+		Pair<String, Map<String, String>> pair = nonStrictHelperKeepPlaceholder.parseStringValue(_text, _properties::getProperty);
 
 		print(_text, pair.getKey());
 
-		System.out.println("\nplaceholders >>>> " + Arrays.toString(pair.getValue().toArray(new String[0])));
+		System.out.println("\nplaceholders >>>> " + JSON.toJSONString(pair.getValue()));
 	}
 
 	private void print(String origin, String replace){
