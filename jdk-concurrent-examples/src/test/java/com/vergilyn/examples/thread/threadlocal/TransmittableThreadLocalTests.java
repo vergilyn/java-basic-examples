@@ -18,7 +18,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @since 2022-01-24
  *
  */
-public class ThreadLocalPoolTests {
+public class TransmittableThreadLocalTests {
 	private ExecutorService executorService = Executors.newFixedThreadPool(1);
 
 	@SneakyThrows
