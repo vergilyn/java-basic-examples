@@ -46,47 +46,58 @@
 
         <revision>1.0.0-SNAPSHOT</revision>
 
-        <spring-boot-dependencies.version>2.2.13.RELEASE</spring-boot-dependencies.version>
-        <projectlombok.version>1.18.22</projectlombok.version>
-        <google-guava.version>31.0.1-jre</google-guava.version>
-        <alibaba-fastjson.version>1.2.78</alibaba-fastjson.version>
-        <hutool-all.version>5.7.16</hutool-all.version>
+        <version.spring-boot-dependencies>2.2.13.RELEASE</version.spring-boot-dependencies>
+        <version.projectlombok>1.18.22</version.projectlombok>
 
-        <!-- apache-commons -->
-        <apache-common-lang3.version>3.12.0</apache-common-lang3.version>
-        <apache-common-math3.version>3.6.1</apache-common-math3.version>
-        <apache-common-io.version>2.8.0</apache-common-io.version>
-        <apache-common-beanutils.version>1.9.4</apache-common-beanutils.version>
+        <!--region apache-commons-->
+        <version.apache-common-lang3>3.12.0</version.apache-common-lang3>
+        <version.apache-common-math3>3.6.1</version.apache-common-math3>
+        <version.apache-common-io>2.8.0</version.apache-common-io>
+        <version.apache-common-beanutils>1.9.4</version.apache-common-beanutils>
 
-        <apache-common-csv.version>1.8</apache-common-csv.version>
-        <apache-common-text.version>1.9</apache-common-text.version>
+        <version.apache-common-csv>1.8</version.apache-common-csv>
+        <version.apache-common-text>1.9</version.apache-common-text>
 
-        <apache-common-codec.version>1.15</apache-common-codec.version>
-        <apache-common-pool2.version>2.6.1</apache-common-pool2.version>
+        <version.apache-common-codec>1.15</version.apache-common-codec>
+        <version.apache-common-pool2>2.6.1</version.apache-common-pool2>
 
-        <apache-common-fileupload.version>1.4</apache-common-fileupload.version>
-        <apache-common-httpclient.version>4.5.13</apache-common-httpclient.version>
-        <apache-common-collections4.version>4.4</apache-common-collections4.version>
+        <version.apache-common-fileupload>1.4</version.apache-common-fileupload>
+        <version.apache-common-httpclient>4.5.13</version.apache-common-httpclient>
+        <version.apache-common-collections4>4.4</version.apache-common-collections4>
+        <!--endregion-->
 
-        <vdurmont-emoji-java.version>5.1.1</vdurmont-emoji-java.version>
+        <!--region alibaba -->
+        <version.alibaba-fastjson>1.2.78</version.alibaba-fastjson>
+        <version.alibaba-transmittable-thread-local>2.12.4</version.alibaba-transmittable-thread-local>
+        <!--endregion-->
+
+        <!--region other-tools -->
+        <version.google-guava>31.0.1-jre</version.google-guava>
+
+        <version.hutool-all>5.7.16</version.hutool-all>
+
+        <version.vdurmont-emoji-java>5.1.1</version.vdurmont-emoji-java>
         <!-- 2021-09-27 latest: 2.1.13 并且 `groupId: org.dom4j`
             因为实际项目中有依赖`1.6.1` (`groupId: dom4j`)
         -->
-        <dom4j.version>1.6.1</dom4j.version>
+        <version.dom4j>1.6.1</version.dom4j>
+        <!--endregion-->
 
-        <!-- unit-test -->
-        <testng.version>7.4.0</testng.version>
-        <mockito-core.version>4.0.0</mockito-core.version>
-        <hamcrest.version>2.2</hamcrest.version>
-        <jmh.version>1.29</jmh.version>
-        <awaitility.version>4.1.0</awaitility.version>
+        <!--region unit-test -->
+        <version.testng>7.4.0</version.testng>
+        <version.mockito-core>4.0.0</version.mockito-core>
+        <version.hamcrest>2.2</version.hamcrest>
+        <versio.jmh>1.29</versio.jmh>
+        <version.awaitility>4.1.0</version.awaitility>
+        <!--endregion-->
 
-        <!-- maven-plugins http://maven.apache.org/plugins/index.html -->
-        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
-        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
-        <maven-javadoc-plugin.version>3.3.0</maven-javadoc-plugin.version>
-        <flatten-maven-plugin.version>1.1.0</flatten-maven-plugin.version>
+        <!--region maven-plugins http://maven.apache.org/plugins/index.html -->
+        <version.maven-source-plugin>3.2.1</version.maven-source-plugin>
+        <version.maven-compiler-plugin>3.8.1</version.maven-compiler-plugin>
+        <version.maven-jar-plugin>3.2.0</version.maven-jar-plugin>
+        <version.maven-javadoc-plugin>3.3.0</version.maven-javadoc-plugin>
+        <version.flatten-maven-plugin>1.1.0</version.flatten-maven-plugin>
+        <!--endregion-->
     </properties>
 
     <dependencyManagement>
@@ -94,7 +105,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot-dependencies.version}</version>
+                <version>${version.spring-boot-dependencies}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -103,12 +114,12 @@
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-csv</artifactId>
-                <version>${apache-common-csv.version}</version>
+                <version>${version.apache-common-csv}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-text</artifactId>
-                <version>${apache-common-text.version}</version>
+                <version>${version.apache-common-text}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.apache.commons</groupId>
@@ -119,47 +130,55 @@
             <dependency>
                 <groupId>commons-beanutils</groupId>
                 <artifactId>commons-beanutils</artifactId>
-                <version>${apache-common-beanutils.version}</version>
+                <version>${version.apache-common-beanutils}</version>
             </dependency>
             <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
-                <version>${apache-common-io.version}</version>
+                <version>${version.apache-common-io}</version>
             </dependency>
             <dependency>
                 <groupId>commons-fileupload</groupId>
                 <artifactId>commons-fileupload</artifactId>
-                <version>${apache-common-fileupload.version}</version>
+                <version>${version.apache-common-fileupload}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpclient</artifactId>
-                <version>${apache-common-httpclient.version}</version>
+                <version>${version.apache-common-httpclient}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.vdurmont</groupId>
                 <artifactId>emoji-java</artifactId>
-                <version>${vdurmont-emoji-java.version}</version>
+                <version>${version.vdurmont-emoji-java}</version>
             </dependency>
 
             <dependency>
                 <groupId>dom4j</groupId>
                 <artifactId>dom4j</artifactId>
-                <version>${dom4j.version}</version>
+                <version>${version.dom4j}</version>
             </dependency>
+
+            <!--region alibaba -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>${version.alibaba-transmittable-thread-local}</version>
+            </dependency>
+            <!--endregion-->
 
             <!-- JMH -->
             <dependency>
                 <groupId>org.openjdk.jmh</groupId>
                 <artifactId>jmh-core</artifactId>
-                <version>${jmh.version}</version>
+                <version>${versio.jmh}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.openjdk.jmh</groupId>
                 <artifactId>jmh-generator-annprocess</artifactId>
-                <version>${jmh.version}</version>
+                <version>${versio.jmh}</version>
                 <scope>test</scope>
             </dependency>
 
@@ -170,7 +189,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>${projectlombok.version}</version>
+            <version>${version.projectlombok}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -178,17 +197,17 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>${google-guava.version}</version>
+            <version>${version.google-guava}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>${apache-common-lang3.version}</version>
+            <version>${version.apache-common-lang3}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-math3</artifactId>
-            <version>${apache-common-math3.version}</version>
+            <version>${version.apache-common-math3}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -197,17 +216,17 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
-            <version>${apache-common-collections4.version}</version>
+            <version>${version.apache-common-collections4}</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>${alibaba-fastjson.version}</version>
+            <version>${version.alibaba-fastjson}</version>
         </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>${hutool-all.version}</version>
+            <version>${version.hutool-all}</version>
         </dependency>
 
         <!-- logger -->
@@ -230,32 +249,32 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>${testng.version}</version>
+            <version>${version.testng}</version>
             <scope>test</scope>
         </dependency>
         <!-- mockito -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>${mockito-core.version}</version>
+            <version>${version.mockito-core}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
-            <version>${mockito-core.version}</version>
+            <version>${version.mockito-core}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest</artifactId>
-            <version>${hamcrest.version}</version>
+            <version>${version.hamcrest}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.awaitility</groupId>
             <artifactId>awaitility</artifactId>
-            <version>${awaitility.version}</version>
+            <version>${version.awaitility}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -281,7 +300,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot-dependencies.version}</version>
+                <version>${version.spring-boot-dependencies}</version>
                 <configuration>
                     <fork>true</fork><!-- 如果没有该项配置，可能devtools不会起作用，即应用不会restart -->
                 </configuration>
@@ -290,7 +309,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler-plugin.version}</version>
+                <version>${version.maven-compiler-plugin}</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
@@ -305,7 +324,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>${maven-source-plugin.version}</version>
+                <version>${version.maven-source-plugin}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -322,7 +341,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>${maven-jar-plugin.version}</version>
+                <version>${version.maven-jar-plugin}</version>
                 <configuration>
                     <!-- https://maven.apache.org/shared/maven-archiver/ -->
                     <archive>
@@ -347,7 +366,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
-                <version>${flatten-maven-plugin.version}</version>
+                <version>${version.flatten-maven-plugin}</version>
                 <configuration>
                     <updatePomFile>true</updatePomFile>
                     <flattenMode>resolveCiFriendliesOnly</flattenMode>
