@@ -1,4 +1,4 @@
-package com.vergilyn.examples.thread;
+package com.vergilyn.examples.thread.threadlocal;
 
 import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.Test;

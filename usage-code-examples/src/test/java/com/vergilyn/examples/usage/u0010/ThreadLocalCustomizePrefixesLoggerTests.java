@@ -14,6 +14,9 @@ import java.util.function.Supplier;
  * 总体来说，如果是简单的 log-prefix 需求，比较容易满足。
  * 但如果是{@linkplain #syncSubMethodOwnPrefix()}，过于复杂了，有点得不偿失的感觉。
  *
+ * <br/> 对于线程池复用导致`ThreadLocal`无法满足期望，可以参考：
+ * <a href="https://github.com/alibaba/transmittable-thread-local">alibaba/transmittable-thread-local, `README.md`</a>
+ *
  * @author vergilyn
  * @since 2022-01-24
  */
