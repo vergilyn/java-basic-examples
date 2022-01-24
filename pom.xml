@@ -67,14 +67,14 @@
         <!--endregion-->
 
         <!--region alibaba -->
-        <version.alibaba-fastjson>1.2.78</version.alibaba-fastjson>
+        <version.alibaba-fastjson>1.2.79</version.alibaba-fastjson>
         <version.alibaba-transmittable-thread-local>2.12.4</version.alibaba-transmittable-thread-local>
         <!--endregion-->
 
         <!--region other-tools -->
         <version.google-guava>31.0.1-jre</version.google-guava>
 
-        <version.hutool-all>5.7.16</version.hutool-all>
+        <version.hutool-all>5.7.19</version.hutool-all>
 
         <version.vdurmont-emoji-java>5.1.1</version.vdurmont-emoji-java>
         <!-- 2021-09-27 latest: 2.1.13 并且 `groupId: org.dom4j`
@@ -84,11 +84,11 @@
         <!--endregion-->
 
         <!--region unit-test -->
-        <version.testng>7.4.0</version.testng>
-        <version.mockito-core>4.0.0</version.mockito-core>
+        <version.testng>7.5</version.testng>
+        <version.mockito-core>4.2.0</version.mockito-core>
         <version.hamcrest>2.2</version.hamcrest>
         <versio.jmh>1.29</versio.jmh>
-        <version.awaitility>4.1.0</version.awaitility>
+        <version.awaitility>4.1.1</version.awaitility>
         <!--endregion-->
 
         <!--region maven-plugins http://maven.apache.org/plugins/index.html -->
@@ -115,17 +115,6 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-csv</artifactId>
                 <version>${version.apache-common-csv}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-text</artifactId>
-                <version>${version.apache-common-text}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.apache.commons</groupId>
-                        <artifactId>commons-lang3</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
             <dependency>
                 <groupId>commons-beanutils</groupId>
@@ -212,6 +201,12 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-text</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.commons</groupId>
+                    <artifactId>commons-lang3</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
