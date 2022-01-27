@@ -1,11 +1,12 @@
 package com.vergilyn.examples.usage.u0010;
 
 import lombok.SneakyThrows;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 import java.time.LocalTime;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Supplier;
@@ -17,12 +18,22 @@ import java.util.function.Supplier;
  * <br/> 对于线程池复用导致`ThreadLocal`无法满足期望，可以参考：
  * <a href="https://github.com/alibaba/transmittable-thread-local">alibaba/transmittable-thread-local, `README.md`</a>
  *
+ * <p>2022-01-27: <br/>
+ *   如果很灵活，意味着使用复杂，有点得不偿失。所以，按最简单约定：<br/>
+ *   1. 如果添加到 ThreadLocal，那么之后的所有Logger 都会打印这些 log-prefix（不存在 某个节点 之后 不打印某个log-prefix）。 <br/>
+ *   2. 直到 重新在 “入口”处主动调用`clear-log-prefix`，也可以以此避免线程池复用带来的问题。 <br/>
+ *
+ *   这样的话，实现 和 使用起来都相对简单很多。也满足实际的绝大多数基本场景。
+ *   （其实不如直接`传参 log-prefix`，虽然对 方法签名 不是很友好，但简单好理解。）
+ * </p>
+ *
  * @author vergilyn
  * @since 2022-01-24
  */
-public class ThreadLocalCustomizePrefixesLoggerTests {
+public class ThreadLocalCustomizePrefixesLoggerTestng {
 
-	private static final CustomizePrefixesLogger logger = LoggerFactory.getLogger(ThreadLocalCustomizePrefixesLoggerTests.class);
+	private static final CustomizePrefixesLogger logger = LoggerFactory.getLogger(
+			ThreadLocalCustomizePrefixesLoggerTestng.class);
 
 	@Test
 	public void demo(){
@@ -62,12 +73,14 @@ public class ThreadLocalCustomizePrefixesLoggerTests {
 	 * 所有，这2个问题其实可以用通过以下`demo`的写法来避免。
 	 */
 	@SneakyThrows
-	@Test
+	@Test(threadPoolSize = 2, invocationCount = 4)
 	public void threadPoolReuse(){
-		ExecutorService pool = Executors.newFixedThreadPool(1);
+		ExecutorService pool = Executors.newFixedThreadPool(3);
 
 		AtomicInteger index = new AtomicInteger();
-		logger.appendFirstPrefix("[main-0]");
+
+		// "入口方法"：clear-prev-log-prefix & set-current-log-prefix
+		logger.appendFirstPrefix("[main-]" + ThreadLocalRandom.current().nextInt());
 
 		String prevThreadLogPrefix = logger.getAllPrefixes();
 		for (int i = 0; i < 4; i++) {
@@ -81,6 +94,10 @@ public class ThreadLocalCustomizePrefixesLoggerTests {
 				// 一定程度上可以规避 线程池复用的带来的 问题。 缺点：要保证是“入口代码”！
 				logger.appendFirstPrefix(prefix);
 
+				try {
+					TimeUnit.SECONDS.sleep(1);
+				} catch (InterruptedException e) {
+				}
 				logger.info("{}", idx);
 			});
 		}

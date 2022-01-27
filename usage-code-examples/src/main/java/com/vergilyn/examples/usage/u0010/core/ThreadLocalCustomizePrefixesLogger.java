@@ -5,7 +5,9 @@ import com.vergilyn.examples.usage.u0010.Logger;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 线程池复用会导致 thread-local 也被复用。某些实际使用场景可以用{@linkplain #appendFirstPrefix(String)} 规避！
+ * 线程池复用会导致 thread-local 也被复用。某些实际使用场景可以用{@linkplain #appendFirstPrefix(String)} 规避！ <br/>
+ *
+ * FIXME 2022-01-27 感觉以下 `ThreadLocal` 有问题，
  *
  * @author vergilyn
  * @since 2022-01-24
@@ -29,8 +31,9 @@ public class ThreadLocalCustomizePrefixesLogger extends CustomizePrefixesLogger 
 	 * 如果创建，则一定程度浪费内存。如果延迟创建，则每次要if判断，降低了效率（虽然微乎其微）！
 	 * （根本还是：牺牲空间换时间，还是牺牲时间换空间）
 	 * </p>
+	 *
 	 */
-	private static final ThreadLocal<StringBuffer> threadLocal = ThreadLocal.withInitial(StringBuffer::new);
+	private static ThreadLocal<StringBuffer> threadLocal = ThreadLocal.withInitial(StringBuffer::new);
 
 	public ThreadLocalCustomizePrefixesLogger(Logger logger) {
 		super(logger);

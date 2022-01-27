@@ -74,7 +74,7 @@
         <!--region other-tools -->
         <version.google-guava>31.0.1-jre</version.google-guava>
 
-        <version.hutool-all>5.7.19</version.hutool-all>
+        <version.hutool-all>5.7.20</version.hutool-all>
 
         <version.vdurmont-emoji-java>5.1.1</version.vdurmont-emoji-java>
         <!-- 2021-09-27 latest: 2.1.13 并且 `groupId: org.dom4j`

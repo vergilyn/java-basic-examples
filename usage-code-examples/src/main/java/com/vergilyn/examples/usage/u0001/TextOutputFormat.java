@@ -1,6 +1,5 @@
 package com.vergilyn.examples.usage.u0001;
 
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -40,7 +39,8 @@ public class TextOutputFormat {
 			max[i] = head[i].length();
 		}
 
-		trs.sort(Comparator.comparing(o -> Long.valueOf(o[2])));
+		// XXX 2022-01-26，忘记做什么用的了
+		// trs.sort(Comparator.comparing(o -> Long.valueOf(o[2])));
 
 		for (String[] tr : trs) {
 			for (int i = 0; i < columnLen; i++) {
@@ -51,6 +51,7 @@ public class TextOutputFormat {
 		StringBuilder format = new StringBuilder();
 		for (int i : max) {
 			// %-?s `-`左对齐
+			// `\t` 解决 中英文对齐 （`\t\t`是为了满足排版）
 			format.append("%-").append(i).append("s\t\t");
 		}
 
