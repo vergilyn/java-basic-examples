@@ -27,8 +27,13 @@ import java.util.function.Supplier;
  *   （其实不如直接`传参 log-prefix`，虽然对 方法签名 不是很友好，但简单好理解。）
  * </p>
  *
+ * 2022-02-15：其核心思路就是 {@linkplain org.slf4j.MDC} 的思路，所以直接用 MDC 就行了。
+ * 可以参考`logger-examples/logger-mdc-examples`
+ *
  * @author vergilyn
  * @since 2022-01-24
+ *
+ * @see org.slf4j.MDC
  */
 public class ThreadLocalCustomizePrefixesLoggerTestng {
 

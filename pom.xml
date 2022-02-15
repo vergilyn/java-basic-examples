@@ -26,6 +26,7 @@
         <module>jdk-thread-safe-examples</module>
         <module>usage-code-examples</module>
         <module>snakeyaml-examples</module>
+        <module>logger-examples</module>
     </modules>
 
     <repositories>
