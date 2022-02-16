@@ -1,10 +1,12 @@
 package com.vergilyn.examples.jdk8.features.date;
 
+import cn.hutool.core.date.DateUnit;
+import org.junit.jupiter.api.Test;
+
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
-import org.junit.jupiter.api.Test;
+import java.util.Date;
 
 /**
  *
@@ -32,6 +34,10 @@ public class DateCalculateTests {
 
 	/**
 	 * 间隔天数
+	 *
+	 * <p>{@linkplain cn.hutool.core.date.DateUtil#between(Date, Date, DateUnit)} <br/>
+	 * 核心就是：“(end.getTime() - begin.getTime()) / unit” <br/>
+	 * 不满足期望，比如 `2021-08-09 12:00:00 ~ 2021-08-10 01:00:00`，不满 24hours，但期望天数差是 1days！
 	 */
 	@Test
 	public void numberOfDaysBetween(){
@@ -41,6 +47,9 @@ public class DateCalculateTests {
 		long prevEpochDay = prev.toEpochDay();
 		long nextEpochDay = next.toEpochDay();
 
-		System.out.printf("%d", (nextEpochDay - prevEpochDay));
+		System.out.printf("next - prev = %d", (nextEpochDay - prevEpochDay));
+
 	}
+
+
 }

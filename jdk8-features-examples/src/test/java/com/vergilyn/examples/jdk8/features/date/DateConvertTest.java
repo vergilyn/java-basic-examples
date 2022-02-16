@@ -1,13 +1,13 @@
 package com.vergilyn.examples.jdk8.features.date;
 
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.junit.jupiter.api.Test;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
-
-import org.apache.commons.lang3.time.DateFormatUtils;
-import org.junit.jupiter.api.Test;
 
 /**
  *
@@ -16,6 +16,9 @@ import org.junit.jupiter.api.Test;
  */
 public class DateConvertTest {
 
+	/**
+	 * @see cn.hutool.core.date.LocalDateTimeUtil#of(Date)
+	 */
 	@Test
 	public void date2LocalDateTime(){
 		Date date = new Date();
@@ -27,7 +30,10 @@ public class DateConvertTest {
 		// (暂时推荐)从 Date -> LocalDateTime -> LocalDate/LocalTime
 		// 不推荐，因为Date的相应方法都是`@Deprecated`
 		LocalDate localDate = LocalDate.of(date.getYear() + 1900, date.getMonth() + 1, date.getDate());
-		System.out.println("localDate >>>> " + localDate);
+		System.out.println("(@Deprecated)localDate >>>> " + localDate);
+
+		LocalDate localDate1 = localDateTime.toLocalDate();
+		System.out.println("Date -> LocalDateTime -> LocalDate >>>> " + localDate1);
 	}
 
 	@Test

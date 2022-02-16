@@ -1,9 +1,10 @@
 package com.vergilyn.examples.jmh.jdk;
 
-import java.util.concurrent.TimeUnit;
-
+import com.vergilyn.examples.jmh.SpringStopWatchFormat;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -21,7 +22,7 @@ public class StopWatchTest {
 	}
 
 	/**
-	 * 个人推荐。例如 `00:00:02.007`
+	 * 例如 `00:00:02.007`
 	 */
 	@SneakyThrows
 	@Test
@@ -37,7 +38,7 @@ public class StopWatchTest {
 	}
 
 	/**
-	 * 例如`2.015 s`
+	 * 推荐，可读性相当好。例如`2.015 s`
 	 */
 	@SneakyThrows
 	@Test
@@ -74,6 +75,7 @@ public class StopWatchTest {
 
 		print("shortSummary()", stopWatch.shortSummary());
 
+		print("guava-style", SpringStopWatchFormat.toString(stopWatch));
 	}
 
 	private void print(String flag, Object content){

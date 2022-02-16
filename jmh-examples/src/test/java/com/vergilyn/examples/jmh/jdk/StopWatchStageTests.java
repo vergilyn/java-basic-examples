@@ -1,9 +1,10 @@
 package com.vergilyn.examples.jmh.jdk;
 
+import com.vergilyn.examples.jmh.SpringStopWatchFormat;
+import org.junit.jupiter.api.Test;
+
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
-
-import org.junit.jupiter.api.Test;
 
 /**
  * 多个阶段 不同耗时，以及总共耗时。
@@ -76,6 +77,7 @@ public class StopWatchStageTests {
 		System.out.println("total-cost: " + format(stopwatch.getTotalTimeNanos()));
 		System.out.println("(default)total-cost: " + stopwatch);
 
+		System.out.println("guava-style: " + SpringStopWatchFormat.toString(stopwatch));
 	}
 
 	/**
