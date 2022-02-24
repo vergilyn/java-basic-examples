@@ -11,15 +11,28 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.LongAdder;
 
 /**
- * FIXME 2022-02-18
- * 并未理解那种写法才符合JMH，此写法的结果与 预期相反！
+ * <pre> BATCH_SIZE = 100_000
+ * Benchmark                           Mode  Cnt  Score   Error  Units
+ * AtomicIncrementOptJMH.atomicLong      ss    5  5.739 ± 6.512  ms/op
+ * AtomicIncrementOptJMH.longAdder       ss    5  0.868 ± 0.110  ms/op
+ * AtomicIncrementOptJMH.longAdderGet    ss    5  1.021 ± 0.406  ms/op
+ * </pre>
+ *
+ * <pre> BATCH_SIZE = 1_000_000
+ * Benchmark                           Mode  Cnt    Score   Error  Units
+ * AtomicIncrementOptJMH.atomicLong      ss    5  104.546 ± 8.192  ms/op
+ * AtomicIncrementOptJMH.longAdder       ss    5    8.753 ± 2.321  ms/op
+ * AtomicIncrementOptJMH.longAdderGet    ss    5   10.321 ± 2.219  ms/op
+ * </pre>
+ *
+ * 结论：如果是简单的 incr/get，确实更推荐 LongAdder。但如果需要`compareAndSet`之类的，还是用 AtomicLong。
  *
  * @author vergilyn
  * @since 2022-02-17
  *
- * @see <a href="https://github.com/openjdk/jmh/blob/master/jmh-samples/src/main/java/org/openjdk/jmh/samples/JMHSample_26_BatchSize.java">JMHSample_26_BatchSize.java </a>
+ * @see org.openjdk.jmh.samples.JMHSample_17_SyncIterations
  */
-@State(Scope.Thread)
+@State(Scope.Benchmark)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @Warmup(iterations = 2, batchSize = AtomicIncrementOptJMH.BATCH_SIZE)
 @Measurement(iterations = 5, batchSize = AtomicIncrementOptJMH.BATCH_SIZE)
@@ -28,13 +41,15 @@ import java.util.concurrent.atomic.LongAdder;
 public class AtomicIncrementOptJMH {
 	public static final int BATCH_SIZE = 1_000_000;
 
-	private final AtomicLong atomicLong = new AtomicLong();
-	private final LongAdder longAdder = new LongAdder();
+	// 声明成`static final`，保证所有 benchmark 并发调用`incr()`
+	private static final AtomicLong ATOMIC_LONG = new AtomicLong();
+	private static final LongAdder LONG_ADDER = new LongAdder();
+	private static final LongAdder LONG_ADDER_GET = new LongAdder();
 
 	public static void main(String[] args) throws RunnerException {
 		Options opt = new OptionsBuilder().include(AtomicIncrementOptJMH.class.getSimpleName())
 				.forks(1)  // Number of forks to use in the run
-				.syncIterations(false)
+				.syncIterations(true)
 				.build();
 
 		new Runner(opt).run();
@@ -42,24 +57,18 @@ public class AtomicIncrementOptJMH {
 
 	@Benchmark
 	public void atomicLong() {
-		atomicLong.incrementAndGet();
-		print("atomicLong");
+		ATOMIC_LONG.incrementAndGet();
 	}
 
 	@Benchmark
 	public void longAdder() {
-		longAdder.increment();
-		print("longAdder");
+		LONG_ADDER.increment();
 	}
 
-	// @TearDown(Level.Iteration)
-	public void tearDown(){
-		atomicLong.set(0L);
-		longAdder.reset();
+	@Benchmark
+	public void longAdderGet() {
+		LONG_ADDER_GET.increment();
+		LONG_ADDER_GET.longValue();
 	}
 
-	private void print(String str){
-		// Thread thread = Thread.currentThread();
-		// System.out.printf("[name-%s][id-%s] %s\n", thread.getName(), thread.getId(), str);
-	}
 }

@@ -43,8 +43,7 @@ public class StopWatchTest {
 	@SneakyThrows
 	@Test
 	public void guava(){
-		com.google.common.base.Stopwatch stopWatch = com.google.common.base.Stopwatch.createUnstarted();
-		stopWatch.start();
+		com.google.common.base.Stopwatch stopWatch = com.google.common.base.Stopwatch.createStarted();
 
 		TimeUnit.SECONDS.sleep(2);
 
@@ -54,7 +53,7 @@ public class StopWatchTest {
 	}
 
 	/**
-	 * 过于详细
+	 * 过于详细，输出可阅读性不够友好 （只能是 ns）。但支持 多阶段！
 	 */
 	@SneakyThrows
 	@Test
@@ -75,6 +74,7 @@ public class StopWatchTest {
 
 		print("shortSummary()", stopWatch.shortSummary());
 
+		// 参考 guava 输出
 		print("guava-style", SpringStopWatchFormat.toString(stopWatch));
 	}
 

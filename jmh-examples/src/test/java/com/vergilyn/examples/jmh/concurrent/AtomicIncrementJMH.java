@@ -51,8 +51,8 @@ import java.util.concurrent.atomic.LongAdder;
  *
  * <p>个人结论：
  * 1) 可能是JMH代码写法不正确，并未感觉 `LongAdder#incr` 在业务代码中提升巨大（在业务代码中的 10ms差 真无关重要） <br/>
- * 2) 如果需要 get-value，几乎无差别。反而{@linkplain LongAdder#longValue()}更耗时，<b>且结果可能不准确</b>！ <br/>
- * 3) 按教程解释：当只需要 add/incr之类时，可以选择 LongAdder。但需要 compareAndSet 时，选择 AtomicLong
+ * 2) <s>如果需要 get-value，几乎无差别。反而{@linkplain LongAdder#longValue()}更耗时，<b>且结果可能不准确</b>！</s> <br/>
+ * 3) 按教程解释：当只需要 add/incr之类时，可以选择 LongAdder。但需要 compareAndSet 时，选择 AtomicLong <br/>
  *
  * @author vergilyn
  * @since 2022-02-17
