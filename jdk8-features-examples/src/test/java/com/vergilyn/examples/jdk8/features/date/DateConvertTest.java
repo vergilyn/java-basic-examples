@@ -3,10 +3,7 @@ package com.vergilyn.examples.jdk8.features.date;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
+import java.time.*;
 import java.util.Date;
 
 /**
@@ -22,18 +19,20 @@ public class DateConvertTest {
 	@Test
 	public void date2LocalDateTime(){
 		Date date = new Date();
-		System.out.println("date >>>> " + DateFormatUtils.format(date, "yyyy-MM-dd HH:mm:ss.SSS"));
+		System.out.println("Date: " + DateFormatUtils.format(date, "yyyy-MM-dd HH:mm:ss.SSS"));
 
-		LocalDateTime localDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
-		System.out.println("localDateTime >>>> " + localDateTime);
+		ZonedDateTime zonedDateTime = date.toInstant().atZone(ZoneId.systemDefault());
+		LocalDate localDate = zonedDateTime.toLocalDate();
+		LocalTime localTime = zonedDateTime.toLocalTime();
+		LocalDateTime localDateTime = zonedDateTime.toLocalDateTime();
 
-		// (暂时推荐)从 Date -> LocalDateTime -> LocalDate/LocalTime
-		// 不推荐，因为Date的相应方法都是`@Deprecated`
-		LocalDate localDate = LocalDate.of(date.getYear() + 1900, date.getMonth() + 1, date.getDate());
-		System.out.println("(@Deprecated)localDate >>>> " + localDate);
+		System.out.println("Date > localDate: " + localDate);
+		System.out.println("Date > localTime: " + localTime);
+		System.out.println("Date > localDateTime: " + localDateTime);
 
-		LocalDate localDate1 = localDateTime.toLocalDate();
-		System.out.println("Date -> LocalDateTime -> LocalDate >>>> " + localDate1);
+		// 方式2，然后再由 LocalDateTime 得到 LocalDate/LocalTime
+		LocalDateTime localDateTime1 = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+		System.out.println("localDateTime1 >>>> " + localDateTime1);
 	}
 
 	@Test

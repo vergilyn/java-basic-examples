@@ -13,6 +13,7 @@ import java.util.Date;
  * @see cn.hutool.core.date.LocalDateTimeUtil
  */
 public class LocalDateTimeUtils {
+	public static final ZoneId DEFAULT_ZONE_ID = ZoneId.systemDefault();
 
 	/**
 	 * 毫秒转{@link LocalDateTime}，根据时区不同，结果会产生时间偏移
@@ -34,15 +35,28 @@ public class LocalDateTimeUtils {
 	}
 
 	public static LocalDateTime of(Instant instant){
-		return of(instant, ZoneId.systemDefault());
+		return of(instant, DEFAULT_ZONE_ID);
 	}
 
 	public static LocalDateTime of(Instant instant, ZoneId zoneId) {
-		zoneId = zoneId == null ? ZoneId.systemDefault() : zoneId;
+		zoneId = zoneId == null ? DEFAULT_ZONE_ID : zoneId;
 		if (null == instant) {
 			return null;
 		}
 
 		return LocalDateTime.ofInstant(instant, zoneId);
 	}
+
+	public static Date toDate(LocalDateTime localDateTime){
+		return toDate(localDateTime, DEFAULT_ZONE_ID);
+	}
+
+	public static Date toDate(LocalDateTime localDateTime, ZoneId zone){
+		if (localDateTime == null){
+			return null;
+		}
+
+		return Date.from(localDateTime.atZone(zone).toInstant());
+	}
+
 }

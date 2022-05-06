@@ -1,25 +1,22 @@
 package com.vergilyn.examples.jdk8.features.date;
 
-import java.time.DateTimeException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import lombok.SneakyThrows;
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.commons.lang3.time.DateUtils;
+import org.junit.jupiter.api.Test;
+
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
-import java.time.temporal.UnsupportedTemporalTypeException;
 import java.util.Date;
-
-import org.apache.commons.lang3.time.DateFormatUtils;
-import org.junit.jupiter.api.Test;
+import java.util.concurrent.TimeUnit;
 
 /**
  * java.time.LocalDate，只对年月日做出处理
  * @author VergiLyn
- * @blog http://www.cnblogs.com/VergiLyn/
  * @date 2018/7/11
  */
 public class LocalDateTest {
-    private LocalDate now = LocalDate.now();
 
     @Test
     public void constructor(){
@@ -37,17 +34,55 @@ public class LocalDateTest {
         System.out.println(now);
     }
 
-    @org.junit.jupiter.api.Test
-    public void convert(){
+    @Test
+    public void toLocalDate(){
         Date date = new Date();
+        System.out.println("Date >>>> " + DateFormatUtils.format(date, "yyyy-MM-dd HH:mm:ss.SSS"));
 
+        LocalDate date2LocalDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        System.out.println("date2LocalDate >>>> " + date2LocalDate);
+
+        // 方式2： Date -> LocalDateTime -> LocalDate
         LocalDateTime localDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
-
         LocalDate localDate = localDateTime.toLocalDate();
+        System.out.println("LocalDateTime >>>> " + localDateTime);
+        System.out.println("LocalDate >>>> " + localDate);
+    }
 
-        System.out.println(DateFormatUtils.format(date, "yyyy-MM-dd HH:mm:ss.SSS"));
-        System.out.println(localDateTime);
-        System.out.println(localDate);
+    @Test
+    public void fromLocalDate(){
+        LocalDate localDate = LocalDate.now();
+
+        LocalDateTime localDateTime = localDate.atStartOfDay();
+
+        Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+
+    }
+
+    @SneakyThrows
+    @Test
+    public void toMilliseconds(){
+        String dateStr = "2022-02-24";
+        String pattern = "yyyy-MM-dd";
+        Date date = DateUtils.parseDate(dateStr, pattern);
+
+        // the number of milliseconds since `1970-01-01 00:00:00 GMT` represented by this date.
+        System.out.println("date.getTime() >>>> " + date.getTime());
+
+        // 只能到`seconds`，然后 seconds 转换一下就可以了
+        LocalDate localDate = LocalDate.parse(dateStr, DateTimeFormatter.ofPattern(pattern));
+        ZonedDateTime zonedDateTime = localDate.atStartOfDay(ZoneId.systemDefault());
+        System.out.println("LocalDate epoch-second:" + zonedDateTime.toEpochSecond());
+        // 转换一下，或者直接`* 1000`
+        System.out.println("LocalDate epoch-mills :" + TimeUnit.SECONDS.toMillis(zonedDateTime.toEpochSecond()));
+
+        Instant utcInstant = zonedDateTime.toLocalDateTime().toInstant(ZoneOffset.UTC);
+        System.out.println("LocalDate epoch-mills(UTC):" + utcInstant.toEpochMilli());
+
+        // 这个是正确的，但是感觉不友好。没有类似`ZoneOffset.default()`之类的 (`ZoneOffset.systemDefault()` 不是期望的)
+        Instant expectInstant = zonedDateTime.toLocalDateTime().toInstant(ZoneOffset.ofHours(8));
+        System.out.println("LocalDate epoch-mills(+8):" + expectInstant.toEpochMilli());
+
     }
 
     @Test
@@ -57,7 +92,7 @@ public class LocalDateTest {
     }
 
     /* LocalDate只存在年月日，不存在时分秒等 */
-    @org.testng.annotations.Test(expectedExceptions = UnsupportedTemporalTypeException.class, expectedExceptionsMessageRegExp = "Unsupported field: HourOfDay")
+    // @org.testng.annotations.Test(expectedExceptions = UnsupportedTemporalTypeException.class, expectedExceptionsMessageRegExp = "Unsupported field: HourOfDay")
     public void exception(){
         LocalDate now = LocalDate.now();
 
@@ -103,12 +138,5 @@ public class LocalDateTest {
         // 可以方便用于计算时间差
         long epochDay = now.toEpochDay();
         System.out.println(epochDay);
-    }
-
-    public static void main(String[] args) {
-        LocalDate before = LocalDate.parse("2021-08-09");
-        LocalDate after = LocalDate.parse("2021-08-18");
-
-        System.out.println(after.toEpochDay() - before.toEpochDay());
     }
 }

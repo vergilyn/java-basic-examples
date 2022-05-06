@@ -82,6 +82,9 @@
             因为实际项目中有依赖`1.6.1` (`groupId: dom4j`)
         -->
         <version.dom4j>1.6.1</version.dom4j>
+
+        <version.javassist>3.28.0-GA</version.javassist>
+        <version.joda-time>2.10.13</version.joda-time>
         <!--endregion-->
 
         <!--region unit-test -->
@@ -149,6 +152,20 @@
                 <artifactId>dom4j</artifactId>
                 <version>${version.dom4j}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.javassist</groupId>
+                <artifactId>javassist</artifactId>
+                <version>${version.javassist}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>${version.joda-time}</version>
+            </dependency>
+
+
 
             <!--region alibaba -->
             <dependency>

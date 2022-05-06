@@ -18,6 +18,11 @@
             <artifactId>commons-io</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+        </dependency>
+
         <!-- JMH -->
         <dependency>
             <groupId>org.openjdk.jmh</groupId>

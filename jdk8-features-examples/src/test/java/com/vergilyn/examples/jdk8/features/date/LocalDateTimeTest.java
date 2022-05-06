@@ -1,16 +1,17 @@
 package com.vergilyn.examples.jdk8.features.date;
 
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.commons.lang3.time.DateUtils;
+import org.junit.jupiter.api.Test;
+
 import java.text.ParseException;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
-
-import org.apache.commons.lang3.time.DateFormatUtils;
-import org.apache.commons.lang3.time.DateUtils;
-import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -48,13 +49,6 @@ public class LocalDateTimeTest {
 		assertThat(dateStr1).isEqualTo(localDateTimeStr);
 	}
 
-	@Test
-	public void epochDay() {
-		LocalDateTime now = LocalDateTime.now();
-
-		System.out.println(now.toLocalDate().toEpochDay());
-	}
-
 	/**
 	 * `(ZoneOffset.ofHours(8)`写法不友好，且还需要区分 unix 是不是 UTC+8之类的。
 	 */
@@ -75,10 +69,44 @@ public class LocalDateTimeTest {
 		                                                          ZoneOffset.ofHours(8));
 		System.out.println("Milliseconds to LocalDateTime >>>> " + localDateTime);
 
-		// 推荐。但`ZoneOffset.ofHours(8)`写法还是不友好。 建议自己定义系统 默认常量。
+		// 推荐。但`ZoneOffset.ofHours(8)`写法还是不友好。
 		long milliseconds = localDateTime.toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
 
 		System.out.println("Milliseconds to LocalDateTime >>>> " + milliseconds);
+
+	}
+
+	@Test
+	public void toEpochDay() {
+		LocalDateTime now = LocalDateTime.now();
+
+		System.out.println(now.toLocalDate().toEpochDay());
+	}
+
+	@Test
+	public void toEpochMills(){
+		Date date = new Date();
+		System.out.println("date >>>> " + date.getTime());
+
+		LocalDateTime localDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+
+		System.out.println("UTC epoch-second  : " + localDateTime.toEpochSecond(ZoneOffset.UTC));
+
+		ZoneOffset systemZoneOffset = ZoneOffset.ofHours(8);
+		long rightEpochSecond = localDateTime.toEpochSecond(systemZoneOffset);
+		System.out.println("UTC+8 epoch-second: " + rightEpochSecond);
+
+		// 只是`秒`后的部分，精确到 nano
+		int nanoOfSecond = localDateTime.getNano();
+		System.out.println("nano-of-second: " + nanoOfSecond);
+
+		long epochNano = TimeUnit.SECONDS.toNanos(rightEpochSecond) + nanoOfSecond;
+		System.out.println("epoch-nano: " + epochNano);
+		System.out.println("epoch-mills: " + TimeUnit.NANOSECONDS.toMillis(epochNano));
+
+		// 另外中获得 epoch-mills 的方式
+		Instant instant = localDateTime.toInstant(systemZoneOffset);
+		System.out.println("[2]epoch-mills: " + instant.toEpochMilli());
 
 	}
 }

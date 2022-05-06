@@ -1,19 +1,14 @@
 package com.vergilyn.examples.jdk8.features.stream;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeSet;
+import com.vergilyn.examples.jdk8.features.Person;
+import org.testng.annotations.Test;
+import org.testng.collections.Lists;
+
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-
-import com.vergilyn.examples.jdk8.features.Person;
-
-import org.testng.annotations.Test;
-import org.testng.collections.Lists;
 
 /**
  * @author vergilyn
@@ -42,12 +37,12 @@ public class DistinctTest {
     public void property(){
         Person p1 = new Person(1L, "p1", "A");
         Person p2 = new Person(1L, "p1", "B");
-        Person p3 = new Person(3L, "p1", "C");
+        Person p3 = new Person(3L, "p1", "A");
 
         List<Person> list = Lists.newArrayList(p1, p2, p3, p2, p3);
 
         ArrayList<Person> collect = list.stream().collect(Collectors.collectingAndThen(
-                Collectors.toCollection(() -> new TreeSet<>(Comparator.comparingLong(Person::getId))), ArrayList::new));
+                Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Person::getType))), ArrayList::new));
 
         System.out.println(collect);
     }
