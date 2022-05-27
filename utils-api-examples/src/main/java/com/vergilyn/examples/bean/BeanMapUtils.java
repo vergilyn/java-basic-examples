@@ -1,15 +1,15 @@
 package com.vergilyn.examples.bean;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.Map;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import net.sf.cglib.beans.BeanMap;
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.DynaBean;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
 
 /**
  * Map转换成JavaBean；Junit的执行效率是jackson基本要慢4-5倍，beanMap与gson差不多(gson可能速度更快)。 <br/>
@@ -42,7 +42,7 @@ public class BeanMapUtils {
     /**
      * apache common-beanutils
      */
-    public static <T> T apache(Map<String, Object>  source, Class<T> clazz){
+    public static <T> T apache(Map<String, Object> source, Class<T> clazz){
         T bean = null;
         try {
             bean = clazz.newInstance();
@@ -52,6 +52,26 @@ public class BeanMapUtils {
         }
 
         return bean;
+    }
+
+    /**
+     * {@linkplain BeanUtils#copyProperties(Object, Object)} `source` 支持：
+     * <pre>
+     * - source instanceof {@linkplain DynaBean}
+     * - source instanceof {@linkplain Map}
+     * - ...(standard JavaBean)
+     * </pre>
+     */
+    public static <T> T apacheBeanCopy(Map<String, Object> source, Class<T> clazz){
+        T target = null;
+        try {
+            target = clazz.newInstance();
+            BeanUtils.copyProperties(target, source);
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
+        return target;
     }
 
 

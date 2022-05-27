@@ -1,16 +1,15 @@
 package com.vergilyn.examples.bean;
 
-import java.util.Date;
-import java.util.Map;
-
 import com.google.common.collect.Maps;
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import java.util.Date;
+import java.util.Map;
 
 /**
  * @author VergiLyn
@@ -45,14 +44,19 @@ public class BeanMapUtilsTest {
     }
 
     @Test
+    public void apacheBeanCopy() {
+        System.out.println("apacheBeanCopy: " + BeanMapUtils.apacheBeanCopy(source, TestBean.class));
+    }
+
+    @Test
     public void mapToBean() {
         System.out.println("beanMap: " + BeanMapUtils.mapToBean(source, TestBean.class));
     }
 
     @Data
-    @AllArgsConstructor
+    @NoArgsConstructor
     @ToString
-    class TestBean{
+    public static class TestBean{
         private Long id;
         private Date date;
         private String str;

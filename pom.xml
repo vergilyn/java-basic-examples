@@ -68,6 +68,7 @@
         <!--endregion-->
 
         <!--region alibaba -->
+        <version.dubbo>3.0.8</version.dubbo>
         <version.alibaba-fastjson>1.2.79</version.alibaba-fastjson>
         <version.alibaba-transmittable-thread-local>2.12.4</version.alibaba-transmittable-thread-local>
         <!--endregion-->
@@ -85,6 +86,8 @@
 
         <version.javassist>3.28.0-GA</version.javassist>
         <version.joda-time>2.10.13</version.joda-time>
+
+        <version.mapstruct>1.4.2.Final</version.mapstruct>
         <!--endregion-->
 
         <!--region unit-test -->
@@ -163,6 +166,12 @@
                 <groupId>joda-time</groupId>
                 <artifactId>joda-time</artifactId>
                 <version>${version.joda-time}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${version.mapstruct}</version>
             </dependency>
 
 
