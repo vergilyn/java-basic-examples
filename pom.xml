@@ -27,6 +27,7 @@
         <module>usage-code-examples</module>
         <module>snakeyaml-examples</module>
         <module>logger-examples</module>
+        <module>javax-validation-examples</module>
     </modules>
 
     <repositories>

@@ -1,6 +1,6 @@
-package com.vergilyn.examples.usage.u0013.bean;
+package com.vergilyn.examples.javax.validation.bean;
 
-import com.vergilyn.examples.usage.u0013.CustomJavaxAnnotationTest;
+import com.vergilyn.examples.javax.validation.anno.CustomJavaxValidationAnno;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -25,7 +25,7 @@ public class ValidationBean implements Serializable {
 
 	private Map<String, String> springCustomValidator;
 
-	@CustomJavaxAnnotationTest.CustomJavaxAnno(max = 10, isEven = true)
+	@CustomJavaxValidationAnno(max = 10, isEven = true)
 	private Integer customJavaAnno;
 
 	public static ValidationBean buildInvalid(){

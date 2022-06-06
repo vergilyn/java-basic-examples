@@ -1,4 +1,4 @@
-package com.vergilyn.examples.usage.u0013.spring;
+package com.vergilyn.examples.javax.validation.spring.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
