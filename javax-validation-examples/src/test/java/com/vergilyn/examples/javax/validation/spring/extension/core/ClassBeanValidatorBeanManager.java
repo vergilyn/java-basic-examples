@@ -1,4 +1,4 @@
-package com.vergilyn.examples.javax.validation.spring.extension;
+package com.vergilyn.examples.javax.validation.spring.extension.core;
 
 import com.google.common.collect.Lists;
 import com.vergilyn.examples.javax.validation.spring.configuration.CustomValidatorBeanAutoConfiguration;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
+import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.CustomValidatorBean;
 
 import java.util.List;
@@ -48,14 +49,12 @@ public class ClassBeanValidatorBeanManager {
 		buildClassValidator(classBeanValidators);
 	}
 
+	/**
+	 * XXX 2022-06-06，根据开发原则，此方法不应该写在此处（或者此类不要叫 xx-manager）
+	 */
 	public void invokeValidator(Object target, Errors errors) {
 		Assert.notNull(target, "Target object must not be null");
 		Assert.notNull(errors, "Errors object must not be null");
-
-		// 支持 同一个Class 定义了 多个validator.
-		List<ClassBeanValidator<?>> classBeanValidators = classValidatorCache.get(target.getClass());
-
-		Assert.notEmpty(classBeanValidators, "classBeanValidator's object must not be empty");
 
 		// 1. 期望 还是先校验标准的JSR。
 		// 区别：是否调用`org.springframework.validation.Validator#supports(...)`
@@ -63,15 +62,41 @@ public class ClassBeanValidatorBeanManager {
 		ValidationUtils.invokeValidator(this.customValidatorBean, target, errors);
 
 		// 2. 根据具体的 target-class 自定义校验规则
+		invokeClassValidator(target.getClass(), target, errors);
+	}
+
+	/**
+	 * <p> 1. 优先调用 父类的自定类校验，再调用 子类的自定义类校验。
+	 *
+	 * @see ValidationUtils#invokeValidator(Validator, Object, Errors)
+	 */
+	private void invokeClassValidator(Class<?> targetClass, Object target, Errors errors){
+		if (targetClass == null){
+			return;
+		}
+
+		// 如果存在父类，则先调用父类的自定义校验
+		Class<?> superclass = targetClass.getSuperclass();
+		if (superclass != null){
+			invokeClassValidator(superclass, target, errors);
+		}
+
+		List<ClassBeanValidator<?>> classBeanValidators = classValidatorCache.get(targetClass);
+		if (classBeanValidators == null || classBeanValidators.isEmpty()){
+			return;
+		}
+
 		// XXX 2022-05-27 需要捕获异常吗，并将捕获的异常写入`errors`？
 		for (ClassBeanValidator<?> classBeanValidator : classBeanValidators) {
+			// 因为是根据`target`获取的 class-validator， 所以没有必要调用`validator.support(Class)`
+			classBeanValidator.validate(target, errors);
 
 			// if (validationBeanCustomValidator.supports(invalid.getClass())){
 			// 	validationBeanCustomValidator.validate(invalid, bindException);
 			// }
 
-			// 因为是根据 target 获取的 validator， 所以没有必要调用`validator.support(Class)`
-			ValidationUtils.invokeValidator(classBeanValidator, target, errors);
+			// 内部也会调用`validator.support(Class)`
+			// ValidationUtils.invokeValidator(classBeanValidator, target, errors);
 		}
 	}
 

@@ -13,7 +13,7 @@ import java.util.Map;
 
 @Data
 @NoArgsConstructor
-public class ValidationBean implements Serializable {
+public class ParentValidationBean implements Serializable {
 
 	@NotBlank
 	private String name;
@@ -28,9 +28,9 @@ public class ValidationBean implements Serializable {
 	@CustomJavaxValidationAnno(max = 10, isEven = true)
 	private Integer customJavaAnno;
 
-	public static ValidationBean buildInvalid(){
-		ValidationBean bean = new ValidationBean();
-		bean.setName("invalid-bean");
+	public static ParentValidationBean buildInvalid(){
+		ParentValidationBean bean = new ParentValidationBean();
+		bean.setName("parent-invalid-bean");
 		bean.setNumberPositive(-10);
 
 		return bean;

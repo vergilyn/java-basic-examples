@@ -1,6 +1,6 @@
 package com.vergilyn.examples.javax.validation.dubbo;
 
-import com.vergilyn.examples.javax.validation.bean.ValidationBean;
+import com.vergilyn.examples.javax.validation.bean.ParentValidationBean;
 import org.apache.dubbo.common.URL;
 import org.apache.dubbo.validation.support.jvalidation.JValidator;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,7 @@ import javax.validation.Validation;
 
 public class DubboValidatorTests {
 
-	private ValidationBean invalid = ValidationBean.buildInvalid();
+	private ParentValidationBean invalid = ParentValidationBean.buildInvalid();
 
 	/**
 	 * <p> 1. 每次都会调用 {@linkplain  Validation#buildDefaultValidatorFactory()}
@@ -33,7 +33,7 @@ public class DubboValidatorTests {
 		JValidator jValidator = new JValidator(url);
 
 		try {
-			jValidator.validate("get", new Class[]{ ValidationBean.class}, new Object[]{invalid});
+			jValidator.validate("get", new Class[]{ ParentValidationBean.class}, new Object[]{invalid});
 		}catch (Exception e){
 			e.printStackTrace();
 		}

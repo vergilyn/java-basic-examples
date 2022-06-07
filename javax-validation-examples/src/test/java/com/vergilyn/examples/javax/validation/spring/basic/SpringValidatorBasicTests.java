@@ -1,6 +1,6 @@
 package com.vergilyn.examples.javax.validation.spring.basic;
 
-import com.vergilyn.examples.javax.validation.bean.ValidationBean;
+import com.vergilyn.examples.javax.validation.bean.ParentValidationBean;
 import com.vergilyn.examples.javax.validation.spring.AbstractSpringJavaxValidatorTests;
 import com.vergilyn.examples.javax.validation.spring.AdviceSpringService;
 import com.vergilyn.examples.javax.validation.spring.ManualSpringService;
@@ -23,7 +23,7 @@ public class SpringValidatorBasicTests extends AbstractSpringJavaxValidatorTests
 	@Autowired
 	private org.springframework.validation.Validator validator;
 
-	private ValidationBean invalid = ValidationBean.buildInvalid();
+	private ParentValidationBean invalid = ParentValidationBean.buildInvalid();
 
 
 	/**

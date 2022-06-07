@@ -1,4 +1,4 @@
-package com.vergilyn.examples.javax.validation.spring.extension;
+package com.vergilyn.examples.javax.validation.spring.extension.core;
 
 import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
@@ -19,9 +19,9 @@ import org.springframework.validation.beanvalidation.CustomValidatorBean;
  */
 public abstract class ClassBeanValidator<T> implements Validator {
 
-	public abstract Class<T> supportClass();
+	protected abstract Class<T> supportClass();
 
-	public abstract void validateClass(T target, Errors errors);
+	protected abstract void validateClass(T target, Errors errors);
 
 	@Override
 	public final void validate(Object target, Errors errors) {

@@ -24,10 +24,12 @@ public class CustomJavaxValidationAnnoValidator implements ConstraintValidator<C
 		this.customJavaxAnno = constraintAnnotation;
 	}
 
+	// javadoc：此方法必须保证线程安全！
 	@Override
 	public boolean isValid(Integer value, ConstraintValidatorContext context) {
+
 		if (value == null){
-			return false;
+			return true;
 		}
 
 		// 1. 校验：最大值限制。

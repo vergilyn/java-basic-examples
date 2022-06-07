@@ -1,8 +1,8 @@
 package com.vergilyn.examples.javax.validation.dubbo;
 
-import com.vergilyn.examples.javax.validation.bean.ValidationBean;
+import com.vergilyn.examples.javax.validation.bean.ParentValidationBean;
 
 public interface DubboInterface {
 
-	void get(ValidationBean info);
+	void get(ParentValidationBean info);
 }

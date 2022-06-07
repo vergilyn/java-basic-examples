@@ -1,6 +1,6 @@
 package com.vergilyn.examples.javax.validation.basic;
 
-import com.vergilyn.examples.javax.validation.bean.ValidationBean;
+import com.vergilyn.examples.javax.validation.bean.ParentValidationBean;
 import org.apache.dubbo.validation.support.jvalidation.JValidator;
 import org.junit.jupiter.api.Test;
 import org.springframework.validation.annotation.Validated;
@@ -22,7 +22,7 @@ import java.util.Set;
  */
 public class JavaxValidationBasicTest {
 
-	private final ValidationBean invalid = ValidationBean.buildInvalid();
+	private final ParentValidationBean invalid = ParentValidationBean.buildInvalid();
 
 	/**
 	 * maven 依赖：
@@ -50,7 +50,7 @@ public class JavaxValidationBasicTest {
 		// 		.buildValidatorFactory()
 		// 		.getValidator();
 
-		Set<ConstraintViolation<ValidationBean>> violations = validator.validate(invalid);
+		Set<ConstraintViolation<ParentValidationBean>> violations = validator.validate(invalid);
 
 		/* 例如 dubbo-validation 最后直接是
 		 * {@code
@@ -60,7 +60,7 @@ public class JavaxValidationBasicTest {
 		 *  }
 		 * }
 		 */
-		for (ConstraintViolation<ValidationBean> violation : violations) {
+		for (ConstraintViolation<ParentValidationBean> violation : violations) {
 			System.out.println("error >>>>");
 			System.out.println("\tclass: " + violation.getRootBeanClass().getName());
 			System.out.println("\tproperty: " + violation.getPropertyPath().toString());
