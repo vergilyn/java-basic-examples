@@ -28,6 +28,7 @@
         <module>snakeyaml-examples</module>
         <module>logger-examples</module>
         <module>javax-validation-examples</module>
+        <module>jdk-generic-type-examples</module>
     </modules>
 
     <repositories>
@@ -89,6 +90,8 @@
         <version.joda-time>2.10.13</version.joda-time>
 
         <version.mapstruct>1.4.2.Final</version.mapstruct>
+
+        <version.mybatis-plus-boot-starter>3.5.1</version.mybatis-plus-boot-starter>
         <!--endregion-->
 
         <!--region unit-test -->
@@ -116,6 +119,12 @@
                 <version>${version.spring-boot-dependencies}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${version.mybatis-plus-boot-starter}</version>
             </dependency>
 
             <!-- apache-commons -->

@@ -1,5 +1,7 @@
-package com.vergilyn.examples.usage.u0003;
+package com.vergilyn.examples.generic;
 
+import com.vergilyn.examples.generic.common.AbstractDateArrayList;
+import com.vergilyn.examples.generic.common.LocalDateArrayList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.ResolvableType;
@@ -20,26 +22,9 @@ import java.util.Set;
  *
  * @see org.springframework.boot.SpringApplication#createSpringFactoriesInstances(Class, Class[], ClassLoader, Object[], Set)
  */
-public class GenericTypeResolverTests{
+public class GenericTypeResolverTests {
 
-	public static class AbstractDateArrayList<T extends Temporal> extends ArrayList<T>{
 
-		public Class<?> detectedActualGenericClass(){
-			ResolvableType resolvableType = ResolvableType.forInstance(this);
-
-			return resolvableType.getSuperType().getGeneric(0).resolve();
-		}
-
-	}
-
-	public static class LocalDateArrayList extends AbstractDateArrayList<LocalDate>{
-
-		public static Class<?> forClass(){
-			ResolvableType resolvableType = ResolvableType.forClass(LocalDateArrayList.class);
-
-			return resolvableType.getSuperType().getGeneric(0).resolve();
-		}
-	}
 
 	/**
 	 * 个人：这种写法可以拿到 实际的泛型类型，应该是因为 泛型信息是在 LocalDateArrayList.class 上保存的有，所以可以获取。

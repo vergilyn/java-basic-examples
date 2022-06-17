@@ -12,7 +12,7 @@ import java.time.LocalTime;
 public class ExtendsIgnoreSerialTests {
 
 	/**
-	 * 2022-05-18，接口方法签名不要取名叫`getXxx()`。
+	 * 2022-05-18，接口方法签名不要取名叫`getXxx() 或 isXxx()`。
 	 */
 	@Test
 	public void test(){
@@ -27,17 +27,19 @@ public class ExtendsIgnoreSerialTests {
 	public static interface ApiRequest<T> extends Serializable {
 
 		@Transient  // 不能被继承，所以无效。
-		@JSONField(serialize = false, deserialize = false)  // 可以控制到`@Override`
 		Class<T> getResponseClass();
 
 		// 不取名成`getXxx()`
 		Class<T> responseClass();
 
-		// @JSONField(serialize = false, deserialize = false)  // 可以控制到`@Override`
+		@JSONField(serialize = false, deserialize = false)  // 可以控制到`@Override`
 		String getRequestUrl();
 
 		// 非`getXxx()`，不符合`fastjson`
 		String httpMethod();
+
+		// `isXxx()`，会被fastjson 序列化和反序列化。
+		boolean isSuccess();
 	}
 
 	@Data
@@ -64,6 +66,11 @@ public class ExtendsIgnoreSerialTests {
 		@Override
 		public String httpMethod() {
 			return "POST";
+		}
+
+		@Override
+		public boolean isSuccess() {
+			return true;
 		}
 	}
 }
