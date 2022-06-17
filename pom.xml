@@ -71,7 +71,7 @@
 
         <!--region alibaba -->
         <version.dubbo>3.0.8</version.dubbo>
-        <version.alibaba-fastjson>1.2.79</version.alibaba-fastjson>
+        <version.alibaba-fastjson>1.2.83</version.alibaba-fastjson>
         <version.alibaba-transmittable-thread-local>2.12.4</version.alibaba-transmittable-thread-local>
         <!--endregion-->
 
