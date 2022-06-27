@@ -1,6 +1,6 @@
-package com.vergilyn.examples.json.serialize;
+package com.vergilyn.examples.fastjson2.serialize;
 
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson2.JSON;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.junit.jupiter.api.BeforeAll;
@@ -11,7 +11,6 @@ import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.alibaba.fastjson.serializer.SerializerFeature.DisableCircularReferenceDetect;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CircularReferenceTests {
@@ -39,8 +38,6 @@ public class CircularReferenceTests {
 	 * <b>但是</b>，fastjson 反序列化带`$ref`关键字到 java-object 会出现 null，暂时未找到（反序列化时的）解决方法。
 	 *
 	 * <p> 其实为了保证 满足JSON规范，可以序列化时全部都`DisableCircularReferenceDetect`。
-	 *
-	 * <p> 2022-06-27，fastjson2 在反序列化时，可以正确解析`$ref`
 	 */
 	@Test
 	public void test(){
@@ -54,8 +51,11 @@ public class CircularReferenceTests {
 		System.out.println("default-deserial.MapSnapshot.time: " + defaultDes.getMapSnapshot().get("time"));
 		System.out.println("default-deserial.MapSnapshot.$ref: " + defaultDes.getMapSnapshot().get("$ref"));
 
+		System.out.println();
+
 		// 1. 可以在序列化时 禁用循环引用。（代价：占用大小增加。  ）
-		String disableCirRef = JSON.toJSONString(person, DisableCircularReferenceDetect);
+		// ReferenceDetection	打开引用检测，这个缺省是关闭的，和fastjson 1.x不一致
+		String disableCirRef = JSON.toJSONString(person);
 		System.out.println("DisableCircularReferenceDetect: " + disableCirRef);
 
 		Person disableCirRefPerson = JSON.parseObject(disableCirRef, Person.class);
@@ -65,7 +65,7 @@ public class CircularReferenceTests {
 	@Test
 	public void testGlobalSerial(){
 		// 全局设置`DisableCircularReferenceDetect`
-		JSON.DEFAULT_GENERATE_FEATURE |= DisableCircularReferenceDetect.getMask();
+		// JSON.DEFAULT_GENERATE_FEATURE |= DisableCircularReferenceDetect.getMask();
 
 		test();
 	}

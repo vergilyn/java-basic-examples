@@ -12,7 +12,7 @@
     <artifactId>fastjson-2x-examples</artifactId>
 
     <properties>
-        <version.fastjson-2x>2.0.8-SNAPSHOT</version.fastjson-2x>
+        <version.fastjson-2x>2.0.8</version.fastjson-2x>
     </properties>
 
     <repositories>

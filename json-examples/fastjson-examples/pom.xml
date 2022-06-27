@@ -13,4 +13,7 @@
     <artifactId>fastjson-examples</artifactId>
     <packaging>jar</packaging>
 
+    <properties>
+        <version.alibaba-fastjson>1.2.83</version.alibaba-fastjson>
+    </properties>
 </project>
