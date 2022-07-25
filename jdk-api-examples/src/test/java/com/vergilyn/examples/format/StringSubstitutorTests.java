@@ -1,12 +1,12 @@
 package com.vergilyn.examples.format;
 
-import java.util.Map;
-
 import com.google.common.collect.Maps;
-
 import org.apache.commons.text.StringSubstitutor;
 import org.apache.commons.text.lookup.StringLookupFactory;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+
+import java.util.Map;
 
 public class StringSubstitutorTests {
 
@@ -26,7 +26,7 @@ public class StringSubstitutorTests {
 		System.out.println("StringSubstitutor >>>> " + result);
 	}
 
-	@Test
+	@RepeatedTest(10)
 	public void test2(){
 		//
 		//    正确的写法是 `${name:-vergilyn}`

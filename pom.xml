@@ -76,7 +76,7 @@
         <!--endregion-->
 
         <!--region other-tools -->
-        <version.google-guava>31.0.1-jre</version.google-guava>
+        <version.google-guava>31.1-jre</version.google-guava>
 
         <version.hutool-all>5.7.20</version.hutool-all>
 
@@ -212,6 +212,13 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>com.aliyun.openservices</groupId>
+            <artifactId>ons-client</artifactId>
+            <!--以下版本号请替换为Java SDK的最新版本号-->
+            <version>1.8.8.5.Final</version>
+        </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

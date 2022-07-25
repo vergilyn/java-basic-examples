@@ -1,8 +1,8 @@
 package com.vergilyn.examples.jdk8.features.future;
 
-import java.util.concurrent.CompletableFuture;
-
 import org.testng.annotations.Test;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  *
@@ -14,6 +14,5 @@ public class CompletableFutureTestng {
 	@Test
 	public void test(){
 		CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> "helloworld");
-
 	}
 }

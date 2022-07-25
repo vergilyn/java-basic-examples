@@ -1,11 +1,15 @@
 package com.vergilyn.examples.jdk8.features.date;
 
 import cn.hutool.core.date.DateUnit;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Date;
 
 /**
@@ -113,6 +117,29 @@ public class DateCalculateTests {
 		System.out.printf("%s >> %d minutes \n", prefix, ChronoUnit.MINUTES.between(now, tomorrow));
 		System.out.printf("%s >> %d seconds \n", prefix, ChronoUnit.SECONDS.between(now, tomorrow));
 		System.out.printf("%s >> %d millis \n", prefix, ChronoUnit.MILLIS.between(now, tomorrow));
+	}
+
+	/**
+	 * 任意时间，获取所在月的最后一天。
+	 */
+	@ParameterizedTest
+	@CsvSource({
+			"2022-06-15,2022-06-30",
+			"2022-02-10,2022-02-28",
+			"2024-02-10,2024-02-29"
+	})
+	public void monthLastDay(String localDateStr, String expectedStr){
+		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+		LocalDate localDate = LocalDate.parse(localDateStr, dateTimeFormatter);
+
+		// 核心
+		LocalDate actualDate = localDate.with(TemporalAdjusters.lastDayOfMonth());
+
+		LocalDate expectedDate = LocalDate.parse(expectedStr);
+
+		System.out.printf("source: %s, expected: %s, actual: %s \n", localDateStr, expectedDate, actualDate);
+		Assertions.assertEquals(expectedDate, actualDate);
 	}
 
 	private String format(LocalDateTime localDateTime){
