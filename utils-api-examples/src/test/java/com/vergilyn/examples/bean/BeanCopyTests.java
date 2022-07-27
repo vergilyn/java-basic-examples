@@ -1,5 +1,6 @@
 package com.vergilyn.examples.bean;
 
+import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.cglib.core.Converter;
 
 import java.beans.PropertyDescriptor;
@@ -10,7 +11,7 @@ import java.beans.PropertyDescriptor;
  * - 硬编码setter/getter
  * - {@linkplain org.apache.commons.beanutils.BeanUtils}
  * - {@linkplain org.springframework.beans.BeanUtils}
- * - {@linkplain org.springframework.cglib.beans.BeanCopier}
+ * - {@linkplain BeanCopier}
  * - {@linkplain net.sf.cglib.beans.BeanCopier}
  * - {@linkplain org.mapstruct.factory.Mappers}
  * </pre>
@@ -29,8 +30,8 @@ import java.beans.PropertyDescriptor;
  * <h3>备注</h3>
  * <p>1. BeanCopier/MapStruct 内部原理都是 <b>生成class，接近 硬编码</b>!
  *
- * <p>2.{@linkplain org.springframework.cglib.beans.BeanCopier#create(Class, Class, boolean)} 其实相当耗时，
- * 所以建议全局初始化一次，{@linkplain org.springframework.cglib.beans.BeanCopier#copy(Object, Object, Converter)}
+ * <p>2.{@linkplain BeanCopier#create(Class, Class, boolean)} 其实相当耗时，
+ * 所以建议全局初始化一次，{@linkplain BeanCopier#copy(Object, Object, Converter)}
  * 已经保证了线程安全。
  *
  * @author vergilyn

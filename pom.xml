@@ -29,6 +29,7 @@
         <module>logger-examples</module>
         <module>javax-validation-examples</module>
         <module>jdk-generic-type-examples</module>
+        <module>plugin-framework-examples</module>
     </modules>
 
     <repositories>
