@@ -1,18 +1,14 @@
 package com.vergilyn.examples.queue;
 
-import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
-import java.util.List;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
-
 import lombok.extern.slf4j.Slf4j;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.collections.Lists;
+
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
+import java.util.concurrent.*;
 
 /**
  * 在阅读seata源码看到，"io.seata.core.rpc.DefaultServerMessageListenerImpl.BatchLogRunnable"
@@ -88,6 +84,9 @@ public class BlockingQueueTestng {
         }
     }
 
+    /**
+     * {@link BlockingQueue#offer(Object)} 超过 capacity时，不会抛出异常，而是返回 false。
+     */
     @Test(description = "#offer()")
     public void offer(){
         BlockingQueue<Integer> queue = new LinkedBlockingDeque<>(1);

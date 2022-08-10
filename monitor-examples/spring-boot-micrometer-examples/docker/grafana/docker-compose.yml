@@ -1,0 +1,23 @@
+version: "3.9"
+
+# SEE: https://hub.docker.com/r/grafana/grafana
+# SEE: https://grafana.com/docs/grafana/next/setup-grafana/installation/docker/
+#   启动后通过 `http://${host}:3000` 访问。
+#   默认登录帐号密码: admin/admin
+#   由于 prometheus 也是 docker-container中，所以可以通过`host.docker.internal:9090`访问prometheus数据源。
+services:
+  prometheus:
+    image: grafana/grafana:8.5.10-ubuntu
+    container_name: grafana-ubuntu-v8_5_10
+    restart: on-failure
+    ports:
+      - 3000:3000
+
+    # /var/lib/grafana: 包含 `plugins`
+    # /etc/grafana
+    # /var/log/grafana
+#    volumes:
+#      - "./prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml"
+#      - "D:/docker-volumes/prometheus-v2_37_0/data/:/opt/bitnami/prometheus/data/"
+    environment:
+      TZ: Asia/Chongqing

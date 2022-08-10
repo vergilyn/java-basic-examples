@@ -3,29 +3,21 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <version>1.0.0-SNAPSHOT</version>
     <parent>
         <groupId>com.vergilyn.examples</groupId>
-        <artifactId>java-basic-examples</artifactId>
+        <artifactId>plugin-framework-examples</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>plugin-framework-examples</artifactId>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>pf4j-helloworld-examples</module>
-        <module>nacos-event-publisher-examples</module>
-    </modules>
-
-    <properties>
-        <version.pf4j>3.7.0</version.pf4j>
-    </properties>
+    <groupId>com.vergilyn.examples.nacos.event</groupId>
+    <artifactId>nacos-event-publisher-examples</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>org.pf4j</groupId>
-            <artifactId>pf4j</artifactId>
-            <version>${version.pf4j}</version>
+            <groupId>com.alibaba.nacos</groupId>
+            <artifactId>nacos-common</artifactId>
+            <version>2.1.0</version>
         </dependency>
     </dependencies>
 </project>

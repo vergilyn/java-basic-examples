@@ -1,0 +1,21 @@
+###
+GET http://127.0.0.1:18080/actuator/info
+
+
+###
+GET http://127.0.0.1:18080/actuator/prometheus
+
+###
+GET http://127.0.0.1:18080/management/metrics
+
+
+### 创建“订单”
+POST http://127.0.0.1:8080/order
+Content-Type: application/json
+
+{
+  "orderId": 100,
+  "userId": 409839163,
+  "amount": 1250,
+  "channel": "ALIPAY"
+}

@@ -1,0 +1,15 @@
+version: "3.9"
+
+# SEE: https://hub.docker.com/r/bitnami/prometheus
+services:
+  prometheus:
+    image: bitnami/prometheus:2.37.0-debian-11-r10
+    container_name: prometheus-debian-v2_37_0
+    restart: on-failure
+    ports:
+      - 9090:9090
+    volumes:
+      - "./prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml"
+      - "D:/docker-volumes/prometheus-v2_37_0/data/:/opt/bitnami/prometheus/data/"
+    environment:
+      TZ: Asia/Chongqing
