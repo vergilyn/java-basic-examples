@@ -19,9 +19,9 @@ import java.util.Map;
  * 2. 支持 默认值表达式 `{$var-:123}` <br/>
  * 3. 支持 嵌套表达式 `{$var-:${v}}` <br/>
  * 4. 支持 自定义函数表达式， 例如 `{$vergilyn-urlTrace:${url}}` <br/>
- * 5. 期望：默认 trim。参考 {@link StringSubstitutorTrimTests}<br/>
+ * 5. 期望：默认 trim。参考 {@link StringSubstitutorExtensionTests}<br/>
+ * 5.1 特殊替换：`null`替换成 ""，例如 `这是一段{$var}完整的文本`，`var = "null"`，替换后为`这是一段完整的文本` <br/>
  * 6. 存在未替换的表达式时，抛出异常 <br/>
- *
  *
  * @author vergilyn
  * @since 2022-09-02
@@ -105,7 +105,7 @@ public class StringSubstitutorCustomTests {
 	 *   所以，不建议都使用`:`作为语法分割，造成有时难以理解。
 	 *
 	 * @see StringSubstitutor#setValueDelimiter(String)
-	 * @see StringSubstitutorTrimTests
+	 * @see StringSubstitutorExtensionTests
 	 */
 	@Test
 	public void defaultValueExpress(){

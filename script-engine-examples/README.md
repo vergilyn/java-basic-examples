@@ -1,5 +1,13 @@
 # script engine
 
+## usage
+- <https://stackoverflow.com/questions/3655424/string-replacement-in-java-similar-to-a-velocity-template>
+> 1. apache, commons-text
+> 2. jdk, MessageFormat
+> 3. jdk, String.format(...)
+> 4. http://jknack.github.io/handlebars.java/
+> 5. groovy, GroovyShell
+
 ### AviatorScript
 [![Github Stars](https://img.shields.io/github/stars/killme2008/aviatorscript)](https://github.com/killme2008/aviatorscript)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.googlecode.aviator/aviator/badge.svg)](https://mvnrepository.com/artifact/com.googlecode.aviator/aviator)

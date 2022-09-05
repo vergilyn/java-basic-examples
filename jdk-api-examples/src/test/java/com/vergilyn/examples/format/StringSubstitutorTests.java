@@ -150,6 +150,9 @@ public class StringSubstitutorTests {
 
 		StringSubstitutor substitutor = new StringSubstitutor(interpolatorStringLookup);
 		substitutor.setEnableSubstitutionInVariables(true);
+		substitutor.setDisableSubstitutionInValues(false);
+		substitutor.setEnableUndefinedVariableException(true);
+
 
 		String pattern = "OS name: ${sys:os.name}, " + "3 + 4 = ${script:javascript:${var-express}}";
 		String replace = substitutor.replace(pattern);
