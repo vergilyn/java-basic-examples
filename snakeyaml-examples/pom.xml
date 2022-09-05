@@ -14,7 +14,7 @@
 
     <properties>
         <snakeyaml.version>1.28</snakeyaml.version>
-        <spring-beans.version>5.2.10.RELEASE</spring-beans.version>
+        <spring-beans.version>5.3.18</spring-beans.version>
     </properties>
 
     <dependencies>
