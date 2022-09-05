@@ -32,6 +32,8 @@
         <module>plugin-framework-examples</module>
         <module>protobuf-examples</module>
         <module>monitor-examples</module>
+        <module>script-engine-examples</module>
+        <module>script-engine-examples/aviator-script-examples</module>
     </modules>
 
     <repositories>

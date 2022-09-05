@@ -1,5 +1,6 @@
 # micrometer 
 - nacos: `MetricsMonitor`
+- 万字长文详解服务性能监控之Micrometer: <https://zhuanlan.zhihu.com/p/455660936>
 
 - 深入分析基于Micrometer和Prometheus实现度量和监控的方案：<https://blog.csdn.net/weixin_45994575/article/details/119140208>
 > 集成了`Micrometer`框架的`JVM应用`使用到Micrometer的API收集的度量 **数据位于内存之中**，  
@@ -10,3 +11,8 @@
 > **而展示的UI目前相对用得比较多的就是Grafana。**
 > 另外，Prometheus已经内置了一个时序数据库的实现，
 > 因此，在做一套相对完善的度量数据监控的系统只需要依赖: 目标JVM应用、Prometheus组件、Grafana组件。
+
+
+### OpenTelemetry 
+- <https://github.com/open-telemetry/opentelemetry-java>
+- 使用opentelemetry 搭建新一代可视化分布式监控系统: <https://www.jianshu.com/p/b1215d6b1cf7>

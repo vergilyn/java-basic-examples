@@ -21,10 +21,19 @@
     <properties>
         <micrometer.version>1.9.3</micrometer.version>
         <prometheus-simpleclient.version>0.16.0</prometheus-simpleclient.version>
+        <opentelemetry-bom.version>1.16.0</opentelemetry-bom.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>io.opentelemetry</groupId>
+                <artifactId>opentelemetry-bom</artifactId>
+                <version>${opentelemetry-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <dependency>
                 <groupId>io.micrometer</groupId>
                 <artifactId>micrometer-core</artifactId>

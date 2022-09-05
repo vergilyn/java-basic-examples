@@ -2,6 +2,7 @@ package com.vergilyn.examples.nacos.event.feature;
 
 import com.alibaba.nacos.common.notify.Event;
 import com.alibaba.nacos.common.notify.NotifyCenter;
+import com.alibaba.nacos.common.notify.SlowEvent;
 import com.alibaba.nacos.common.notify.listener.Subscriber;
 import com.vergilyn.examples.nacos.event.AbstractNacosEventTests;
 import lombok.SneakyThrows;
@@ -31,7 +32,7 @@ public class PublisherEventTests extends AbstractNacosEventTests {
 
 			@Override
 			public Class<? extends Event> subscribeType() {
-				return CustomPublisherEvent.class;
+				return SlowEvent.class;
 			}
 		});
 

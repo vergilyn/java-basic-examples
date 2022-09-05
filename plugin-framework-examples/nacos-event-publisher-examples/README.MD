@@ -14,7 +14,7 @@ nacos-server 端是基于 event-publisher 的方式，而且抽象了一套 even
 
 ## `spring.ApplicationEvent`
 1. **nacos 都是 async-handle-event**  
-（spring 貌似只有 sync-event，或者 listener中用async实现）
+（spring 支持 sync/async event，或者 listener中用async实现）
 __貌似，没有提供任何方式可以变成 sync-event-handle！__
 
 2. 将event区分成2类： share、publisher。

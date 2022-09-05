@@ -1,5 +1,8 @@
 # logger-examples
 
+- log-captor: <https://github.com/Hakky54/log-captor>
+> LogCaptor captures log entries **for unit testing** purposes.
+
 ## SLF4J，Logback，Log4j2 关系
 [Java日志框架SLF4J和log4j以及logback的联系和区别](https://www.cnblogs.com/hanszhao/p/9754419.html)
 
@@ -30,3 +33,18 @@ logback同样是由log4j的作者设计完成的，拥有更好的特性，用�
 显然不推荐单独使用日志框架。假设项目中已经使用了log4j，而我们此时加载了一个类库，而这个类库依赖另一个日志框架。
 这个时候我们就需要维护两个日志框架，这是一个非常麻烦的事情。
 而使用了slf4j就不同了，由于应用调用的抽象层的api，与底层日志框架是无关的，因此可以任意更换日志框架。
+
+## Q. 运行时如何动态指定 layout-pattern？
+结合 MDC，例如系统中 存在2个业务流程，不同的业务流程期望有不同的 `MDC.attrs / layout-pattern`，例如：
+```
+业务流程-1：[userId-xx]
+业务流程-2：[orderId-xx]
+```
+
+1) 不希望通过`logback.xml`指定，由于不同的业务流程可能有不同的`MDC.attrs`；
+2) 比较简单的易懂的方式是： 因为可以直接访问 MDC.attrs，所以可以 自己构建 log-format。
+
+参考：  
+- <https://stackoverflow.com/questions/52012487/update-log4j2-pattern-at-runtime>
+- how to configure: <https://logging.apache.org/log4j/2.x/manual/customconfig.html#Configurator>
+- how to reconfigure: <https://logging.apache.org/log4j/2.x/manual/customconfig.html#AddingToCurrent>
