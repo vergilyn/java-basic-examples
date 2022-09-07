@@ -45,8 +45,7 @@ public class ExtensionInterpolatorStringLookup implements StringLookup {
 
 		this.defaultStringLookup = defaultStringLookup;
 		this.stringLookupMap = new HashMap<>(stringLookupMap.size());
-		this.prefixSeparator = prefixSeparator == null || prefixSeparator.isEmpty()
-		                       ? PREFIX_SEPARATOR : prefixSeparator;
+		this.prefixSeparator = prefixSeparator == null || prefixSeparator.isEmpty() ? PREFIX_SEPARATOR : prefixSeparator;
 
 		this.valuePostProcessor = valuePostProcessor;
 

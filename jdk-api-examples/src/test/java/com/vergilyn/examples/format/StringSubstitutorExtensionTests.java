@@ -14,23 +14,71 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 1. 期望：value 默认 `trim` <br/>
+ * 1. 期望：不管是`ScriptEngine`还是`自定义变量varMap`，最后的 value 都默认进行 {@link String#trim()} <br/>
  * 2. 特殊替换：`null`替换成 ""，例如 `这是一段{$var}完整的文本`，`var = "null"`，替换后为`这是一段完整的文本` <br/>
+ *
+ * @author vergilyn
+ * @since 2022-09-07
  */
 public class StringSubstitutorExtensionTests {
 
+
 	/**
-	 * <b>期望:</b> 不管是`ScriptEngine`还是`自定义变量varMap`，最后的 value 都默认进行 {@link String#trim()}
+	 * <b>推荐方式：</b> 重写{@link StringSubstitutor#resolveVariable(String, TextStringBuilder, int, int)}方法。
 	 *
-	 * <p> 它们最终都是由 {@linkplain org.apache.commons.text.lookup.InterpolatorStringLookup#lookup(String) InterpolatorStringLookup#lookup(String)} 进行解析并获取最终的获取值。
-	 *  <br/> 所以最好的方式是，参考源码实现类似的 `InterpolatorStringLookup` 进行扩展
+	 */
+	@Test
+	public void overrideResolveVariable(){
+
+		String expected = "extension >>>> 3 + 4 = 7；4 + 5 = 9";
+		String pattern = "extension ${empty}>>>> 3 + 4 = ${script:javascript:${var-express}}；4 + 5 = ${script:${trim}}";
+
+		Map<String, String> varMap = Maps.newHashMap();
+		varMap.put("var-express", "3 + 4");
+		varMap.put("trim", "  javascript:${default-: 4 + 5}  ");
+		varMap.put("empty", "null");
+		StringLookup defaultStringLookup = StringLookupFactory.INSTANCE.mapStringLookup(varMap);
+
+		StringLookup stringLookup = StringLookupFactory.INSTANCE.interpolatorStringLookup(
+				Maps.newHashMap(), defaultStringLookup, true
+		);
+
+		StringSubstitutor substitutor = new StringSubstitutor(stringLookup){
+			@Override
+			protected String resolveVariable(String variableName, TextStringBuilder buf, int startPos, int endPos) {
+				String value = super.resolveVariable(variableName, buf, startPos, endPos);
+
+				if (value == null){
+					return null;
+				}
+				// 1. 默认进行 trim
+				value = value.trim();
+
+				// 2. 特殊值处理。
+				return "null".equalsIgnoreCase(value) ? "" : value;
+			}
+		};
+		substitutor.setEnableSubstitutionInVariables(true);
+		substitutor.setValueDelimiter("-:");
+
+		String replace = substitutor.replace(pattern);
+
+		System.out.println("[replaced]" + replace);
+		Assertions.assertThat(replace).isEqualTo(expected);
+	}
+
+	/**
+	 * 它们最终都是由 {@linkplain org.apache.commons.text.lookup.InterpolatorStringLookup#lookup(String) InterpolatorStringLookup#lookup(String)} 进行解析并获取最终的获取值。
+	 *  <br/> 所以可以参考源码实现类似的 `InterpolatorStringLookup` 进行扩展。
+	 *
+	 * <p> <b>不推荐此方式</b>，原因：需要参考`InterpolatorStringLookup`重新实现，例如{@link ExtensionInterpolatorStringLookup}。
 	 */
 	@ParameterizedTest
 	@ValueSource(classes = { ExtensionInterpolatorStringLookup.class, Void.class})
 	public void trim(Class<?> stringLookupClass){
 		Map<String, String> varMap = Maps.newHashMap();
 		varMap.put("var-express", "3 + 4");
-		varMap.put("trim", "  javascript:${defalut-: 4 + 5}  ");
+		varMap.put("trim", "  javascript:${default-: 4 + 5}  ");
 		varMap.put("empty", "null");
 
 		StringLookup defaultStringLookup = StringLookupFactory.INSTANCE.mapStringLookup(varMap);
