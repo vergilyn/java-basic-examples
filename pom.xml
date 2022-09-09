@@ -75,9 +75,9 @@
         <!--endregion-->
 
         <!--region alibaba -->
-        <version.dubbo>3.0.8</version.dubbo>
+        <version.dubbo>3.0.10</version.dubbo>
         <version.alibaba-fastjson>1.2.83</version.alibaba-fastjson>
-        <version.alibaba-transmittable-thread-local>2.12.4</version.alibaba-transmittable-thread-local>
+        <version.alibaba-transmittable-thread-local>2.14.0</version.alibaba-transmittable-thread-local>
         <!--endregion-->
 
         <!--region other-tools -->
@@ -189,7 +189,12 @@
                 <version>${version.mapstruct}</version>
             </dependency>
 
-
+            <!-- dubbo SPI -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-common</artifactId>
+                <version>${version.dubbo}</version>
+            </dependency>
 
             <!--region alibaba -->
             <dependency>

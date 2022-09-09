@@ -3,12 +3,12 @@ package com.vergilyn.examples.thread.threadlocal;
 import com.alibaba.ttl.TransmittableThreadLocal;
 import com.alibaba.ttl.TtlRunnable;
 import lombok.SneakyThrows;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * <a href="https://github.com/alibaba/transmittable-thread-local">alibaba/transmittable-thread-local</a> 介绍：<br/>
@@ -19,20 +19,29 @@ import java.util.concurrent.atomic.AtomicInteger;
  *
  */
 public class TransmittableThreadLocalTests {
-	private ExecutorService executorService = Executors.newFixedThreadPool(1);
+	private ExecutorService executorService;
+	public static ThreadLocal<StringBuffer> CONTEXT;
 
+	@BeforeEach
+	public void beforeEach(){
+		executorService = Executors.newFixedThreadPool(3);
+	}
+
+	/**
+	 * 因为会复用线程，所以其实会有 threads个 thread-local's。
+	 * thread-local 在相同线程中被复用！
+	 */
 	@SneakyThrows
 	@Test
 	public void threadLocal(){
-		ThreadLocalRunnable.THREAD_LOCAL = ThreadLocal.withInitial(StringBuffer::new);
+		CONTEXT = ThreadLocal.withInitial(StringBuffer::new);
+		CONTEXT.get().append("[MAIN]");
 
-		AtomicInteger index = new AtomicInteger();
-
-		for (int i = 0; i < 4; i++) {
-			executorService.submit(new ThreadLocalRunnable(index.getAndIncrement()));
+		for (int i = 0; i < 8; i++) {
+			executorService.submit(new ThreadLocalRunnable(i));
 		}
 
-		TimeUnit.SECONDS.sleep(5);
+		TimeUnit.SECONDS.sleep(2);
 	}
 
 	/**
@@ -40,21 +49,19 @@ public class TransmittableThreadLocalTests {
 	 */
 	@SneakyThrows
 	@Test
-	public void transmittableThreadLocal(){
-		ThreadLocalRunnable.THREAD_LOCAL = TransmittableThreadLocal.withInitial(StringBuffer::new);
+	public void parentToChild(){
+		CONTEXT = TransmittableThreadLocal.withInitial(StringBuffer::new);
+		CONTEXT.get().append("[MAIN]");
 
-		// Executor ttlExecutor = TtlExecutors.getTtlExecutor(executorService);
-
-		AtomicInteger index = new AtomicInteger();
-		for (int i = 0; i < 4; i++) {
-			executorService.execute(TtlRunnable.get(new ThreadLocalRunnable(index.getAndIncrement())));
+		for (int i = 0; i < 8; i++) {
+			executorService.execute(TtlRunnable.get(new ThreadLocalRunnable(i)));
 		}
 
-		TimeUnit.SECONDS.sleep(5);
+		TimeUnit.SECONDS.sleep(2);
 	}
 
+
 	public static class ThreadLocalRunnable implements Runnable {
-		public static ThreadLocal<StringBuffer> THREAD_LOCAL;
 		private final Integer idx;
 
 		public ThreadLocalRunnable(Integer idx) {
@@ -63,10 +70,12 @@ public class TransmittableThreadLocalTests {
 
 		@Override
 		public void run() {
-			THREAD_LOCAL.get().append(idx);
+			CONTEXT.get().append(idx);
+
+			// CONTEXT.get().append("a");
 
 			System.out.printf("[thread-%s][idx-%s] >>>> thread-local: %s \n",
-			                   Thread.currentThread().getName(), idx, THREAD_LOCAL.get().toString());
+			                   Thread.currentThread().getName(), idx, CONTEXT.get().toString());
 		}
 	}
 

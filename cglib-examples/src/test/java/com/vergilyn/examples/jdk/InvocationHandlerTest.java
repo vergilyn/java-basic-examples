@@ -1,10 +1,10 @@
 package com.vergilyn.examples.jdk;
 
+import org.junit.jupiter.api.Test;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-
-import org.junit.jupiter.api.Test;
 
 /**
  *
@@ -26,6 +26,8 @@ public class InvocationHandlerTest {
 
 	/**
 	 * see: {@code org.mybatis.spring.SqlSessionTemplate.SqlSessionInterceptor}
+	 *
+	 * @see com.google.common.util.concurrent.SimpleTimeLimiter
 	 */
 	@Test
 	public void proxyMethod(){
@@ -36,6 +38,8 @@ public class InvocationHandlerTest {
 				new InvocationHandler() {
 					@Override
 					public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+						System.out.println("HelloInterceptor >>>> proxy: " + proxy.getClass().getName());
+
 						System.out.println("HelloInterceptor >>>> say() before");
 
 						// `hello`真实对象

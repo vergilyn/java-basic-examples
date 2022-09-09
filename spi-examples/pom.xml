@@ -12,16 +12,10 @@
 
     <artifactId>spi-examples</artifactId>
 
-    <properties>
-        <dubbo-common.version>2.7.8</dubbo-common.version>
-    </properties>
-
     <dependencies>
-        <!-- dubbo SPI -->
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-common</artifactId>
-            <version>${dubbo-common.version}</version>
         </dependency>
     </dependencies>
 </project>
