@@ -30,6 +30,8 @@ public class TransmittableThreadLocalTests {
 	/**
 	 * 因为会复用线程，所以其实会有 threads个 thread-local's。
 	 * thread-local 在相同线程中被复用！
+	 *
+	 * <br/> 相同线程中的 `StringBuffer` 是共享的。 （父子线程的 ThreadLocal 不会共享）
 	 */
 	@SneakyThrows
 	@Test
@@ -49,7 +51,7 @@ public class TransmittableThreadLocalTests {
 	 */
 	@SneakyThrows
 	@Test
-	public void parentToChild(){
+	public void transmittableThreadLocal(){
 		CONTEXT = TransmittableThreadLocal.withInitial(StringBuffer::new);
 		CONTEXT.get().append("[MAIN]");
 

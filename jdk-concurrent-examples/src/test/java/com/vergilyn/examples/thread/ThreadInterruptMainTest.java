@@ -16,6 +16,8 @@ package com.vergilyn.examples.thread;
  * </p>
  * @author vergilyn
  * @date 2020-03-01
+ *
+ * @see <a href="https://www.zhihu.com/question/41048032">Java里一个线程调用了Thread.interrupt()到底意味着什么？</a>
  */
 public class ThreadInterruptMainTest {
 
