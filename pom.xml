@@ -82,6 +82,7 @@
 
         <!--region other-tools -->
         <version.google-guava>31.1-jre</version.google-guava>
+        <version.google-gson>2.9.0</version.google-gson>
 
         <version.hutool-all>5.7.20</version.hutool-all>
 
@@ -203,6 +204,12 @@
                 <version>${version.alibaba-transmittable-thread-local}</version>
             </dependency>
             <!--endregion-->
+
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${version.google-gson}</version>
+            </dependency>
 
             <!-- JMH -->
             <dependency>
