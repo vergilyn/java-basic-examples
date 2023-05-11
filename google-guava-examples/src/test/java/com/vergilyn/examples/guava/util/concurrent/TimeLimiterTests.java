@@ -6,10 +6,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalTime;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 public class TimeLimiterTests {
 
@@ -36,6 +33,7 @@ public class TimeLimiterTests {
 
 		TestService target = new TestServiceImpl();
 
+
 		int timeoutDurationMs = 100;
 		TestService proxy = timeLimiter.newProxy(target, TestService.class,
 		                                         timeoutDurationMs, TimeUnit.MILLISECONDS);
@@ -53,6 +51,23 @@ public class TimeLimiterTests {
 
 
 
+	}
+
+
+	@Test
+	public void call() throws ExecutionException, InterruptedException, TimeoutException {
+		TimeLimiter timeLimiter = SimpleTimeLimiter.create(Executors.newSingleThreadExecutor());
+
+		TestService target = new TestServiceImpl();
+
+		LocalTime localTime = timeLimiter.callWithTimeout(new Callable<LocalTime>() {
+			@Override
+			public LocalTime call() throws Exception {
+				return target.someMethod(10 * 1000);
+			}
+		}, 1, TimeUnit.MINUTES);
+
+		System.out.println(localTime);
 	}
 
 	public static interface TestService {

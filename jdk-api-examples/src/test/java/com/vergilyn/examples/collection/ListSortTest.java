@@ -1,5 +1,11 @@
 package com.vergilyn.examples.collection;
 
+import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Lists;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.junit.jupiter.api.Test;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -8,13 +14,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import com.alibaba.fastjson.JSON;
-import com.google.common.collect.Lists;
-
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.junit.jupiter.api.Test;
 
 /**
  * @author vergilyn
@@ -62,6 +61,12 @@ public class ListSortTest {
 		Collections.shuffle(users);
 
 		System.out.println("before >>>>" + JSON.toJSONString(users, true));
+
+		users.sort(Comparator.comparing(User::getUsername));
+
+		System.out.println("after >>>>" + JSON.toJSONString(users, true));
+
+
 
 		// 指定部分，存在NULL的情况
 		List<Integer> sort = Lists.newArrayList(1, 3, 4, 5);
@@ -129,6 +134,7 @@ public class ListSortTest {
 
 		public User(Integer id) {
 			this.id = id;
+			this.username = "username" + id;
 		}
 
 		public User(LocalDate date) {

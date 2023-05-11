@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  * @author vergilyn
  * @since 2022-01-24
  */
-public class InheritableThreadLocalTests {
+public class InheritableThreadLocalTests extends AbstractThreadLocalTests {
 	ExecutorService threadPool = Executors.newFixedThreadPool(1);
 
 	private static ThreadLocal<StringBuffer> mainThreadLocal = new InheritableThreadLocal<StringBuffer>(){{

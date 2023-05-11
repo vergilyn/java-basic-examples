@@ -5,8 +5,6 @@ import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -18,7 +16,7 @@ import java.util.concurrent.Executors;
  * @author vergilyn
  * @since 2022-09-09
  */
-public class ArgumentPassThroughTests {
+public class ArgumentPassThroughTests extends AbstractThreadLocalTests {
 	private ExecutorService executor;
 
 	@BeforeEach
@@ -64,14 +62,16 @@ public class ArgumentPassThroughTests {
 		main.append("[main]");
 
 		executor.submit(() -> {
+			// [vergilyn][thread-pool-1-thread-1] >>>> [main][sub]
 			inheritableThreadLocal.get().append("[sub]");
 
 			println(inheritableThreadLocal.get().toString());
 
-			// true
+			// [vergilyn][thread-pool-1-thread-1] >>>> `main == sub`: true
 			println("`main == sub`: " + (main == inheritableThreadLocal.get()));
 		}).get();
 
+		// [vergilyn][thread-main] >>>> [main][sub]
 		println(inheritableThreadLocal.get().toString());
 	}
 
@@ -95,16 +95,4 @@ public class ArgumentPassThroughTests {
 		println(threadLocal.get().toString());
 	}
 
-	public static void println(String format){
-		printf(format);
-		System.out.println();
-	}
-
-	public static void printf(String format, Object... args){
-		String prefix = String.format("[%s][vergilyn][thread-%s] >>>> ",
-		                              LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss.SSSSSS")),
-		                              Thread.currentThread().getName());
-
-		System.out.printf(prefix + format, args);
-	}
 }

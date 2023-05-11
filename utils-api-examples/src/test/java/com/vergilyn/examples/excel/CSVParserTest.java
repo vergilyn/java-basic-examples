@@ -1,16 +1,15 @@
 package com.vergilyn.examples.excel;
 
-import java.io.InputStream;
-import java.io.StringWriter;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.UUID;
-
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
 import org.junit.jupiter.api.Test;
+
+import java.io.InputStream;
+import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 public class CSVParserTest {
 
@@ -38,9 +37,11 @@ public class CSVParserTest {
 		final StringWriter sw = new StringWriter();
 		try (final CSVPrinter printer = new CSVPrinter(sw, CSVFormat.DEFAULT)) {
 
-			for (int i = 0; i < 10000; i++) {
+			for (int i = 0; i < 15000; i++) {
 //				printer.printRecord(RandomUtils.nextLong(10_0000_0000L, 99_9999_9999L));
-				printer.printRecord(i, UUID.randomUUID().toString());
+				printer.printRecord(i + 1);
+// 				printer.printRecord("16038503215768327");
+// 				printer.printRecord("16552565762179258");
 			}
 
 			printer.flush();

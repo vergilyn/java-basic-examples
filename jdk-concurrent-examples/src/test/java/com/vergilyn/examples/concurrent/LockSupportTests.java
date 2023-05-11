@@ -98,6 +98,7 @@ public class LockSupportTests {
 		LockSupport.unpark(threadMap.get(3));
 
 		executor.awaitTermination(5, TimeUnit.SECONDS);
+
 	}
 
 }

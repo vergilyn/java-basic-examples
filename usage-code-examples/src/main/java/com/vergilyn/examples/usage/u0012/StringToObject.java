@@ -10,7 +10,7 @@ package com.vergilyn.examples.usage.u0012;
  * @author vergilyn
  * @since 2022-03-30
  *
- * @see com.alibaba.fastjson.util.TypeUtils.TypeUtils#castToInt(Object)
+ * @see com.alibaba.fastjson.util.TypeUtils#castToInt(Object)
  */
 public class StringToObject {
 }

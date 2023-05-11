@@ -19,7 +19,7 @@
     </modules>
 
     <properties>
-        <micrometer.version>1.9.3</micrometer.version>
+        <micrometer.version>1.10.4</micrometer.version>
         <prometheus-simpleclient.version>0.16.0</prometheus-simpleclient.version>
         <opentelemetry-bom.version>1.16.0</opentelemetry-bom.version>
     </properties>

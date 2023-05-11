@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.List;
 
 public class CustomPostConstructAdapterFactoryTests {
 
@@ -39,6 +40,21 @@ public class CustomPostConstructAdapterFactoryTests {
 		System.out.println(actual);
 
 		Assertions.assertEquals(expected, actual);
+	}
+
+	@Test
+	public void testList(){
+		Gson gson = new GsonBuilder()
+				.registerTypeAdapterFactory(new CustomPostConstructAdapterFactory())
+				.create();
+
+		String jsonStr = "{\"name\": \"gson-A\", \"b\": {\"name\": \"gson-B\"}, \"cList\":[{\"name\": \"c-01\"}]}";
+		A a = gson.fromJson(jsonStr, A.class);
+
+		String actual = gson.toJson(a);
+
+		// {"name":"gson-A_afterPropertiesSet","b":{"name":"gson-B_afterPropertiesSet","c":{"name":"C"}},"cList":[{"name":"c-01_afterPropertiesSet"}]}
+		System.out.println(actual);
 	}
 
 	static class CustomPostConstructAdapterFactory implements TypeAdapterFactory{
@@ -90,6 +106,8 @@ public class CustomPostConstructAdapterFactoryTests {
 		private String name = "A";
 
 		private B b;
+
+		private List<C> cList;
 
 		@Override
 		public void afterPropertiesSet() throws Exception {

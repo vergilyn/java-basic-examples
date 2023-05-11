@@ -1,11 +1,10 @@
 package com.vergilyn.examples.syntactic.generic;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.sun.org.glassfish.gmbal.Description;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -60,6 +59,7 @@ public class GenericErrorMainTests {
 
 	@Test
 	public void right(){
+
 		String[] strings = toArray("A", "B", "C");
 		System.out.println("strings >>>> " + strings);
 		assertThat(strings.toString()).startsWith("[Ljava.lang.String");
@@ -68,4 +68,5 @@ public class GenericErrorMainTests {
 		System.out.println("objects >>>> " + objects);
 		assertThat(objects.toString()).startsWith("[Ljava.lang.Object");  // error
 	}
+
 }

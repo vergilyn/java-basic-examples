@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.vergilyn.examples</groupId>
+        <artifactId>java-basic-examples</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <groupId>com.vergilyn.examples.zookeeper</groupId>
+    <artifactId>zookeeper-examples</artifactId>
+    <packaging>jar</packaging>
+
+    <properties>
+        <curator_version>4.2.0</curator_version>
+        <zookeeper_version>3.4.14</zookeeper_version>
+        <dubbo.version>3.0.11</dubbo.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>${dubbo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-x-discovery</artifactId>
+            <version>${curator_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+            <version>${zookeeper_version}</version>
+        </dependency>
+    </dependencies>
+</project>

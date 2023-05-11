@@ -14,6 +14,12 @@ import java.util.concurrent.TimeUnit;
  * <a href="https://github.com/alibaba/transmittable-thread-local">alibaba/transmittable-thread-local</a> 介绍：<br/>
  * 主要是解决 因为 线程池复用线程，导致 ThreadLocal 也被复用的问题!
  *
+ * <pre>
+ *    `JDK`的 {@linkplain InheritableThreadLocal} 类可以完成父线程到子线程的值传递。
+ *    但对于使用线程池等会池化复用线程的执行组件的情况，线程由线程池创建好，并且线程是池化起来反复使用的；这
+ *    时父子线程关系的`ThreadLocal`值传递已经没有意义，应用需要的实际上是把 <b>任务提交给线程池时</b> 的`ThreadLocal`值传递到 <b>任务执行时</b>。
+ * </pre>
+ *
  * @author vergilyn
  * @since 2022-01-24
  *

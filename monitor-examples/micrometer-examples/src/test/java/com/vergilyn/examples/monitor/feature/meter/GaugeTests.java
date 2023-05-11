@@ -1,12 +1,14 @@
 package com.vergilyn.examples.monitor.feature.meter;
 
-import io.micrometer.core.instrument.ImmutableTag;
-import io.micrometer.core.instrument.Metrics;
-import io.micrometer.core.instrument.Tag;
+import com.google.common.collect.Lists;
+import io.micrometer.core.instrument.*;
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class GaugeTests {
@@ -37,5 +39,33 @@ public class GaugeTests {
 		getConfig.incrementAndGet();
 
 		System.out.println(Metrics.globalRegistry);
+	}
+
+	/**
+	 * @see org.springframework.boot.actuate.metrics.startup.StartupTimeMetricsListener
+	 */
+	@Test
+	public void springActuator(){
+		final MeterRegistry _meterRegistry = new SimpleMeterRegistry();
+		String metricName = "spring.actuator.metric-name";
+
+		Iterable<Tag> tagsList = Lists.newArrayList();
+
+		Tags tags = Tags.of(tagsList);
+
+		Class<?> clazz = this.getClass();
+
+		Duration duration = Duration.ofSeconds(10);
+		String description = "Time taken (ms) to start the application";
+
+		Tags tagsFrom = tags.and("main.application.class", clazz.getName());
+
+
+		TimeGauge.builder(metricName, duration::toMillis, TimeUnit.MILLISECONDS)
+				.tags(tagsFrom)
+				.description(description)
+				.register(_meterRegistry);
+
+		System.out.println(_meterRegistry);
 	}
 }

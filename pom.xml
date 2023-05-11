@@ -34,6 +34,7 @@
         <module>monitor-examples</module>
         <module>script-engine-examples</module>
         <module>script-engine-examples/aviator-script-examples</module>
+        <module>zookeeper-examples</module>
     </modules>
 
     <repositories>
@@ -64,7 +65,7 @@
         <version.apache-common-beanutils>1.9.4</version.apache-common-beanutils>
 
         <version.apache-common-csv>1.8</version.apache-common-csv>
-        <version.apache-common-text>1.9</version.apache-common-text>
+        <version.apache-common-text>1.10.0</version.apache-common-text>
 
         <version.apache-common-codec>1.15</version.apache-common-codec>
         <version.apache-common-pool2>2.6.1</version.apache-common-pool2>
@@ -106,6 +107,7 @@
         <version.hamcrest>2.2</version.hamcrest>
         <versio.jmh>1.34</versio.jmh>
         <version.awaitility>4.1.1</version.awaitility>
+        <version.assertj>3.19.0</version.assertj>
         <!--endregion-->
 
         <!--region maven-plugins http://maven.apache.org/plugins/index.html -->
@@ -307,6 +309,12 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${version.testng}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${version.assertj}</version>
             <scope>test</scope>
         </dependency>
         <!-- mockito -->
