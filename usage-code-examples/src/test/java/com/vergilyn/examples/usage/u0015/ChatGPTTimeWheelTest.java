@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -83,6 +84,9 @@ public class ChatGPTTimeWheelTest {
             this.currentTickIndex = 0;
         }
 
+        /**
+         * 更推荐参考 {@link io.netty.util.HashedWheelTimer.Worker}，利用 {@link Queue#poll()} 实现此功能
+         */
         public void start() {
             executorService.scheduleAtFixedRate(() -> {
                 Bucket bucket = buckets.get(currentTickIndex);

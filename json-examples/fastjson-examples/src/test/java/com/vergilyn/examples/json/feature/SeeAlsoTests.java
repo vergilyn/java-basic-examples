@@ -2,6 +2,7 @@ package com.vergilyn.examples.json.feature;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.annotation.JSONType;
+import com.alibaba.fastjson.parser.Feature;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.google.common.collect.Sets;
 import com.vergilyn.examples.json.AbstractFastjsonTests;
@@ -38,6 +39,17 @@ public class SeeAlsoTests extends AbstractFastjsonTests {
 	 *
 	 * <p> 3. 代码不友好，<b>父类or父接口，需要通过{@link JSONType#seeAlso()} 指定子类。</b>
 	 *  当需要增加子类时，需要维护此代码。
+	 *
+	 *  <h3> 2023-05-26</h3>
+	 *  Q. com.alibaba.fastjson.JSONException: autoType is not support. <br/>
+	 *  A. （ChatGPT的回答）
+	 *  <pre>
+	 *     方法一：添加需要反序列化的类到白名单。例如
+	 *     {@code ParserConfig.getGlobalInstance().addAccept("com.vergilyn.examples.json.feature.SeeAlsoTests.Dog")}
+	 *
+	 *     方法二：关闭Fastjson的自动类型检查（不推荐）。例如
+	 *     {@code JSON.parseObject(jsonStr, AnimalDTO.class, Feature.SupportAutoType)}
+	 *  </pre>
 	 */
 	@Test
 	public void test(){
@@ -52,7 +64,12 @@ public class SeeAlsoTests extends AbstractFastjsonTests {
 		String jsonStr = JSON.toJSONString(animalDTO, PrettyFormat, WriteClassName);
 		System.out.println("serial >>>> " + jsonStr);
 
-		AnimalDTO desDTO = JSON.parseObject(jsonStr, AnimalDTO.class);
+		// ParserConfig.getGlobalInstance().addAccept("com.vergilyn.examples.json.feature.SeeAlsoTests.AnimalDTO");
+		// ParserConfig.getGlobalInstance().addAccept("com.vergilyn.examples.json.feature.SeeAlsoTests.Dog");
+		// ParserConfig.getGlobalInstance().addAccept("com.vergilyn.examples.json.feature.SeeAlsoTests.Cat");
+
+		// AnimalDTO desDTO = JSON.parseObject(jsonStr, AnimalDTO.class);
+		AnimalDTO desDTO = JSON.parseObject(jsonStr, AnimalDTO.class, Feature.SupportAutoType);
 		System.out.println("desDTO >>>> " + JSON.toJSONString(desDTO, true));
 
 	}
@@ -65,7 +82,7 @@ public class SeeAlsoTests extends AbstractFastjsonTests {
 	}
 
 	@Data
-	@JSONType(seeAlso={Dog.class})
+	@JSONType(seeAlso={Dog.class, Cat.class})
 	public static abstract class Animal implements Serializable{
 		private String name = "animal";
 

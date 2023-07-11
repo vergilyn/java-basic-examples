@@ -35,6 +35,7 @@
         <module>script-engine-examples</module>
         <module>script-engine-examples/aviator-script-examples</module>
         <module>zookeeper-examples</module>
+        <module>h2-examples</module>
     </modules>
 
     <repositories>
@@ -56,7 +57,7 @@
         <revision>1.0.0-SNAPSHOT</revision>
 
         <version.spring-boot-dependencies>2.2.13.RELEASE</version.spring-boot-dependencies>
-        <version.projectlombok>1.18.22</version.projectlombok>
+        <version.projectlombok>1.18.28</version.projectlombok>
 
         <!--region apache-commons-->
         <version.apache-common-lang3>3.12.0</version.apache-common-lang3>
@@ -242,7 +243,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${version.projectlombok}</version>
-            <scope>provided</scope>
         </dependency>
 
         <!-- utils -->

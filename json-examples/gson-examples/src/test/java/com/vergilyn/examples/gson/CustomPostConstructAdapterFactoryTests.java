@@ -19,42 +19,32 @@ import java.util.List;
 public class CustomPostConstructAdapterFactoryTests {
 
 	/**
-	 * 根据 {@link PostConstructAdapterFactory} 思路实现
+	 * <pre>org.opentest4j.AssertionFailedError:
+	 *   expected: "{"name":"gson-A_afterPropertiesSet","b":{"name":"gson-B_afterPropertiesSet"},"cList":[{"name":"c-01_afterPropertiesSet"}]}"
+	 *   but was : "{"name":"gson-A_afterPropertiesSet","b":{"name":"gson-B_afterPropertiesSet","c":{"name":"C"}},"cList":[{"name":"c-01_afterPropertiesSet"}]}"
+	 * </pre>
+	 *
+	 * 原因，观察java对象可知。{@link B#c} 并不是从 json-str 反序列化得到，而是 java对象实例化默认初始实例化的。<br/>
+	 * 所以，无法通过 json反序列化时 统一调用{@link InitializingBean#afterPropertiesSet()} 方法。
+	 *
+	 * @see PostConstructAdapterFactory
 	 */
-	@Test
-	public void test(){
-		String jsonStr = "{\"name\": \"gson-A\", \"b\": {\"name\": \"gson-B\"}}";
-
-		Gson gson = new GsonBuilder()
-				.registerTypeAdapterFactory(new CustomPostConstructAdapterFactory())
-				.create();
-
-		A a = gson.fromJson(jsonStr, A.class);
-
-		// 无法达到此期望：
-		//   因为`C` 并不是由 反序列化生成的对象，所以不会触发调用`C.afterSet`
-		String expected = "{\"name\":\"gson-A_afterPropertiesSet\",\"b\":{\"name\":\"gson-B_afterPropertiesSet\",\"c\":{\"name\":\"C_afterPropertiesSet\"}}}";
-
-		// {"name":"gson-A_afterPropertiesSet","b":{"name":"gson-B_afterPropertiesSet","c":{"name":"C"}}}
-		String actual = gson.toJson(a);
-		System.out.println(actual);
-
-		Assertions.assertEquals(expected, actual);
-	}
-
 	@Test
 	public void testList(){
 		Gson gson = new GsonBuilder()
 				.registerTypeAdapterFactory(new CustomPostConstructAdapterFactory())
 				.create();
 
-		String jsonStr = "{\"name\": \"gson-A\", \"b\": {\"name\": \"gson-B\"}, \"cList\":[{\"name\": \"c-01\"}]}";
+		String jsonStr = "{\"name\":\"gson-A\",\"b\":{\"name\":\"gson-B\"},\"cList\":[{\"name\":\"c-01\"}]}";
 		A a = gson.fromJson(jsonStr, A.class);
+
+		// 无法达到此期望：
+		//   因为`C` 并不是由 反序列化生成的对象，所以不会触发调用`C.afterSet`
+		String expected = "{\"name\":\"gson-A_afterPropertiesSet\",\"b\":{\"name\":\"gson-B_afterPropertiesSet\"},\"cList\":[{\"name\":\"c-01_afterPropertiesSet\"}]}";
 
 		String actual = gson.toJson(a);
 
-		// {"name":"gson-A_afterPropertiesSet","b":{"name":"gson-B_afterPropertiesSet","c":{"name":"C"}},"cList":[{"name":"c-01_afterPropertiesSet"}]}
-		System.out.println(actual);
+		Assertions.assertEquals(expected, actual);
 	}
 
 	static class CustomPostConstructAdapterFactory implements TypeAdapterFactory{
