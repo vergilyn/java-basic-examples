@@ -1,5 +1,7 @@
-package com.vergilyn.examples.usage.u0010;
+package com.vergilyn.examples.usage.logger;
 
+import com.vergilyn.examples.usage.u0010.CustomizePrefixesLogger;
+import com.vergilyn.examples.usage.u0010.LoggerFactory;
 import lombok.SneakyThrows;
 import org.testng.annotations.Test;
 
