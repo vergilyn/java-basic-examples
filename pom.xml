@@ -36,6 +36,7 @@
         <module>script-engine-examples/aviator-script-examples</module>
         <module>zookeeper-examples</module>
         <module>h2-examples</module>
+        <module>serialize-examples</module>
     </modules>
 
     <repositories>
@@ -56,7 +57,7 @@
 
         <revision>1.0.0-SNAPSHOT</revision>
 
-        <version.spring-boot-dependencies>2.2.13.RELEASE</version.spring-boot-dependencies>
+        <version.spring-boot-dependencies>2.7.14</version.spring-boot-dependencies>
         <version.projectlombok>1.18.28</version.projectlombok>
 
         <!--region apache-commons-->

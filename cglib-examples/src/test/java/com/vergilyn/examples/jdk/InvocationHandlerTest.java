@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  *
@@ -18,9 +19,15 @@ public class InvocationHandlerTest {
 	}
 
 	private static class HelloImpl implements Hello {
+		private final Integer index;
+
+		public HelloImpl(Integer index) {
+			this.index = index;
+		}
+
 		@Override
 		public void say(){
-			System.out.println("Hello >>>> say()");
+			System.out.printf("Hello[%d] >>>> say() \n", this.index);
 		}
 	}
 
@@ -31,8 +38,10 @@ public class InvocationHandlerTest {
 	 */
 	@Test
 	public void proxyMethod(){
-		Hello hello = new HelloImpl();
+		Hello hello1 = new HelloImpl(1);
+		Hello hello2 = new HelloImpl(2);
 
+		AtomicReference<Object> reference = new AtomicReference<>();
 		// 只能是 interfaces
 		Hello proxyInstance = (Hello)Proxy.newProxyInstance(this.getClass().getClassLoader(), new Class[] { Hello.class },
 				new InvocationHandler() {
@@ -42,8 +51,12 @@ public class InvocationHandlerTest {
 
 						System.out.println("HelloInterceptor >>>> say() before");
 
-						// `hello`真实对象
-						Object result = method.invoke(hello, args);
+						reference.set(proxy);
+						// `proxy` 指的是 代理对象`proxyInstance`。而不是 被代理的对象，例如 `hello1 / hello2`，
+						// 所以不能这么写，会导致递归无限调用。
+						// Object result = method.invoke(proxy, args);
+						
+						Object result = method.invoke(hello1, args);
 
 						System.out.println("HelloInterceptor >>>> say() after");
 
@@ -52,5 +65,8 @@ public class InvocationHandlerTest {
 				});
 
 		proxyInstance.say();
+
+		System.out.printf(" >>>> `proxy == proxyInstance` is %b \n", reference.get() == proxyInstance);
+
 	}
 }

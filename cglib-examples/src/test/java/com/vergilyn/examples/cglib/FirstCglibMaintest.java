@@ -1,9 +1,9 @@
 package com.vergilyn.examples.cglib;
 
-import java.lang.reflect.Method;
-
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodProxy;
+
+import java.lang.reflect.Method;
 
 /**
  * @author vergilyn
@@ -40,6 +40,7 @@ public class FirstCglibMaintest {
         Enhancer eh = new net.sf.cglib.proxy.Enhancer();
         eh.setSuperclass(Target.class);
         eh.setCallback(new Interceptor());
+
 
         /*
         // 设置拦截对象
