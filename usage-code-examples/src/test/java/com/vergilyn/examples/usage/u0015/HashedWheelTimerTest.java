@@ -15,6 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * <pre>
  *   实现参考：
  *     - netty-common, {@link io.netty.util.HashedWheelTimer}
+ *     - micrometer-core, {@link io.micrometer.core.instrument.distribution.TimeWindowMax}
  *
  *   使用示例参考：
  *     - dubbo
