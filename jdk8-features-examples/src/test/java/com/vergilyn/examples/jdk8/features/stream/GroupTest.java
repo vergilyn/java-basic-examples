@@ -1,5 +1,12 @@
 package com.vergilyn.examples.jdk8.features.stream;
 
+import com.alibaba.fastjson.JSON;
+import com.vergilyn.examples.jdk8.features.Person;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+import org.testng.collections.Lists;
+import org.testng.collections.Maps;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,14 +14,6 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
-
-import com.alibaba.fastjson.JSON;
-import com.vergilyn.examples.jdk8.features.Person;
-
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
-import org.testng.collections.Lists;
-import org.testng.collections.Maps;
 
 /**
  * @author VergiLyn
@@ -35,6 +34,13 @@ public class GroupTest {
         list.add(new Person(5L, "5", "A"));
         list.add(new Person(6L, "6", "B"));
         list.add(new Person(7L, "7", "B"));
+    }
+
+    @Test
+    void basic(){
+        Map<String, Person> result = list.stream().collect(Collectors.toMap(Person::getType, person -> person, (t, t2) -> t2));
+
+        System.out.println(JSON.toJSONString(result));
     }
 
     @Test(description = "根据`person.type`分组 -> Map<String, Lists<Person>>")

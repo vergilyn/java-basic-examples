@@ -10,6 +10,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
+ * 貌似：编码优先级高于注解。
+ *
  * @author vergilyn
  * @date 2020-05-07
  */

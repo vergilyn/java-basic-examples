@@ -40,7 +40,7 @@ public class TimeWindowMaxTest {
 
         /**
          * 没看懂为什么需要 do-while。实际逻辑就是：如果 `sample > max`，则 `max.set(sample)`
-         * <p> 原因：目的是确保在多线程环境下，能够成功更新最大值，并且保证最终的最大值是正确的。
+         * <p> <b>目的：</b> 确保在多线程环境下，能够成功更新最大值，并且保证最终的最大值是正确的。
          */
         private void updateMax(AtomicLong max, long sample) {
             long curMax;

@@ -1,5 +1,7 @@
 # jmh-examples
 
+**2024-07-29**：部分代码基于 IDEA plugin：[JMH Java Microbenchmark Harness](https://plugins.jetbrains.com/plugin/7529-jmh-java-microbenchmark-harness) **
+
 JMH(Java Micro-benchmark Harness):
 + [OpenJDK JMH](http://openjdk.java.net/projects/code-tools/jmh/)
 + [Openjdk Jmh Samples](http://hg.openjdk.java.net/code-tools/jmh/file/tip/jmh-samples/src/main/java/org/openjdk/jmh/samples/)

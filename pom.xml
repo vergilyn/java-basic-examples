@@ -37,6 +37,8 @@
         <module>zookeeper-examples</module>
         <module>h2-examples</module>
         <module>serialize-examples</module>
+        <module>querydsl-examples</module>
+        <module>byte-buddy-agent</module>
     </modules>
 
     <repositories>
@@ -57,7 +59,7 @@
 
         <revision>1.0.0-SNAPSHOT</revision>
 
-        <version.spring-boot-dependencies>2.7.14</version.spring-boot-dependencies>
+        <version.spring-boot-dependencies>2.7.18</version.spring-boot-dependencies>
         <version.projectlombok>1.18.28</version.projectlombok>
 
         <!--region apache-commons-->
@@ -107,7 +109,7 @@
         <version.testng>7.5</version.testng>
         <version.mockito-core>4.2.0</version.mockito-core>
         <version.hamcrest>2.2</version.hamcrest>
-        <versio.jmh>1.34</versio.jmh>
+        <versio.jmh>1.37</versio.jmh>
         <version.awaitility>4.1.1</version.awaitility>
         <version.assertj>3.19.0</version.assertj>
         <version.logcaptor>2.9.0</version.logcaptor>
