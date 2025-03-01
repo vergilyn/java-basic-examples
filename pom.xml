@@ -74,7 +74,7 @@
         <version.apache-common-codec>1.15</version.apache-common-codec>
         <version.apache-common-pool2>2.6.1</version.apache-common-pool2>
 
-        <version.apache-common-fileupload>1.4</version.apache-common-fileupload>
+        <version.apache-common-fileupload>1.5</version.apache-common-fileupload>
         <version.apache-common-httpclient>4.5.13</version.apache-common-httpclient>
         <version.apache-common-collections4>4.4</version.apache-common-collections4>
         <!--endregion-->
