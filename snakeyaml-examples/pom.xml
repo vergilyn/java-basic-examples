@@ -13,7 +13,9 @@
     <artifactId>snakeyaml-examples</artifactId>
 
     <properties>
-        <snakeyaml.version>1.28</snakeyaml.version>
+        <java.version>17</java.version>
+
+        <snakeyaml.version>1.32</snakeyaml.version>
         <spring-beans.version>5.3.18</spring-beans.version>
     </properties>
 

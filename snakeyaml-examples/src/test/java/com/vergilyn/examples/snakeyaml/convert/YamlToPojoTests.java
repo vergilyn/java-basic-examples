@@ -1,12 +1,7 @@
 package com.vergilyn.examples.snakeyaml.convert;
 
-import java.io.Reader;
-import java.util.List;
-import java.util.Properties;
-
 import com.alibaba.fastjson.JSON;
 import com.vergilyn.examples.snakeyaml.AbstractSnakeyamlTests;
-
 import lombok.Data;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
@@ -16,6 +11,10 @@ import org.springframework.boot.context.properties.source.MapConfigurationProper
 import org.springframework.core.ResolvableType;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.introspector.BeanAccess;
+
+import java.io.Reader;
+import java.util.List;
+import java.util.Properties;
 
 import static com.alibaba.fastjson.serializer.SerializerFeature.PrettyFormat;
 
@@ -43,6 +42,7 @@ class YamlToPojoTests extends AbstractSnakeyamlTests {
 		String yamlStr =
 				  "username: root\n"
 				+ "password: 123456\n"
+			    + "#unknown: 123456\n"
 				+ "druid:\n"
 				+ "  minIdle: 5\n"
 				+ "  testWhileIdle: true\n"
