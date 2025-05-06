@@ -20,6 +20,8 @@ public class HelloApi {
 
     public static void main(String[] args) {
         HelloApi helloApi = new HelloApi();
+
+
         System.out.println(helloApi.hello("byte-buddy"));
         System.out.println(helloApi.hello("byte-buddy", LocalTime.now().toString()));
     }

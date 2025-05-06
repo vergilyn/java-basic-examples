@@ -39,6 +39,7 @@
         <module>serialize-examples</module>
         <module>querydsl-examples</module>
         <module>byte-buddy-agent</module>
+        <module>hazelcast-examples</module>
     </modules>
 
     <repositories>

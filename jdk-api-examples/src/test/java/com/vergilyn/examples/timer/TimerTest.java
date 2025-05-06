@@ -1,18 +1,13 @@
 package com.vergilyn.examples.timer;
 
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
-
 import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.*;
 
 /**
  * 建议使用netty中的timer。
@@ -25,8 +20,8 @@ public class TimerTest {
     private Timer timer;
     private CountDownLatch latch;
     private Semaphore semaphore;
-    private ScheduledExecutorService singleExecutor = Executors.newSingleThreadScheduledExecutor();
-    private ScheduledExecutorService scheduledExecutor = new ScheduledThreadPoolExecutor(10);
+    private final ScheduledExecutorService singleExecutor = Executors.newSingleThreadScheduledExecutor();
+    private final ScheduledExecutorService scheduledExecutor = new ScheduledThreadPoolExecutor(10);
 
     @BeforeMethod
     public void before(){

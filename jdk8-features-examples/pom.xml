@@ -12,6 +12,10 @@
 
     <artifactId>jdk8-features-examples</artifactId>
 
+    <properties>
+        <java.version>17</java.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>commons-io</groupId>

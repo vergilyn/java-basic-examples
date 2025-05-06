@@ -12,6 +12,10 @@
 
     <artifactId>jdk-concurrent-examples</artifactId>
 
+    <properties>
+        <java.version>17</java.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.alibaba</groupId>
